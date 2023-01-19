@@ -3,13 +3,13 @@ package com.example.snmpManager.services;
 
 import org.springframework.stereotype.Service;
 
-import com.example.snmpManager.entities.ManagedDevice;
+import com.example.snmpManager.model.ManagedDevice;
 
 @Service
 public class SNMPService {
 	
 
-	///recebe e verifica faixa de ip
+	///busca dispositivos com base um faixa de ips definidos
 	 public void discoverButtonActionPerformed() {//GEN-FIRST:event_discoverButtonActionPerformed
 	    	//verifica se ip begin and end � valido 
 	        if(ManagedDevice.isIpValid("192.168.0.1")) {
@@ -18,13 +18,13 @@ public class SNMPService {
 	                int[] end = new int[4];
 
 	                //String[] result = rangeBeginTextField.getText().split("\\.");
-	                String[] result = {"192","168","0","1"};
+	                String[] result = {"10","0","5","1"};
 	                for(int i = 0; i < 4; i++) {
 	                    begin[i] = Integer.parseInt(result[i]);
 	                }
 
 	                //result = rangeEndTextField.getText().split("\\.");
-	                String[] result2 = {"192","168","0","254"};
+	                String[] result2 = {"10","0","5","254"};
 	                for(int i = 0; i < 4; i++) {
 	                    end[i] = Integer.parseInt(result2[i]);
 	                }

@@ -8,12 +8,12 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/activies")
+@RequestMapping("/device")
 public class ActiveController {
 
 	@GetMapping
 	@ResponseStatus(code = HttpStatus.OK)
 	public ResponseEntity<?> listar() {
-		return ResponseEntity.ok().body("lista de ativos");
+		return ResponseEntity.ok().body("lista de dispositivos");
 	}
 }

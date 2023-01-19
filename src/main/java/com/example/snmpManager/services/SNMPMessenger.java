@@ -13,8 +13,8 @@ import org.snmp4j.smi.OctetString;
 import org.snmp4j.smi.UdpAddress;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
-import com.example.snmpManager.entities.ManagedDevice;
-import com.example.snmpManager.entities.SNMPResponseListener;
+import com.example.snmpManager.model.ManagedDevice;
+import com.example.snmpManager.model.SNMPResponseListener;
 
 public class SNMPMessenger {
     private static final String community = "public";
@@ -154,11 +154,6 @@ public class SNMPMessenger {
             Snmp snmp = new Snmp(new DefaultUdpTransportMapping());
             snmp.listen();
 
-            
-            
-            
-            
-            
             
             ResponseListener listener = new ResponseListener() {
                 public void onResponse(ResponseEvent event) {
