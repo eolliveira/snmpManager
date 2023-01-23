@@ -4,7 +4,6 @@ import com.example.snmpManager.services.SNMPRequestClient;
 import com.example.snmpManager.services.SNMPTrapReciever;
 import org.snmp4j.smi.OID;
 import org.snmp4j.smi.UdpAddress;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
@@ -20,10 +19,20 @@ public class SnmpManagerApplication {
 		SNMPRequestClient client = new SNMPRequestClient();
 		client.start("udp:localhost/161", "public");
 
+//
+//		String sysObjID = client.getAsString(new OID(".1.3.6.1.2.1.1.2.0")); //OID
+//		String sysDescr = client.getAsString(new OID(".1.3.6.1.2.1.1.1.0")); //Hardware
+//		String SysName = client.getAsString(new OID(".1.3.6.1.2.1.1.5.0")); //hostname
+//		String SysUpTime = client.getAsString(new OID(".1.3.6.1.2.1.25.1.1.0")); //tempo ligado
+//		String ipAdEntAddr = client.getAsString(new OID(".1.3.6.1.2.1.4.20.1.1.10.0.5.237")); //tempo ligado
+//		String hrMemorySize = client.getAsString(new OID(".1.3.6.1.2.1.25.2.2.0")); //memoria ram intalada
+//		String mac = client.getAsString(new OID(".1.3.6.1.2.1.55.1.5.1.8.8")); //memoria ram intalada
+//		String  hrSystemNumUsers = client.getAsString(new OID(".1.3.6.1.2.1.25.1.5.0")); //numero de usuários
+
 
 		String sysObjID = client.getAsString(new OID(".1.3.6.1.2.1.1.2.0")); //OID
 		String sysDescr = client.getAsString(new OID(".1.3.6.1.2.1.1.1.0")); //Hardware
-		String SysName = client.getAsString(new OID(".1.3.6.1.2.1.1.5.0")); //hostname
+		String SysName = client.getAsString(new OID(".1.3.6.1.4.1.12345.2.1.0")); //hostname
 		String SysUpTime = client.getAsString(new OID(".1.3.6.1.2.1.25.1.1.0")); //tempo ligado
 		String ipAdEntAddr = client.getAsString(new OID(".1.3.6.1.2.1.4.20.1.1.10.0.5.237")); //tempo ligado
 		String hrMemorySize = client.getAsString(new OID(".1.3.6.1.2.1.25.2.2.0")); //memoria ram intalada
