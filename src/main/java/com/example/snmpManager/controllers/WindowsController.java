@@ -8,14 +8,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/device")
-public class ActiveController {
+@RequestMapping("/win")
+public class WindowsController {
 
-	@GetMapping
-	@ResponseStatus(code = HttpStatus.OK)
-	public ResponseEntity<?> getInformation() {
-		return ResponseEntity.ok().body("lista de dispositivos");
-	}
-
+    @GetMapping
+    @ResponseStatus(code = HttpStatus.OK)
+    public ResponseEntity<?> listar() {
+        return ResponseEntity.ok().body("Dados do windows");
+    }
 
 }
