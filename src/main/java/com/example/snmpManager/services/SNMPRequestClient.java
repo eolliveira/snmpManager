@@ -13,7 +13,7 @@ import java.io.IOException;
 public class SNMPRequestClient {
 
     //verificar (vazamento de memoria)
-    private Snmp snmp = null;
+    private Snmp snmp;
     private String address;
     private String community;
 

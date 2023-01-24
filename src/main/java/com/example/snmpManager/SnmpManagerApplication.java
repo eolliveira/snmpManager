@@ -10,7 +10,7 @@ public class SnmpManagerApplication {
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(SnmpManagerApplication.class, args);
 
-//		//inicia ouvinte de trap(armadilhas) dos agentes
+//		//inicia ouvinte de trap(armadilhas) para receber dos agentes agentes
 //		SNMPTrapReciever trapReciever = new SNMPTrapReciever();
 //		trapReciever.listen(new UdpAddress("localhost/162"));
 

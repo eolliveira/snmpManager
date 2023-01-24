@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/win")
-public class WindowsController {
+public class  WindowsController {
 
     @Autowired
     private WindowsService windowsService;

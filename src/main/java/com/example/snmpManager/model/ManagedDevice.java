@@ -10,8 +10,7 @@ import com.example.snmpManager.services.SNMPMessenger;
 public class ManagedDevice {
     private String ip;
     public static String port = "32150";
-    
-    
+
     private String gpsStatus;
     private String networkStatus;
     private String bluetoothStatus;

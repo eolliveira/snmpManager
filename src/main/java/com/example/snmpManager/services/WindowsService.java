@@ -27,8 +27,8 @@ public class WindowsService {
         String nomeMaquina = client.getAsString(new OID(baseOID + ".2.2.1.0"));
         String dominio = client.getAsString(new OID(baseOID + ".2.2.2.0"));
         String gateway = client.getAsString(new OID(baseOID + ".2.2.3.0"));
-        String dns1 = client.getAsString(new OID(baseOID + ".2.2.4.0"));
-        String enderecoIp = client.getAsString(new OID(baseOID + ".2.2.6.0"));
+        String dns = client.getAsString(new OID(baseOID + ".2.2.4.0"));
+        String interfaces = client.getAsString(new OID(baseOID + ".2.2.6.0"));
         String enderecoMac = client.getAsString(new OID(baseOID + ".2.2.7.0"));
 
         WindowsObject win = new WindowsObject();
@@ -42,10 +42,9 @@ public class WindowsService {
         win.setHostname(nomeMaquina);
         win.setDomain(dominio);
         win.setGateway(gateway);
-        win.setSecondaryDns(dns1);
-        win.setIpAdrress(enderecoIp);
-        win.setMacAddress(enderecoMac);
         win.setModel(modelo);
+        win.setDns(dns);
+        win.setIntefaces(interfaces);
 
         return win;
     }

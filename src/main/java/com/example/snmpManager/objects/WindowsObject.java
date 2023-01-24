@@ -2,6 +2,9 @@ package com.example.snmpManager.objects;
 
 import lombok.Data;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Data
 public class WindowsObject {
 
@@ -14,10 +17,8 @@ public class WindowsObject {
     private String ramMemory;
     private String hostname;
     private String domain;
-    private String ipAdrress;
-    private String macAddress;
     private String gateway;
-    private String primaryDns;
-    private String secondaryDns;
+    private String dns;
+    private String intefaces;
 
 }
