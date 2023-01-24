@@ -1,8 +1,11 @@
 package com.example.snmpManager.objects;
 
+import lombok.Data;
+
+@Data
 public class WindowsObject {
 
-    private String so;
+    private String os;
     private String architectureSo;
     private String manufacturer;
     private String model;
@@ -17,5 +20,4 @@ public class WindowsObject {
     private String primaryDns;
     private String secondaryDns;
 
-    public WindowsObject(){}
 }
