@@ -1,6 +1,7 @@
 package com.example.snmpManager.services;
 
 import com.example.snmpManager.objects.WindowsObject;
+import com.google.gson.Gson;
 import org.snmp4j.smi.OID;
 import org.springframework.stereotype.Service;
 
@@ -29,12 +30,13 @@ public class WindowsService {
         String gateway = client.getAsString(new OID(baseOID + ".2.2.3.0"));
         String dns = client.getAsString(new OID(baseOID + ".2.2.4.0"));
         String interfaces = client.getAsString(new OID(baseOID + ".2.2.6.0"));
-        String enderecoMac = client.getAsString(new OID(baseOID + ".2.2.7.0"));
+
+        Gson gson = new Gson();
 
         WindowsObject win = new WindowsObject();
 
         win.setOs(sistemaOperacional);
-        win.setArchitectureSo(arquitetura);
+        win.setOsArchitecture(arquitetura);
         win.setManufacturer(fabricante);
         win.setSerialNumber(numeroSerie);
         win.setProcessor(processador);
@@ -44,7 +46,7 @@ public class WindowsService {
         win.setGateway(gateway);
         win.setModel(modelo);
         win.setDns(dns);
-        win.setIntefaces(interfaces);
+        win.addInterfaces(interfaces);
 
         return win;
     }

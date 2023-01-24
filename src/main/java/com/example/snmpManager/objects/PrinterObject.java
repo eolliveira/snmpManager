@@ -1,4 +1,4 @@
 package com.example.snmpManager.objects;
 
-public class Interface {
+public class PrinterObject {
 }
