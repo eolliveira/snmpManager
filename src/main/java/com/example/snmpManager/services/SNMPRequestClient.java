@@ -1,5 +1,6 @@
 package com.example.snmpManager.services;
 
+import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
 import org.snmp4j.*;
 import org.snmp4j.event.ResponseEvent;
 import org.snmp4j.mp.SnmpConstants;
@@ -12,7 +13,6 @@ import java.io.IOException;
 @Service
 public class SNMPRequestClient {
 
-    //verificar (vazamento de memoria)
     private Snmp snmp;
     private String address;
     private String community;
@@ -26,9 +26,13 @@ public class SNMPRequestClient {
         transport.listen();
     }
 
-    public String getAsString(OID oid) throws IOException {
-        ResponseEvent event = get(new OID[]{oid});
-        return event.getResponse().get(0).getVariable().toString();
+    public String getAsString(OID oid) {
+        try {
+            ResponseEvent event = get(new OID[]{oid});
+            return event.getResponse().get(0).getVariable().toString();
+        } catch (NullPointerException | IOException e) {
+            throw new UnableToGetDeviceDataException("Não foi possivel obter informações desse dispositivo!");
+        }
     }
 
     // Este método é capaz de lidar com vários OIDs
@@ -64,6 +68,5 @@ public class SNMPRequestClient {
         target.setVersion(SnmpConstants.version2c);
         return target;
     }
-
 
 }

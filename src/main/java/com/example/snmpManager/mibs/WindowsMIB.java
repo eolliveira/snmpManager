@@ -1,8 +1,6 @@
 package com.example.snmpManager.mibs;
 
 import lombok.Data;
-import org.snmp4j.smi.OID;
-import org.springframework.context.annotation.Bean;
 
 @Data
 public class WindowsMIB {
@@ -20,5 +18,4 @@ public class WindowsMIB {
     private final String GATEWAY_OID = BASE_OID + ".2.2.3.0";
     private final String DNS_OID = BASE_OID + ".2.2.4.0";
     private final String INTERFACES_OID = BASE_OID + ".2.2.6.0";
-
 }

@@ -16,7 +16,7 @@ public class  WindowsController {
     private WindowsService windowsService;
 
     @GetMapping(value = "/{ipAddress}")
-    public ResponseEntity<WindowsObject> findAll(@PathVariable String ipAddress) throws IOException {
+    public ResponseEntity<WindowsObject> findAll(@PathVariable String ipAddress) {
         WindowsObject win = windowsService.getObjectData(ipAddress);
         return ResponseEntity.ok(win);
     }

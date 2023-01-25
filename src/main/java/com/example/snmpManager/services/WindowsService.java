@@ -11,10 +11,14 @@ import java.io.IOException;
 public class WindowsService {
 
     //busca inf windows
-    public WindowsObject getObjectData(String address) throws IOException {
+    public WindowsObject getObjectData(String address) {
 
         SNMPRequestClient client = new SNMPRequestClient();
-        client.start("udp:" + address + "/161", "public");
+        try {
+            client.start("udp:" + address + "/161", "public");
+        } catch (IOException e) {
+            throw new RuntimeException("Não foi possivel inicar serviço na porta 161 !");
+        }
 
         WindowsMIB mib = new WindowsMIB();
         WindowsObject windowsObject = new WindowsObject();
@@ -47,6 +51,5 @@ public class WindowsService {
 
         return windowsObject;
     }
-
 
 }
