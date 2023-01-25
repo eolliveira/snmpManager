@@ -1,7 +1,6 @@
 package com.example.snmpManager.services;
 
 import com.example.snmpManager.objects.WindowsObject;
-import com.google.gson.Gson;
 import org.snmp4j.smi.OID;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +10,7 @@ import java.io.IOException;
 public class WindowsService {
 
     //busca inf windows
-    public WindowsObject getInformation(String address) throws IOException {
+    public WindowsObject getObjectData(String address) throws IOException {
 
         SNMPRequestClient client = new SNMPRequestClient();
         client.start("udp:" + address + "/161", "public");

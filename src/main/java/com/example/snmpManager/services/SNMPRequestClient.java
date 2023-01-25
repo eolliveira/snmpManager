@@ -20,16 +20,14 @@ public class SNMPRequestClient {
     public void start(String address, String commmunity) throws IOException {
         TransportMapping transport = new DefaultUdpTransportMapping();
         snmp = new Snmp(transport);
-
         this.address = address;
         this.community = commmunity;
 
-        // Não se esqueça desta linha!
         transport.listen();
     }
 
     public String getAsString(OID oid) throws IOException {
-        ResponseEvent event = get(new OID[] { oid });
+        ResponseEvent event = get(new OID[]{oid});
         return event.getResponse().get(0).getVariable().toString();
     }
 
@@ -54,10 +52,8 @@ public class SNMPRequestClient {
     }
 
 
-    /**
-     * Este método retorna um Target, que contém informações sobre
-     * onde os dados devem ser buscados e como
-     */
+    // Este método retorna um Target, que contém informações sobre
+    // onde os dados devem ser buscados e como
     private Target getTarget(String address, String community) {
         Address targetAddress = GenericAddress.parse(address);
         CommunityTarget target = new CommunityTarget();
