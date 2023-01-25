@@ -4,12 +4,13 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class WindowsObject {
+public class WindowsObject implements Serializable {
 
     private String os;
     private String osArchitecture;
@@ -25,8 +26,7 @@ public class WindowsObject {
     private List<InterfaceObject> interfaces = new ArrayList<>();
 
     public void addInterfaces(String arrayInterfaces) {
-        TypeToken tt = new TypeToken<List<InterfaceObject>>() {
-        };
+        TypeToken tt = new TypeToken<List<InterfaceObject>>() {};
         Gson gson = new Gson();
         List<InterfaceObject> listInterfaces = gson.fromJson(arrayInterfaces, tt.getType());
 
