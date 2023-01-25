@@ -38,6 +38,10 @@
 		<item key="SmartImportRootWizardPage.STORE_NESTED_PROJECTS" value="true"/>
 		<item key="SmartImportRootWizardPage.STORE_CONFIGURE_NATURES" value="true"/>
 		<list key="org.eclipse.ui.internal.wizards.datatransfer.SmartImportRootWizardPage.knownSources">
+			<item value="C:\workspace\projetoFinal\SnmpAgent"/>
+			<item value="C:\workspace\snmp4j-example"/>
+			<item value="C:\workspace\SNMP AGENT"/>
+			<item value="C:\workspace\Nova pasta\snmp-agent"/>
 			<item value="C:\workspace\Nova pasta\snmp4j-guide"/>
 			<item value="C:\workspace\Nova pasta\MIBNavigator"/>
 			<item value="C:\workspace\Nova pasta\snmp"/>

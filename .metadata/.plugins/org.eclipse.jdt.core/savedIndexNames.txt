@@ -1,13 +1,2 @@
 INDEX VERSION 1.131+C:\workspace\snmpManager\.metadata\.plugins\org.eclipse.jdt.core
-3240969194.index
-1385302447.index
-266152778.index
-1826718347.index
-4025489519.index
-219147004.index
-2707291582.index
-1292744146.index
-2989874106.index
 1865797976.index
-400224858.index
-3696003420.index

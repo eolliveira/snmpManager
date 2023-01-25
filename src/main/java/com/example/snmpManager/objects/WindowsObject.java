@@ -1,10 +1,12 @@
 package com.example.snmpManager.objects;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import lombok.Data;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 public class WindowsObject {
@@ -20,27 +22,14 @@ public class WindowsObject {
     private String domain;
     private String gateway;
     private String dns;
-    private List<InterfaceObject> intefaces = new ArrayList<>();
+    private List<InterfaceObject> interfaces = new ArrayList<>();
 
     public void addInterfaces(String arrayInterfaces) {
+        TypeToken tt = new TypeToken<List<InterfaceObject>>() {
+        };
+        Gson gson = new Gson();
+        List<InterfaceObject> listInterfaces = gson.fromJson(arrayInterfaces, tt.getType());
 
-//        Gson gson = new Gson();
-//        InterfaceObject inter = gson. fromJson(intefaces, InterfaceObject.class);
-
-        //TODO(converter string em obj )
-
-
-
-        this.os = os;
-        this.osArchitecture = osArchitecture;
-        this.manufacturer = manufacturer;
-        this.serialNumber = serialNumber;
-        this.model = model;
-        this.processor = processor;
-        this.ramMemory = ramMemory;
-        this.hostname = hostname;
-        this.domain = domain;
-        this.gateway = gateway;
-        this.dns = dns;
+        listInterfaces.stream().map(i -> this.interfaces.add(i)).collect(Collectors.toList());
     }
 }

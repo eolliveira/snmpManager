@@ -31,7 +31,6 @@ public class WindowsService {
         String dns = client.getAsString(new OID(baseOID + ".2.2.4.0"));
         String interfaces = client.getAsString(new OID(baseOID + ".2.2.6.0"));
 
-        Gson gson = new Gson();
 
         WindowsObject win = new WindowsObject();
 
