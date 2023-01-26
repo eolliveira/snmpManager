@@ -1,4 +1,4 @@
-package com.example.snmpManager.services;
+package com.example.snmpManager.controllers.services;
 
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
@@ -36,6 +36,7 @@ public class WindowsService {
         String gateway = client.getAsString(new OID(mib.getGATEWAY_OID()));
         String dns = client.getAsString(new OID(mib.getDNS_OID()));
         String interfaces = client.getAsString(new OID(mib.getINTERFACES_OID()));
+        String discosRigidos = client.getAsString(new OID(mib.getDISCO_RIGIDO()));
 
         windowsObject.setOs(sistemaOperacional);
         windowsObject.setOsArchitecture(arquitetura);
@@ -50,6 +51,7 @@ public class WindowsService {
         windowsObject.setGateway(gateway);
         windowsObject.setDns(dns);
         windowsObject.addInterfaces(interfaces);
+        windowsObject.addHardDisk(discosRigidos);
 
         return windowsObject;
     }

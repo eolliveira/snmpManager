@@ -1,12 +1,14 @@
 package com.example.snmpManager.model;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 
 @Entity
+@Data
 public class WindowsEntity extends AtivoEntity {
     private String discoRigido;
     private String ultimoUsuarioLogado;
-
 
 
     //data aquisição

@@ -1,4 +1,4 @@
-package com.example.snmpManager.services;
+package com.example.snmpManager.controllers.services;
 
 import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
 import org.snmp4j.*;

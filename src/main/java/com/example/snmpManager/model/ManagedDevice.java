@@ -5,7 +5,7 @@ import java.util.Vector;
 import org.snmp4j.smi.OID;
 import org.snmp4j.smi.VariableBinding;
 
-import com.example.snmpManager.services.SNMPMessenger;
+import com.example.snmpManager.controllers.services.SNMPMessenger;
 
 public class ManagedDevice {
     private String ip;

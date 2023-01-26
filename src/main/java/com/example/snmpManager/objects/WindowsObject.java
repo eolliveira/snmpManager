@@ -5,6 +5,7 @@ import com.google.gson.reflect.TypeToken;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,11 +20,20 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
     private String domain;
     private String usuarioLogado;
 
+    private List<HardDiskObject> discos = new ArrayList<>();
+
+    public void addHardDisk(String arrayDisk) {
+        TypeToken tt = new TypeToken<List<HardDiskObject>>() {};
+        Gson gson = new Gson();
+        List<HardDiskObject> listDisk = gson.fromJson(arrayDisk, tt.getType());
+
+        listDisk.stream().map(i -> this.discos.add(i)).collect(Collectors.toList());
+    }
 
     public void addInterfaces(String arrayInterfaces) {
-        TypeToken tt = new TypeToken<List<InterfaceObject>>() {};
+        TypeToken t = new TypeToken<List<InterfaceObject>>() {};
         Gson gson = new Gson();
-        List<InterfaceObject> listInterfaces = gson.fromJson(arrayInterfaces, tt.getType());
+        List<InterfaceObject> listInterfaces = gson.fromJson(arrayInterfaces, t.getType());
 
         listInterfaces.stream().map(i -> super.getInterfaces().add(i)).collect(Collectors.toList());
     }
