@@ -1,6 +1,6 @@
 package com.example.snmpManager.model;
 
-public class PrinterEntity {
+public class ImpressoraEntity extends AtivoEntity {
 
     //nome
     //tipo

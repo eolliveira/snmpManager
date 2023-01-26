@@ -32,6 +32,7 @@ public class WindowsService {
         String memoriaRam = client.getAsString(new OID(mib.getMEMORIA_RAM_OID()));
         String nomeMaquina = client.getAsString(new OID(mib.getNOME_OID()));
         String dominio = client.getAsString(new OID(mib.getDOMINIO_OID()));
+        String usuarioLogado = client.getAsString(new OID(mib.getUSUARIO_LOGADO()));
         String gateway = client.getAsString(new OID(mib.getGATEWAY_OID()));
         String dns = client.getAsString(new OID(mib.getDNS_OID()));
         String interfaces = client.getAsString(new OID(mib.getINTERFACES_OID()));
@@ -45,6 +46,7 @@ public class WindowsService {
         windowsObject.setRamMemory(memoriaRam);
         windowsObject.setHostname(nomeMaquina);
         windowsObject.setDomain(dominio);
+        windowsObject.setUsuarioLogado(usuarioLogado);
         windowsObject.setGateway(gateway);
         windowsObject.setDns(dns);
         windowsObject.addInterfaces(interfaces);

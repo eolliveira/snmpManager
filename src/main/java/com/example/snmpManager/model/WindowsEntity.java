@@ -1,6 +1,14 @@
 package com.example.snmpManager.model;
 
-public class WindowsEntity {
+import javax.persistence.Entity;
+
+@Entity
+public class WindowsEntity extends AtivoEntity {
+    private String discoRigido;
+    private String ultimoUsuarioLogado;
+
+
+
     //data aquisição
     //data expriração
     //ultimo usuário logado

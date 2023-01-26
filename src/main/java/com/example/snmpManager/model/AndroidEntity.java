@@ -1,5 +1,5 @@
 package com.example.snmpManager.model;
 
-public class AndroidEntity {
-    //versão android
+public class AndroidEntity extends AtivoEntity {
+    private String versaoAndroid;
 }
