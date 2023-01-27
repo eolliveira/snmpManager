@@ -1,4 +1,4 @@
-package com.example.snmpManager.controllers.services;
+package com.example.snmpManager.services;
 
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;

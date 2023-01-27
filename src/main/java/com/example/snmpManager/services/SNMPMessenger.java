@@ -1,4 +1,4 @@
-package com.example.snmpManager.controllers.services;
+package com.example.snmpManager.services;
 
 import java.util.Vector;
 

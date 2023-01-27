@@ -2,10 +2,8 @@ package com.example.snmpManager.objects;
 
 import lombok.Data;
 
-import java.io.Serializable;
-
 @Data
-public class HardDiskObject implements Serializable {
+public class HardDiskObject {
     private String nome;
     private String modelo;
     private String numeroSerie;
