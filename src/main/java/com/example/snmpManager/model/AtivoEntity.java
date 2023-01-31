@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
-@Table(name = "ATIVO")
+@Table(name = "TBATIVO")
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Data
