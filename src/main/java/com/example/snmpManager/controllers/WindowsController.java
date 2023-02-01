@@ -1,7 +1,8 @@
 package com.example.snmpManager.controllers;
 
+import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.objects.WindowsObject;
-import com.example.snmpManager.services.WindowsService;
+import com.example.snmpManager.services.EstacaoTrabalhoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 public class  WindowsController {
 
     @Autowired
-    private WindowsService windowsService;
+    private EstacaoTrabalhoService windowsService;
 
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WindowsObject> findAll(@PathVariable String ipAddress) {
@@ -19,4 +20,10 @@ public class  WindowsController {
         return ResponseEntity.ok(win);
     }
 
+    //add nova estação de trabalho
+    @PostMapping()
+    public ResponseEntity<EstacaoTrabalhoEntity> insertNewWorkStation(@RequestBody EstacaoTrabalhoEntity dto) {
+        EstacaoTrabalhoEntity estacaoCriada = windowsService.insertNewWorkStation(dto);
+        return ResponseEntity.ok(estacaoCriada);
+    }
 }

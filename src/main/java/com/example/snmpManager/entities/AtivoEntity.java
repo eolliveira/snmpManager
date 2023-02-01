@@ -1,6 +1,7 @@
 package com.example.snmpManager.entities;
 
 import lombok.Data;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ public abstract class AtivoEntity {
     private Long id;
     private String nome;
     private String fabricante;
+    private String modelo;
     private String descricao;
     private String numeroSerie;
     private Boolean inativo;

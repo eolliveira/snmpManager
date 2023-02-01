@@ -16,6 +16,6 @@ public class EstacaoTrabalhoEntity extends AtivoEntity {
     private String nomeHost;
     private String ultimoUsuarioLogado;
     private String dominio;
-    private String discosRigidos;
-    private String interfacesRede;
+    private String dnsList;
+    private String gateway;
 }

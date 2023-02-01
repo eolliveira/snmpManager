@@ -1,14 +1,21 @@
 package com.example.snmpManager.services;
 
+import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
+import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import org.snmp4j.smi.OID;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.io.IOException;
 
 @Service
-public class WindowsService {
+public class EstacaoTrabalhoService {
+
+    @Autowired
+    private EstacaoTrabalhoRepository repository;
 
     //busca inf windows
     public WindowsObject getObjectData(String address) {
@@ -45,7 +52,7 @@ public class WindowsService {
         windowsObject.setNumeroSerie(numeroSerie);
         windowsObject.setProcessador(processador);
         windowsObject.setMemoriaRam(memoriaRam);
-        windowsObject.setHostname(nomeMaquina);
+        windowsObject.setNomeHost(nomeMaquina);
         windowsObject.setDominio(dominio);
         windowsObject.setUltimoUsuarioLogado(usuarioLogado);
         windowsObject.setGateway(gateway);
@@ -54,6 +61,30 @@ public class WindowsService {
         windowsObject.addHardDisk(discosRigidos);
 
         return windowsObject;
+    }
+
+
+    //salva nova estação de trabalho
+    @Transactional
+    public EstacaoTrabalhoEntity insertNewWorkStation (EstacaoTrabalhoEntity estacaoTrabalho) {
+
+        EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity();
+        estacao.setFabricante(estacaoTrabalho.getFabricante());
+        estacao.setNumeroSerie(estacaoTrabalho.getNumeroSerie());
+        estacao.setModelo(estacaoTrabalho.getModelo());
+        estacao.setGateway(estacaoTrabalho.getGateway());
+        estacao.setDnsList(estacaoTrabalho.getDnsList());
+        estacao.setSistemaOperacional(estacaoTrabalho.getSistemaOperacional());
+        estacao.setArquiteturaSo(estacaoTrabalho.getArquiteturaSo());
+        estacao.setProcessador(estacaoTrabalho.getProcessador());
+        estacao.setMemoriaRam(estacaoTrabalho.getMemoriaRam());
+        estacao.setNomeHost(estacaoTrabalho.getNomeHost());
+        estacao.setDominio(estacaoTrabalho.getDominio());
+        estacao.setUltimoUsuarioLogado(estacaoTrabalho.getUltimoUsuarioLogado());
+
+        estacao = repository.save(estacao);
+
+        return estacao;
     }
 
 }

@@ -16,7 +16,7 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
     private String arquiteturaSo;
     private String processador;
     private String memoriaRam;
-    private String hostname;
+    private String nomeHost;
     private String dominio;
     private String ultimoUsuarioLogado;
 
