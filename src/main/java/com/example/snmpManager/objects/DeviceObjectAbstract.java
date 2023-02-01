@@ -7,11 +7,11 @@ import java.util.List;
 
 @Data
 public abstract class DeviceObjectAbstract {
-    private String manufacturer;
-    private String serialNumber;
-    private String model;
+    private String fabricante;
+    private String numeroSerie;
+    private String modelo;
     private String gateway;
-    private String dns;
+    private String dnsList;
 
     private List<InterfaceObject> interfaces = new ArrayList<>();
 

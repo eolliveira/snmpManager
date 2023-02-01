@@ -6,7 +6,6 @@ import java.io.Serializable;
 
 @Data
 public class InterfaceObject implements Serializable {
-
     private String nomeLocal;
     private String nomeFabricante;
     private String enderecoMac;

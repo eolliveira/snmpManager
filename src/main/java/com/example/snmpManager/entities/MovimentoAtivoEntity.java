@@ -1,9 +1,8 @@
-package com.example.snmpManager.model;
+package com.example.snmpManager.entities;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

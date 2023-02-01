@@ -1,6 +1,5 @@
-package com.example.snmpManager.model;
+package com.example.snmpManager.entities;
 
-import jdk.jfr.BooleanFlag;
 import lombok.Data;
 
 import javax.persistence.*;

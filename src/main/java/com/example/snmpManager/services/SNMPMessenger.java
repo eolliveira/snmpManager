@@ -13,8 +13,8 @@ import org.snmp4j.smi.OctetString;
 import org.snmp4j.smi.UdpAddress;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
-import com.example.snmpManager.model.ManagedDevice;
-import com.example.snmpManager.model.SNMPResponseListener;
+import com.example.snmpManager.entities.ManagedDevice;
+import com.example.snmpManager.entities.SNMPResponseListener;
 
 public class SNMPMessenger {
     private static final String community = "public";

@@ -17,7 +17,7 @@ public class WindowsService {
         try {
             client.start("udp:" + address + "/161", "public");
         } catch (IOException e) {
-            throw new RuntimeException("Não foi possivel inicar serviço na porta 161 !");
+            throw new RuntimeException("Não foi possivel inicar serviço na porta 161: " + e.getMessage());
         }
 
         WindowsMIB mib = new WindowsMIB();
@@ -38,18 +38,18 @@ public class WindowsService {
         String interfaces = client.getAsString(new OID(mib.getINTERFACES_OID()));
         String discosRigidos = client.getAsString(new OID(mib.getDISCO_RIGIDO()));
 
-        windowsObject.setOs(sistemaOperacional);
-        windowsObject.setOsArchitecture(arquitetura);
-        windowsObject.setManufacturer(fabricante);
-        windowsObject.setModel(modelo);
-        windowsObject.setSerialNumber(numeroSerie);
-        windowsObject.setProcessor(processador);
-        windowsObject.setRamMemory(memoriaRam);
+        windowsObject.setSistemaOperacional(sistemaOperacional);
+        windowsObject.setArquiteturaSo(arquitetura);
+        windowsObject.setFabricante(fabricante);
+        windowsObject.setModelo(modelo);
+        windowsObject.setNumeroSerie(numeroSerie);
+        windowsObject.setProcessador(processador);
+        windowsObject.setMemoriaRam(memoriaRam);
         windowsObject.setHostname(nomeMaquina);
-        windowsObject.setDomain(dominio);
-        windowsObject.setUsuarioLogado(usuarioLogado);
+        windowsObject.setDominio(dominio);
+        windowsObject.setUltimoUsuarioLogado(usuarioLogado);
         windowsObject.setGateway(gateway);
-        windowsObject.setDns(dns);
+        windowsObject.setDnsList(dns);
         windowsObject.addInterfaces(interfaces);
         windowsObject.addHardDisk(discosRigidos);
 

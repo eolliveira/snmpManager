@@ -3,7 +3,7 @@ package com.example.snmpManager.services;
 
 import org.springframework.stereotype.Service;
 
-import com.example.snmpManager.model.ManagedDevice;
+import com.example.snmpManager.entities.ManagedDevice;
 
 @Service
 public class SNMPService {

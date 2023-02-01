@@ -12,13 +12,13 @@ import java.util.stream.Collectors;
 @Data
 public class WindowsObject extends DeviceObjectAbstract implements Serializable {
 
-    private String os;
-    private String osArchitecture;
-    private String processor;
-    private String ramMemory;
+    private String sistemaOperacional;
+    private String arquiteturaSo;
+    private String processador;
+    private String memoriaRam;
     private String hostname;
-    private String domain;
-    private String usuarioLogado;
+    private String dominio;
+    private String ultimoUsuarioLogado;
 
     private List<HardDiskObject> discos = new ArrayList<>();
 
