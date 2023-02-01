@@ -7,14 +7,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "TBCATEGORIA")
+@Table(name = "USUARIO")
 @Data
-public class CategoriaEntity {
+public class UsuarioEntity {
+    //tabela de ususário ja existente
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String descricao;
 
-    @OneToMany(mappedBy = "categoria")
+    @OneToMany(mappedBy = "usuario")
     private List<AtivoEntity> ativos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "usuario")
+    private List<MovimentoAtivoEntity> movimentosAtivo = new ArrayList<>();
 }

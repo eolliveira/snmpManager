@@ -7,5 +7,5 @@ import java.io.Serializable;
 @Data
 public class PartitionObject implements Serializable {
     private String pontoMontagem;
-    private String tamanho;
+    private String capacidade;
 }

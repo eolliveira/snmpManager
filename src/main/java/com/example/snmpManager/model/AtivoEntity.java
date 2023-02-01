@@ -1,32 +1,45 @@
 package com.example.snmpManager.model;
 
+import jdk.jfr.BooleanFlag;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-@Table(name = "TBATIVO")
+@Table(name = "ATIVO")
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "TP_ATIVO")
 @Data
-public class AtivoEntity {
+public abstract class AtivoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String status;
-    private Boolean ativo;
+    private String nome;
+    private String fabricante;
+    private String descricao;
     private String numeroSerie;
+    private Boolean inativo;
+    private StatusAtivo status;
     private Date dtAquisicao;
-    private Date dtExpiracao;
     private Date dtVencimentoGarantia;
+    private Date dtExpiracao;
+    private Date ultimoSincronismo;
     private BigDecimal valorCompra;
     private String fornecedor;
-    private String local;
     private String obeservacao;
 
-    @ManyToOne()
-    @JoinColumn(name = "id_categoria")
-    private CategoriaEntity categoria;
+    @ManyToOne
+    @JoinColumn(name = "ID_USUARIO")
+    private UsuarioEntity usuario;
+
+    @OneToMany(mappedBy = "ativo")
+    private List<MovimentoAtivoEntity> movimentos = new ArrayList<>();
+
+    @OneToMany(mappedBy = "ativo")
+    private List<LicencaEntity> licencas = new ArrayList<>();
 }

@@ -7,10 +7,7 @@ import javax.persistence.Entity;
 
 @Entity
 @Data
-@DiscriminatorValue(value = "IMPRESSORA")
-public class ImpressoraEntity extends AtivoEntity {
-
-    //anexos
-
-    //tipo cartucho??
+@DiscriminatorValue(value = "DISPOSITIVOMOVEL")
+public class DispositivoMovel extends AtivoEntity {
+    private String versaoAndroid;
 }
