@@ -3,16 +3,17 @@ package com.example.snmpManager.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Table(name = "INTERFACEATIVO")
 @Entity
 @Data
-public class InterfaceAtivoEntity {
+public class InterfaceAtivoEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String nomeLoccal;
+    private String nomeLocal;
     private String fabricante;
     private String enderecoMac;
     private String enderecoIp;
@@ -21,4 +22,5 @@ public class InterfaceAtivoEntity {
     @ManyToOne
     @JoinColumn(name = "ID_ESTACAO_TRABALHO")
     private EstacaoTrabalhoEntity estacaoTrabalho;
+
 }

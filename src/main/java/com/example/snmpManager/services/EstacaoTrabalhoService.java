@@ -1,10 +1,13 @@
 package com.example.snmpManager.services;
 
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
+import com.example.snmpManager.entities.InterfaceAtivoEntity;
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
+import com.example.snmpManager.repositories.InterfaceAtivoRepository;
 import org.snmp4j.smi.OID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,6 +20,9 @@ public class EstacaoTrabalhoService {
 
     @Autowired
     private EstacaoTrabalhoRepository repository;
+
+    @Autowired
+    private InterfaceAtivoRepository interfaceAtivoRepository;
 
     //busca inf windows
     public WindowsObject getObjectData(String address) {
@@ -84,6 +90,19 @@ public class EstacaoTrabalhoService {
         estacao.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
 
         estacao = repository.save(estacao);
+
+        for (InterfaceAtivoDTO i : dto.getInterfaces()) {
+            InterfaceAtivoEntity inter = new InterfaceAtivoEntity();
+            inter.setNomeLocal(i.getNomeLocal());
+            inter.setFabricante(i.getFabricante());
+            inter.setEnderecoMac(i.getEnderecoMac());
+            inter.setEnderecoIp(i.getEnderecoIp());
+            inter.setMascaraSubRede(i.getMascaraSubRede());
+            inter.setEstacaoTrabalho(estacao);
+
+            interfaceAtivoRepository.save(inter);
+
+        }
 
         return new EstacaoTrabalhoDTO(estacao);
     }
