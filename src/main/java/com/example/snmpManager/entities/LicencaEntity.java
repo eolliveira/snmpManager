@@ -17,7 +17,7 @@ public class LicencaEntity extends AtivoEntity {
     private TipoLicenca tipo;
 
     @ManyToOne
-    @JoinColumn(name = "ID_ESTACAO_TRABALHO")
-    private EstacaoTrabalhoEntity estacaoTrabalho;
+    @JoinColumn(name = "ID_ATIVO")
+    private AtivoEntity ativo;
 
 }

@@ -8,6 +8,6 @@ import javax.persistence.Entity;
 @Entity
 @Data
 @DiscriminatorValue(value = "DISPOSITIVOMOVEL")
-public class DispositivoMovel extends AtivoEntity {
+public class DispositivoMovelEntity extends AtivoEntity {
     private String versaoAndroid;
 }

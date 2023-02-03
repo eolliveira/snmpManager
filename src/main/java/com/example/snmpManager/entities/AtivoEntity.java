@@ -40,4 +40,7 @@ public abstract class AtivoEntity {
     @OneToMany(mappedBy = "ativo")
     private List<MovimentoAtivoEntity> movimentos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "ativo")
+    private List<LicencaEntity> licencas = new ArrayList<>();
+
 }
