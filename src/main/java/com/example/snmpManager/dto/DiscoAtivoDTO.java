@@ -2,6 +2,7 @@ package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.DiscoAtivoEntity;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -22,6 +23,9 @@ public class DiscoAtivoDTO implements Serializable {
     private EstacaoTrabalhoDTO estacaoTrabalho;
 
     private List<DiscoAtivoParticaoDTO> particoes = new ArrayList<>();
+
+    public DiscoAtivoDTO() {
+    }
 
     public DiscoAtivoDTO(DiscoAtivoEntity entity) {
         this.id = entity.getId();

@@ -13,7 +13,6 @@ public class LicencaDTO extends AtivoDTO implements Serializable {
     private Integer qtdLicencas;
     private String chaveLicenca;
     private TipoLicenca tipo;
-
     private AtivoDTO ativo;
 
     public LicencaDTO(LicencaEntity entity) {

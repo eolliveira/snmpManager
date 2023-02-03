@@ -1,11 +1,17 @@
 package com.example.snmpManager.services;
 
+import com.example.snmpManager.dto.DiscoAtivoDTO;
+import com.example.snmpManager.dto.DiscoAtivoParticaoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO;
+import com.example.snmpManager.entities.DiscoAtivoEntity;
+import com.example.snmpManager.entities.DiscoAtivoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.entities.InterfaceAtivoEntity;
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
+import com.example.snmpManager.repositories.DiscoAtivoParticaoRepository;
+import com.example.snmpManager.repositories.DiscoAtivoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.InterfaceAtivoRepository;
 import org.snmp4j.smi.OID;
@@ -23,6 +29,12 @@ public class EstacaoTrabalhoService {
 
     @Autowired
     private InterfaceAtivoRepository interfaceAtivoRepository;
+
+    @Autowired
+    private DiscoAtivoRepository discoAtivoRepository;
+
+    @Autowired
+    private DiscoAtivoParticaoRepository discoAtivoParticaoRepository;
 
     //busca inf windows
     public WindowsObject getObjectData(String address) {
@@ -68,12 +80,13 @@ public class EstacaoTrabalhoService {
         windowsObject.addHardDisk(discosRigidos);
 
         return windowsObject;
+
     }
 
 
     //salva nova estação de trabalho
     @Transactional
-    public EstacaoTrabalhoDTO insertNewWorkStation (EstacaoTrabalhoDTO dto) {
+    public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
 
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity();
         estacao.setFabricante(dto.getFabricante());
@@ -101,7 +114,28 @@ public class EstacaoTrabalhoService {
             inter.setEstacaoTrabalho(estacao);
 
             interfaceAtivoRepository.save(inter);
+        }
 
+        for (DiscoAtivoDTO d : dto.getDiscos()) {
+            DiscoAtivoEntity disco = new DiscoAtivoEntity();
+            disco.setNome(d.getNome());
+            disco.setModelo(d.getModelo());
+            disco.setNumeroSerie(d.getNumeroSerie());
+            disco.setCapacidade(d.getCapacidade());
+            disco.setUsado(d.getUsado());
+            disco.setDisponivel(d.getDisponivel());
+            disco.setEstacaoTrabalho(estacao);
+
+            discoAtivoRepository.save(disco);
+
+            for (DiscoAtivoParticaoDTO dpd : d.getParticoes()) {
+                DiscoAtivoParticaoEntity dpe = new DiscoAtivoParticaoEntity();
+                dpe.setCapacidade(dpd.getCapacidade());
+                dpe.setPontoMontagem(dpd.getPontoMontagem());
+                dpe.setDisco(disco);
+
+                discoAtivoParticaoRepository.save(dpe);
+            }
         }
 
         return new EstacaoTrabalhoDTO(estacao);

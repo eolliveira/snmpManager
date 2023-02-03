@@ -12,6 +12,9 @@ public class DiscoAtivoParticaoDTO implements Serializable {
     private String capacidade;
     private DiscoAtivoDTO disco;
 
+    public DiscoAtivoParticaoDTO() {
+    }
+
     public DiscoAtivoParticaoDTO(DiscoAtivoParticaoEntity entity) {
         this.id = entity.getId();
         this.pontoMontagem = entity.getPontoMontagem();
