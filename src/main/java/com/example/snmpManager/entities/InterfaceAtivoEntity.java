@@ -16,5 +16,9 @@ public class InterfaceAtivoEntity {
     private String fabricante;
     private String enderecoMac;
     private String enderecoIp;
-    private String mascaraSubRede;;
+    private String mascaraSubRede;
+
+    @ManyToOne
+    @JoinColumn(name = "ID_ESTACAO_TRABALHO")
+    private EstacaoTrabalhoEntity estacaoTrabalho;
 }

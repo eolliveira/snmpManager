@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Table(name = "ANEXO")
 @Data
 public class AnexoEntity {
-    //tabela de ususário ja existente
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

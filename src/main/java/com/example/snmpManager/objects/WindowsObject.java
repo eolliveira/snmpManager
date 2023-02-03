@@ -31,8 +31,7 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
     }
 
     public void addInterfaces(String arrayInterfaces) {
-        TypeToken t = new TypeToken<List<InterfaceObject>>() {};
-        Gson gson = new Gson();
+        TypeToken t = new TypeToken<List<InterfaceObject>>() {};     Gson gson = new Gson();
         List<InterfaceObject> listInterfaces = gson.fromJson(arrayInterfaces, t.getType());
 
         listInterfaces.stream().map(i -> super.getInterfaces().add(i)).collect(Collectors.toList());

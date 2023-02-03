@@ -10,7 +10,4 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "IMPRESSORA")
 public class ImpressoraEntity extends AtivoEntity {
 
-    //anexos
-
-    //tipo cartucho??
 }

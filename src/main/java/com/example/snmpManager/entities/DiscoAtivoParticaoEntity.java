@@ -15,4 +15,8 @@ public class DiscoAtivoParticaoEntity {
     private String pontoMontagem;
     private String capacidade;
 
+    @ManyToOne
+    @JoinColumn(name = "ID_DISCO_ATIVO")
+    private DiscoAtivoEntity disco;
+
 }

@@ -66,21 +66,21 @@ public class EstacaoTrabalhoService {
 
     //salva nova estação de trabalho
     @Transactional
-    public EstacaoTrabalhoEntity insertNewWorkStation (EstacaoTrabalhoEntity estacaoTrabalho) {
+    public EstacaoTrabalhoEntity insertNewWorkStation (EstacaoTrabalhoEntity dto) {
 
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity();
-        estacao.setFabricante(estacaoTrabalho.getFabricante());
-        estacao.setNumeroSerie(estacaoTrabalho.getNumeroSerie());
-        estacao.setModelo(estacaoTrabalho.getModelo());
-        estacao.setGateway(estacaoTrabalho.getGateway());
-        estacao.setDnsList(estacaoTrabalho.getDnsList());
-        estacao.setSistemaOperacional(estacaoTrabalho.getSistemaOperacional());
-        estacao.setArquiteturaSo(estacaoTrabalho.getArquiteturaSo());
-        estacao.setProcessador(estacaoTrabalho.getProcessador());
-        estacao.setMemoriaRam(estacaoTrabalho.getMemoriaRam());
-        estacao.setNomeHost(estacaoTrabalho.getNomeHost());
-        estacao.setDominio(estacaoTrabalho.getDominio());
-        estacao.setUltimoUsuarioLogado(estacaoTrabalho.getUltimoUsuarioLogado());
+        estacao.setFabricante(dto.getFabricante());
+        estacao.setNumeroSerie(dto.getNumeroSerie());
+        estacao.setModelo(dto.getModelo());
+        estacao.setGateway(dto.getGateway());
+        estacao.setDnsList(dto.getDnsList());
+        estacao.setSistemaOperacional(dto.getSistemaOperacional());
+        estacao.setArquiteturaSo(dto.getArquiteturaSo());
+        estacao.setProcessador(dto.getProcessador());
+        estacao.setMemoriaRam(dto.getMemoriaRam());
+        estacao.setNomeHost(dto.getNomeHost());
+        estacao.setDominio(dto.getDominio());
+        estacao.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
 
         estacao = repository.save(estacao);
 

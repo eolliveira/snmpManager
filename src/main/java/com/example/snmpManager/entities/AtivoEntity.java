@@ -1,7 +1,6 @@
 package com.example.snmpManager.entities;
 
 import lombok.Data;
-import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -41,6 +40,4 @@ public abstract class AtivoEntity {
     @OneToMany(mappedBy = "ativo")
     private List<MovimentoAtivoEntity> movimentos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "ativo")
-    private List<LicencaEntity> licencas = new ArrayList<>();
 }
