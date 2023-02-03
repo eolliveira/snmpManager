@@ -2,7 +2,9 @@ package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.AtivoEntity;
 
-public class DispositivoMovelDTO extends AtivoDTO {
+import java.io.Serializable;
+
+public class DispositivoMovelDTO extends AtivoDTO implements Serializable {
     private String versaoAndroid;
 
     public DispositivoMovelDTO(AtivoEntity entity) {

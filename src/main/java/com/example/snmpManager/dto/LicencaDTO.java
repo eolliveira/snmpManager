@@ -4,9 +4,11 @@ import com.example.snmpManager.entities.LicencaEntity;
 import com.example.snmpManager.entities.TipoLicenca;
 import lombok.*;
 
+import java.io.Serializable;
+
 @Getter
 @Setter
-public class LicencaDTO extends AtivoDTO {
+public class LicencaDTO extends AtivoDTO implements Serializable {
     private String software;
     private Integer qtdLicencas;
     private String chaveLicenca;

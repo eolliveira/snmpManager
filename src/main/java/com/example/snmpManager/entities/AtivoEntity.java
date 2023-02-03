@@ -1,6 +1,8 @@
 package com.example.snmpManager.entities;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,6 +15,7 @@ import java.util.List;
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TP_ATIVO")
 @Data
+@NoArgsConstructor
 public abstract class AtivoEntity {
 
     @Id

@@ -3,14 +3,14 @@ package com.example.snmpManager.dto;
 import com.example.snmpManager.entities.UsuarioEntity;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class UsuarioDTO {
+public class UsuarioDTO implements Serializable {
     private Long id;
-
     private List<AtivoDTO> ativos = new ArrayList<>();
     private List<MovimentoAtivoDTO> movimentosAtivo = new ArrayList<>();
 

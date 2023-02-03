@@ -1,6 +1,5 @@
 package com.example.snmpManager.dto;
 
-import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,6 +24,9 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
     private List<DiscoAtivoDTO> discos = new ArrayList<>();
 
+    public EstacaoTrabalhoDTO(){
+        super();
+    }
 
     public EstacaoTrabalhoDTO(EstacaoTrabalhoEntity entity) {
         super(entity);

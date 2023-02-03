@@ -1,5 +1,6 @@
 package com.example.snmpManager.services;
 
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
@@ -66,7 +67,7 @@ public class EstacaoTrabalhoService {
 
     //salva nova estação de trabalho
     @Transactional
-    public EstacaoTrabalhoEntity insertNewWorkStation (EstacaoTrabalhoEntity dto) {
+    public EstacaoTrabalhoDTO insertNewWorkStation (EstacaoTrabalhoDTO dto) {
 
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity();
         estacao.setFabricante(dto.getFabricante());
@@ -84,7 +85,7 @@ public class EstacaoTrabalhoService {
 
         estacao = repository.save(estacao);
 
-        return estacao;
+        return new EstacaoTrabalhoDTO(estacao);
     }
 
 }

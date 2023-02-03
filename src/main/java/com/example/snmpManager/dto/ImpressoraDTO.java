@@ -2,7 +2,9 @@ package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.ImpressoraEntity;
 
-public class ImpressoraDTO extends AtivoDTO {
+import java.io.Serializable;
+
+public class ImpressoraDTO extends AtivoDTO implements Serializable {
 
     public ImpressoraDTO(ImpressoraEntity entity) {
         super(entity);

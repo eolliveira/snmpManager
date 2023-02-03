@@ -3,12 +3,13 @@ package com.example.snmpManager.dto;
 import com.example.snmpManager.entities.DiscoAtivoEntity;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class DiscoAtivoDTO {
+public class DiscoAtivoDTO implements Serializable {
 
     private Long id;
     private String nome;

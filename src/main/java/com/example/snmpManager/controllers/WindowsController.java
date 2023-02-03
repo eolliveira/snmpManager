@@ -1,5 +1,6 @@
 package com.example.snmpManager.controllers;
 
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.objects.WindowsObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService;
@@ -22,8 +23,8 @@ public class  WindowsController {
 
     //add nova estação de trabalho
     @PostMapping()
-    public ResponseEntity<EstacaoTrabalhoEntity> insertNewWorkStation(@RequestBody EstacaoTrabalhoEntity dto) {
-        EstacaoTrabalhoEntity estacaoCriada = windowsService.insertNewWorkStation(dto);
+    public ResponseEntity<EstacaoTrabalhoDTO> insertNewWorkStation(@RequestBody EstacaoTrabalhoDTO dto) {
+        EstacaoTrabalhoDTO estacaoCriada = windowsService.insertNewWorkStation(dto);
         return ResponseEntity.ok(estacaoCriada);
     }
 }

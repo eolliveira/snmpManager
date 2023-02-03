@@ -4,13 +4,14 @@ import com.example.snmpManager.entities.MovimentoAtivoEntity;
 import com.example.snmpManager.entities.StatusAtivo;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class MovimentoAtivoDTO {
+public class MovimentoAtivoDTO implements Serializable {
 
     private Long id;
     private String descricao;

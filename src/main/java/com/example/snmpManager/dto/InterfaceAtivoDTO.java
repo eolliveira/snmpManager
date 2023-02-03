@@ -3,8 +3,10 @@ package com.example.snmpManager.dto;
 import com.example.snmpManager.entities.InterfaceAtivoEntity;
 import lombok.Data;
 
+import java.io.Serializable;
+
 @Data
-public class InterfaceAtivoDTO {
+public class InterfaceAtivoDTO implements Serializable {
     private Long id;
     private String nomeLoccal;
     private String fabricante;

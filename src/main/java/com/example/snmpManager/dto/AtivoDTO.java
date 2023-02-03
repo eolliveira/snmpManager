@@ -4,6 +4,7 @@ import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.StatusAtivo;
 import lombok.Data;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class AtivoDTO {
+public class AtivoDTO implements Serializable {
 
     private Long id;
     private String nome;
@@ -34,6 +35,8 @@ public class AtivoDTO {
     private List<MovimentoAtivoDTO> movimentos = new ArrayList<>();
     private List<LicencaDTO> licencas = new ArrayList<>();
 
+    public AtivoDTO(){}
+
     public AtivoDTO(AtivoEntity entity) {
         this.id = entity.getId();
         this.nome = entity.getNome();
@@ -50,7 +53,7 @@ public class AtivoDTO {
         this.valorCompra = entity.getValorCompra();
         this.fornecedor = entity.getFornecedor();
         this.obeservacao = entity.getObeservacao();
-        this.usuario = new UsuarioDTO(entity.getUsuario());
+        //this.usuario = new UsuarioDTO(entity.getUsuario());
 
         entity.getMovimentos().stream().map(m -> this.movimentos.add(new MovimentoAtivoDTO(m))).collect(Collectors.toList());
         entity.getLicencas().stream().map(l -> this.licencas.add(new LicencaDTO(l))).collect(Collectors.toList());
