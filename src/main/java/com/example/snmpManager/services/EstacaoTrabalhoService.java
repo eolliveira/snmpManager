@@ -17,6 +17,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.List;
 
 @Service
 public class EstacaoTrabalhoService {
@@ -156,8 +157,25 @@ public class EstacaoTrabalhoService {
         estacaoTrabalho.setDominio(dto.getDominio());
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
 
-        estacaoTrabalho = repository.save(estacaoTrabalho);
+        //recupera todos as interfaces da estação
+        List<InterfaceAtivoEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
+        //remove tudo
+        interfaceAtivoRepository.deleteAll(interfaces);
+
+        //adiciona os novos
+        for (InterfaceAtivoDTO i : dto.getInterfaces()) {
+            InterfaceAtivoEntity inter = new InterfaceAtivoEntity();
+            inter.setNomeLocal(i.getNomeLocal());
+            inter.setFabricante(i.getFabricante());
+            inter.setEnderecoMac(i.getEnderecoMac());
+            inter.setEnderecoIp(i.getEnderecoIp());
+            inter.setMascaraSubRede(i.getMascaraSubRede());
+            inter.setEstacaoTrabalho(estacaoTrabalho);
+            interfaceAtivoRepository.save(inter);
+        }
+
+        estacaoTrabalho = repository.save(estacaoTrabalho);
         return new EstacaoTrabalhoUpdateDTO(estacaoTrabalho);
     }
 }
