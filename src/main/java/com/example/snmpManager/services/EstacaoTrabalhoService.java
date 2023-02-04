@@ -157,13 +157,15 @@ public class EstacaoTrabalhoService {
         estacaoTrabalho.setDominio(dto.getDominio());
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
 
-        //recupera todos as interfaces da estação
+        //recupera todos as interfaces e discos da estação
         List<InterfaceAtivoEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
+        List<DiscoAtivoEntity> discos = discoAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
         //remove tudo
         interfaceAtivoRepository.deleteAll(interfaces);
+        discoAtivoRepository.deleteAll(discos);
 
-        //adiciona os novos
+        //adiciona interfaces atualizadas
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
             InterfaceAtivoEntity inter = new InterfaceAtivoEntity();
             inter.setNomeLocal(i.getNomeLocal());
@@ -173,6 +175,29 @@ public class EstacaoTrabalhoService {
             inter.setMascaraSubRede(i.getMascaraSubRede());
             inter.setEstacaoTrabalho(estacaoTrabalho);
             interfaceAtivoRepository.save(inter);
+        }
+
+        //adiciona discos atualizados
+        for (DiscoAtivoDTO d : dto.getDiscos()) {
+            DiscoAtivoEntity disco = new DiscoAtivoEntity();
+            disco.setNome(d.getNome());
+            disco.setModelo(d.getModelo());
+            disco.setNumeroSerie(d.getNumeroSerie());
+            disco.setCapacidade(d.getCapacidade());
+            disco.setUsado(d.getUsado());
+            disco.setDisponivel(d.getDisponivel());
+            disco.setEstacaoTrabalho(estacaoTrabalho);
+
+            discoAtivoRepository.save(disco);
+
+            for (DiscoAtivoParticaoDTO dpd : d.getParticoes()) {
+                DiscoAtivoParticaoEntity dpe = new DiscoAtivoParticaoEntity();
+                dpe.setCapacidade(dpd.getCapacidade());
+                dpe.setPontoMontagem(dpd.getPontoMontagem());
+                dpe.setDisco(disco);
+
+                discoAtivoParticaoRepository.save(dpe);
+            }
         }
 
         estacaoTrabalho = repository.save(estacaoTrabalho);

@@ -1,6 +1,8 @@
 package com.example.snmpManager.entities;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,7 +10,8 @@ import java.util.List;
 
 @Table(name = "DISCOATIVO")
 @Entity
-@Data
+@Getter
+@Setter
 public class DiscoAtivoEntity {
 
     @Id
@@ -25,7 +28,9 @@ public class DiscoAtivoEntity {
     @JoinColumn(name = "ID_ESTACAO_TRABALHO")
     private EstacaoTrabalhoEntity estacaoTrabalho;
 
-    @OneToMany(mappedBy = "disco")
+    @OneToMany(mappedBy = "disco", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DiscoAtivoParticaoEntity> particoes = new ArrayList<>();
 
+    public DiscoAtivoEntity() {
+    }
 }
