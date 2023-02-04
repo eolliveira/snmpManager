@@ -1,11 +1,13 @@
 package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
+import com.example.snmpManager.objects.WindowsObject;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -46,6 +48,24 @@ public class EstacaoTrabalhoUpdateDTO {
 
 //        entity.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
 //        entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
+    }
+
+    public EstacaoTrabalhoUpdateDTO(WindowsObject obj) {
+        this.fabricante = obj.getFabricante();
+        this.numeroSerie = obj.getNumeroSerie();
+        this.modelo = obj.getModelo();
+        this.sistemaOperacional = obj.getSistemaOperacional();
+        this.processador = obj.getProcessador();
+        this.arquiteturaSo = obj.getArquiteturaSo();
+        this.memoriaRam = obj.getMemoriaRam();
+        this.nomeHost = obj.getNomeHost();
+        this.ultimoUsuarioLogado = obj.getUltimoUsuarioLogado();
+        this.dominio = obj.getDominio();
+        this.dnsList = obj.getDnsList();
+        this.gateway = obj.getGateway();
+
+        obj.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
+        obj.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
     }
 
 }

@@ -224,34 +224,13 @@ public class EstacaoTrabalhoService {
                 }
             }
 
-//            if (objAgent.getFabricante() != null){
-//                return;
-//            }
-
         }
 
         //copia dto
-        EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO();
-        dto.setFabricante(objAgent.getFabricante());
-        dto.setNumeroSerie(objAgent.getNumeroSerie());
-        dto.setModelo(objAgent.getModelo());
-        dto.setSistemaOperacional(objAgent.getSistemaOperacional());
-        dto.setProcessador(objAgent.getProcessador());
-        dto.setArquiteturaSo(objAgent.getArquiteturaSo());
-        dto.setMemoriaRam(objAgent.getMemoriaRam());
-        dto.setNomeHost(objAgent.getNomeHost());
-        dto.setUltimoUsuarioLogado(objAgent.getUltimoUsuarioLogado());
-        dto.setDominio(objAgent.getDominio());
-        dto.setDnsList(objAgent.getDnsList());
-        dto.setGateway(objAgent.getGateway());
-
-        objAgent.getInterfaces().stream().map(i -> dto.getInterfaces().add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
-        objAgent.getDiscos().stream().map(d -> dto.getDiscos().add(new DiscoAtivoDTO(d))).collect(Collectors.toList());
+        EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO(objAgent);
 
         //update
-
         updateWorkStation(idActive, dto);
-
     }
 
 }
