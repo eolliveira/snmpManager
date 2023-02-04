@@ -15,12 +15,14 @@ public class EstacaoTrabalhoController {
     @Autowired
     private EstacaoTrabalhoService estacaoTrabalhoService;
 
+
     //consulta estação pelo ip
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WindowsObject> findAll(@PathVariable String ipAddress) {
         WindowsObject win = estacaoTrabalhoService.getObjectData(ipAddress);
         return ResponseEntity.ok(win);
     }
+
 
     //add nova estação de trabalho
     @PostMapping()
@@ -29,10 +31,17 @@ public class EstacaoTrabalhoController {
         return ResponseEntity.ok(estacaoCriada);
     }
 
+
     //atualiza estação passando o id
     @PutMapping(value = "/{idActive}/update")
     public ResponseEntity<EstacaoTrabalhoUpdateDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoUpdateDTO dto) {
         dto = estacaoTrabalhoService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
     }
+
+    @PutMapping(value = "/{idActive}/synchronize")
+    public void synchronize(@PathVariable Long idActive) {
+        estacaoTrabalhoService.synchronize(idActive);
+    }
+
 }

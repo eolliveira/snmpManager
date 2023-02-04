@@ -18,12 +18,13 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class EstacaoTrabalhoService {
 
     @Autowired
-    private EstacaoTrabalhoRepository repository;
+    private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
 
     @Autowired
     private InterfaceAtivoRepository interfaceAtivoRepository;
@@ -100,7 +101,7 @@ public class EstacaoTrabalhoService {
         estacao.setDominio(dto.getDominio());
         estacao.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
 
-        estacao = repository.save(estacao);
+        estacao = estacaoTrabalhoRepository.save(estacao);
 
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
             InterfaceAtivoEntity inter = new InterfaceAtivoEntity();
@@ -139,10 +140,11 @@ public class EstacaoTrabalhoService {
         return new EstacaoTrabalhoDTO(estacao);
     }
 
+    //atualiza estação informando id do ativo e dto
     @Transactional
     public EstacaoTrabalhoUpdateDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoUpdateDTO dto) {
 
-        EstacaoTrabalhoEntity estacaoTrabalho = repository.getReferenceById(idAtivo);
+        EstacaoTrabalhoEntity estacaoTrabalho = estacaoTrabalhoRepository.getReferenceById(idAtivo);
 
         estacaoTrabalho.setFabricante(dto.getFabricante());
         estacaoTrabalho.setNumeroSerie(dto.getNumeroSerie());
@@ -200,7 +202,56 @@ public class EstacaoTrabalhoService {
             }
         }
 
-        estacaoTrabalho = repository.save(estacaoTrabalho);
+        estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
         return new EstacaoTrabalhoUpdateDTO(estacaoTrabalho);
     }
+
+    @Transactional
+    public void synchronize(Long idActive) {
+
+        //obtem ip
+        EstacaoTrabalhoEntity estacaoTrabalho = estacaoTrabalhoRepository.getReferenceById(idActive);
+
+        WindowsObject objAgent = new WindowsObject();
+
+        for(InterfaceAtivoEntity i : estacaoTrabalho.getInterfaces()) {
+            if(i.getEnderecoIp() != "") {
+                //busca info windows
+                //pode lançar exception ip  nn encontrado
+                WindowsObject obj = getObjectData(i.getEnderecoIp());
+                if (obj.getFabricante() != null) {
+                    objAgent = obj;
+                }
+            }
+
+//            if (objAgent.getFabricante() != null){
+//                return;
+//            }
+
+        }
+
+        //copia dto
+        EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO();
+        dto.setFabricante(objAgent.getFabricante());
+        dto.setNumeroSerie(objAgent.getNumeroSerie());
+        dto.setModelo(objAgent.getModelo());
+        dto.setSistemaOperacional(objAgent.getSistemaOperacional());
+        dto.setProcessador(objAgent.getProcessador());
+        dto.setArquiteturaSo(objAgent.getArquiteturaSo());
+        dto.setMemoriaRam(objAgent.getMemoriaRam());
+        dto.setNomeHost(objAgent.getNomeHost());
+        dto.setUltimoUsuarioLogado(objAgent.getUltimoUsuarioLogado());
+        dto.setDominio(objAgent.getDominio());
+        dto.setDnsList(objAgent.getDnsList());
+        dto.setGateway(objAgent.getGateway());
+
+        objAgent.getInterfaces().stream().map(i -> dto.getInterfaces().add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
+        objAgent.getDiscos().stream().map(d -> dto.getDiscos().add(new DiscoAtivoDTO(d))).collect(Collectors.toList());
+
+        //update
+
+        updateWorkStation(idActive, dto);
+
+    }
+
 }

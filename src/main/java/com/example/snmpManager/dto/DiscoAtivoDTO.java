@@ -1,6 +1,7 @@
 package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.DiscoAtivoEntity;
+import com.example.snmpManager.objects.HardDiskObject;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -35,5 +36,15 @@ public class DiscoAtivoDTO implements Serializable {
         this.disponivel = entity.getDisponivel();
         this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
         entity.getParticoes().stream().map(particao -> this.particoes.add(new DiscoAtivoParticaoDTO(particao))).collect(Collectors.toList());
+    }
+
+    public DiscoAtivoDTO(HardDiskObject disc) {
+        this.nome = disc.getNome();
+        this.modelo = disc.getModelo();
+        this.numeroSerie = disc.getNumeroSerie();
+        this.capacidade = disc.getCapacidade();
+        this.usado = disc.getUsado();
+        this.disponivel = disc.getDisponivel();
+        disc.getParticoes().stream().map(particao -> this.particoes.add(new DiscoAtivoParticaoDTO(particao))).collect(Collectors.toList());
     }
 }
