@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/workstation")
 public class EstacaoTrabalhoController {
 
-    //consulta estação pelo ip
     @Autowired
     private EstacaoTrabalhoService estacaoTrabalhoService;
 
+    //consulta estação pelo ip
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WindowsObject> findAll(@PathVariable String ipAddress) {
         WindowsObject win = estacaoTrabalhoService.getObjectData(ipAddress);
@@ -29,6 +29,7 @@ public class EstacaoTrabalhoController {
         return ResponseEntity.ok(estacaoCriada);
     }
 
+    //atualiza estação passando o id
     @PutMapping(value = "/{idActive}/update")
     public ResponseEntity<EstacaoTrabalhoUpdateDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoUpdateDTO dto) {
         dto = estacaoTrabalhoService.updateWorkStation(idActive, dto);

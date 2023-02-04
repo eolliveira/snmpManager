@@ -2,8 +2,7 @@ package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.StatusAtivo;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -12,8 +11,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
-@Setter
+@Data
 public class AtivoDTO implements Serializable {
 
     private Long id;

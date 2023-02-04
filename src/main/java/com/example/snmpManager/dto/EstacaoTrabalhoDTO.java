@@ -1,19 +1,13 @@
 package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@ToString
+@Data
 public class EstacaoTrabalhoDTO extends AtivoDTO {
     private String sistemaOperacional;
     private String processador;

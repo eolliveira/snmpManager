@@ -23,8 +23,7 @@ public class DiscoAtivoDTO implements Serializable {
 
     private List<DiscoAtivoParticaoDTO> particoes = new ArrayList<>();
 
-    public DiscoAtivoDTO() {
-    }
+    public DiscoAtivoDTO() {}
 
     public DiscoAtivoDTO(DiscoAtivoEntity entity) {
         this.id = entity.getId();
@@ -35,7 +34,6 @@ public class DiscoAtivoDTO implements Serializable {
         this.usado = entity.getUsado();
         this.disponivel = entity.getDisponivel();
         this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
-
         entity.getParticoes().stream().map(particao -> this.particoes.add(new DiscoAtivoParticaoDTO(particao))).collect(Collectors.toList());
     }
 }
