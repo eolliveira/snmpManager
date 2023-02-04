@@ -1,20 +1,18 @@
 package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@ToString
-public class EstacaoTrabalhoDTO extends AtivoDTO {
+public class EstacaoTrabalhoUpdateDTO {
+    private String fabricante;
+    private String numeroSerie;
+    private String modelo;
     private String sistemaOperacional;
     private String processador;
     private String arquiteturaSo;
@@ -28,12 +26,14 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
     private List<DiscoAtivoDTO> discos = new ArrayList<>();
 
-    public EstacaoTrabalhoDTO(){
+    public EstacaoTrabalhoUpdateDTO(){
         super();
     }
 
-    public EstacaoTrabalhoDTO(EstacaoTrabalhoEntity entity) {
-        super(entity);
+    public EstacaoTrabalhoUpdateDTO(EstacaoTrabalhoEntity entity) {
+        this.fabricante = entity.getFabricante();
+        this.numeroSerie = entity.getNumeroSerie();
+        this.modelo = entity.getModelo();
         this.sistemaOperacional = entity.getSistemaOperacional();
         this.processador = entity.getProcessador();
         this.arquiteturaSo = entity.getArquiteturaSo();
@@ -44,9 +44,8 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
         this.dnsList = entity.getDnsList();
         this.gateway = entity.getGateway();
 
-        entity.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
-        entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
+        //entity.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
+        //entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
     }
-
 
 }

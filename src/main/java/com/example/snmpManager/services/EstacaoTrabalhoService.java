@@ -1,9 +1,6 @@
 package com.example.snmpManager.services;
 
-import com.example.snmpManager.dto.DiscoAtivoDTO;
-import com.example.snmpManager.dto.DiscoAtivoParticaoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO;
-import com.example.snmpManager.dto.InterfaceAtivoDTO;
+import com.example.snmpManager.dto.*;
 import com.example.snmpManager.entities.DiscoAtivoEntity;
 import com.example.snmpManager.entities.DiscoAtivoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
@@ -141,4 +138,26 @@ public class EstacaoTrabalhoService {
         return new EstacaoTrabalhoDTO(estacao);
     }
 
+    @Transactional
+    public EstacaoTrabalhoUpdateDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoUpdateDTO dto) {
+
+        EstacaoTrabalhoEntity estacaoTrabalho = repository.getReferenceById(idAtivo);
+
+        estacaoTrabalho.setFabricante(dto.getFabricante());
+        estacaoTrabalho.setNumeroSerie(dto.getNumeroSerie());
+        estacaoTrabalho.setModelo(dto.getModelo());
+        estacaoTrabalho.setGateway(dto.getGateway());
+        estacaoTrabalho.setDnsList(dto.getDnsList());
+        estacaoTrabalho.setSistemaOperacional(dto.getSistemaOperacional());
+        estacaoTrabalho.setArquiteturaSo(dto.getArquiteturaSo());
+        estacaoTrabalho.setProcessador(dto.getProcessador());
+        estacaoTrabalho.setMemoriaRam(dto.getMemoriaRam());
+        estacaoTrabalho.setNomeHost(dto.getNomeHost());
+        estacaoTrabalho.setDominio(dto.getDominio());
+        estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
+
+        estacaoTrabalho = repository.save(estacaoTrabalho);
+
+        return new EstacaoTrabalhoUpdateDTO(estacaoTrabalho);
+    }
 }

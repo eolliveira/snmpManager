@@ -1,7 +1,6 @@
 package com.example.snmpManager.entities;
 
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
@@ -11,7 +10,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
 @DiscriminatorValue(value = "ESTACAOTRABALHO")
 public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String sistemaOperacional;
@@ -30,4 +31,7 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     @OneToMany(mappedBy = "estacaoTrabalho")
     private List<DiscoAtivoEntity> discos = new ArrayList<>();
 
+    public EstacaoTrabalhoEntity() {
+
+    }
 }

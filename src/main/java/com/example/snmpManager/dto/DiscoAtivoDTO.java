@@ -2,7 +2,6 @@ package com.example.snmpManager.dto;
 
 import com.example.snmpManager.entities.DiscoAtivoEntity;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.ArrayList;

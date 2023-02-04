@@ -14,5 +14,4 @@ public abstract class DeviceObjectAbstract {
     private String dnsList;
 
     private List<InterfaceObject> interfaces = new ArrayList<>();
-
 }

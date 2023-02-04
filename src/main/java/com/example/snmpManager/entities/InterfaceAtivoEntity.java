@@ -1,13 +1,16 @@
 package com.example.snmpManager.entities;
 
-import lombok.Data;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Table(name = "INTERFACEATIVO")
 @Entity
-@Data
+@Getter
+@Setter
+@AllArgsConstructor
+@ToString
 public class InterfaceAtivoEntity implements Serializable {
 
     @Id
@@ -23,4 +26,7 @@ public class InterfaceAtivoEntity implements Serializable {
     @JoinColumn(name = "ID_ESTACAO_TRABALHO")
     private EstacaoTrabalhoEntity estacaoTrabalho;
 
+    public InterfaceAtivoEntity() {
+
+    }
 }
