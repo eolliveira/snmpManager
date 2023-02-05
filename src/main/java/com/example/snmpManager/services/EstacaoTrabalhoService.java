@@ -5,6 +5,7 @@ import com.example.snmpManager.entities.DiscoAtivoEntity;
 import com.example.snmpManager.entities.DiscoAtivoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.entities.InterfaceAtivoEntity;
+import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
 import com.example.snmpManager.repositories.DiscoAtivoParticaoRepository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -39,11 +41,8 @@ public class EstacaoTrabalhoService {
     public WindowsObject getObjectData(String address) {
 
         SNMPRequestClient client = new SNMPRequestClient();
-        try {
-            client.start("udp:" + address + "/161", "public");
-        } catch (IOException e) {
-            throw new RuntimeException("Não foi possivel inicar serviço na porta 161: " + e.getMessage());
-        }
+
+        client.start("udp:" + address + "/161", "public");
 
         WindowsMIB mib = new WindowsMIB();
         WindowsObject windowsObject = new WindowsObject();
@@ -140,6 +139,32 @@ public class EstacaoTrabalhoService {
         return new EstacaoTrabalhoDTO(estacao);
     }
 
+    @Transactional
+    public void synchronize(Long idActive) {
+
+        Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idActive);
+        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Workstation id: " + idActive + " not found"));
+
+        WindowsObject objAgent = new WindowsObject();
+
+        for(InterfaceAtivoEntity i : estacaoTrabalho.getInterfaces()) {
+            if(i.getEnderecoIp() != "") {
+                //busca info windows
+                //pode lançar exception ip  nn encontrado
+                WindowsObject obj = getObjectData(i.getEnderecoIp());
+                if (obj.getFabricante() != null) {
+                    objAgent = obj;
+                }
+            }
+        }
+
+        //copia dto
+        EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO(objAgent);
+
+        //update
+        updateWorkStation(idActive, dto);
+    }
+
     //atualiza estação informando id do ativo e dto
     @Transactional
     public EstacaoTrabalhoUpdateDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoUpdateDTO dto) {
@@ -204,33 +229,6 @@ public class EstacaoTrabalhoService {
 
         estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
         return new EstacaoTrabalhoUpdateDTO(estacaoTrabalho);
-    }
-
-    @Transactional
-    public void synchronize(Long idActive) {
-
-        //obtem ip
-        EstacaoTrabalhoEntity estacaoTrabalho = estacaoTrabalhoRepository.getReferenceById(idActive);
-
-        WindowsObject objAgent = new WindowsObject();
-
-        for(InterfaceAtivoEntity i : estacaoTrabalho.getInterfaces()) {
-            if(i.getEnderecoIp() != "") {
-                //busca info windows
-                //pode lançar exception ip  nn encontrado
-                WindowsObject obj = getObjectData(i.getEnderecoIp());
-                if (obj.getFabricante() != null) {
-                    objAgent = obj;
-                }
-            }
-
-        }
-
-        //copia dto
-        EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO(objAgent);
-
-        //update
-        updateWorkStation(idActive, dto);
     }
 
 }

@@ -1,5 +1,6 @@
 package com.example.snmpManager.services;
 
+import com.example.snmpManager.exceptions.FailureInitializeUdpTransport;
 import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
 import org.snmp4j.*;
 import org.snmp4j.event.ResponseEvent;
@@ -17,26 +18,31 @@ public class SNMPRequestClient {
     private String address;
     private String community;
 
-    public void start(String address, String commmunity) throws IOException {
-        TransportMapping transport = new DefaultUdpTransportMapping();
-        snmp = new Snmp(transport);
-        this.address = address;
-        this.community = commmunity;
+    public void start(String address, String commmunity)  {
+        try {
+            TransportMapping transport = new DefaultUdpTransportMapping();
+            snmp = new Snmp(transport);
+            this.address = address;
+            this.community = commmunity;
 
-        transport.listen();
+            transport.listen();
+
+        } catch (IOException e) {
+            throw new FailureInitializeUdpTransport("Falha ao inicializar o mapeamento de transporte UDP: " + e.getMessage());
+        }
     }
 
     public String getAsString(OID oid) {
         try {
             ResponseEvent event = get(new OID[]{oid});
             return event.getResponse().get(0).getVariable().toString();
-        } catch (NullPointerException | IOException e) {
-            throw new UnableToGetDeviceDataException("Não foi possivel obter informações desse dispositivo!");
+        } catch (NullPointerException e) {
+            throw new UnableToGetDeviceDataException("Não foi possivel obter informações do OID: " + oid);
         }
     }
 
     // Este método é capaz de lidar com vários OIDs
-    public ResponseEvent get(OID oids[]) throws IOException {
+    public ResponseEvent get(OID oids[]) {
 
         PDU pdu = new PDU();
 
@@ -46,13 +52,18 @@ public class SNMPRequestClient {
 
         pdu.setType(PDU.GET);
 
-        ResponseEvent event = snmp.send(pdu, getTarget(address, community), null);
+        try {
+            ResponseEvent event = snmp.send(pdu, getTarget(address, community), null);
 
-        if (event != null) {
-            return event;
+            if (event != null) {
+                return event;
+            }
+
+            throw new RuntimeException("GET timed out");
+        } catch (IOException e) {
+            throw new RuntimeException("Não foi possivel enviar/obter resposta do agente!");
         }
 
-        throw new RuntimeException("GET timed out");
     }
 
 
