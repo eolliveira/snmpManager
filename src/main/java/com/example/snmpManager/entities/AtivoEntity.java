@@ -19,7 +19,6 @@ public abstract class AtivoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "ID_ATIVO")
     private Long id;
     private String nome;

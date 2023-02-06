@@ -11,7 +11,6 @@ public class AtivoDiscoParticaoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "ID_ATIVODISCOPARTICAO")
     private Long id;
     private String pontoMontagem;

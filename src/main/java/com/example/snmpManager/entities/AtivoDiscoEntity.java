@@ -15,7 +15,6 @@ public class AtivoDiscoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "ID_ATIVODISCO")
     private Long id;
     private String nome;

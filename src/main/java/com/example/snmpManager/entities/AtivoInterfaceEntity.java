@@ -15,7 +15,6 @@ public class AtivoInterfaceEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     @Column(name = "ID_ATIVOINTERFACE")
     private Long id;
     private String nomeLocal;

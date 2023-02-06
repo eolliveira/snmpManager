@@ -76,27 +76,13 @@ public class EstacaoTrabalhoService {
         windowsObject.addHardDisk(discosRigidos);
 
         return windowsObject;
-
     }
-
 
     //salva nova estação de trabalho
     @Transactional
     public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
 
-        EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity();
-        estacao.setFabricante(dto.getFabricante());
-        estacao.setNumeroSerie(dto.getNumeroSerie());
-        estacao.setModelo(dto.getModelo());
-        estacao.setGateway(dto.getGateway());
-        estacao.setDnsList(dto.getDnsList());
-        estacao.setSistemaOperacional(dto.getSistemaOperacional());
-        estacao.setArquiteturaSo(dto.getArquiteturaSo());
-        estacao.setProcessador(dto.getProcessador());
-        estacao.setMemoriaRam(dto.getMemoriaRam());
-        estacao.setNomeHost(dto.getNomeHost());
-        estacao.setDominio(dto.getDominio());
-        estacao.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
+        EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
 
         estacao = estacaoTrabalhoRepository.save(estacao);
 
@@ -138,10 +124,10 @@ public class EstacaoTrabalhoService {
     }
 
     @Transactional
-    public void synchronize(Long idActive) {
+    public void synchronize(Long idAtivo) {
 
-        Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idActive);
-        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idActive + " não encontrada."));
+        Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
+        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
 
         WindowsObject objAgent = new WindowsObject();
 
@@ -155,11 +141,11 @@ public class EstacaoTrabalhoService {
         }
 
         if(objAgent.getFabricante() == null) {
-            throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idActive);
+            throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idAtivo);
         }
 
         EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO(objAgent);
-        updateWorkStation(idActive, dto);
+        updateWorkStation(idAtivo, dto);
     }
 
     //atualiza estação informando id do ativo e dto
