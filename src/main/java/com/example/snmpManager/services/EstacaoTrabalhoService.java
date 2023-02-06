@@ -143,14 +143,12 @@ public class EstacaoTrabalhoService {
     public void synchronize(Long idActive) {
 
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idActive);
-        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Workstation id: " + idActive + " not found"));
+        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idActive + " não encontrada."));
 
         WindowsObject objAgent = new WindowsObject();
 
         for(InterfaceAtivoEntity i : estacaoTrabalho.getInterfaces()) {
-            if(i.getEnderecoIp() != "") {
-                //busca info windows
-                //pode lançar exception ip  nn encontrado
+            if(i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
                 WindowsObject obj = getObjectData(i.getEnderecoIp());
                 if (obj.getFabricante() != null) {
                     objAgent = obj;
@@ -158,10 +156,11 @@ public class EstacaoTrabalhoService {
             }
         }
 
-        //copia dto
-        EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO(objAgent);
+        if(objAgent.getFabricante() == null) {
+            throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idActive);
+        }
 
-        //update
+        EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO(objAgent);
         updateWorkStation(idActive, dto);
     }
 
