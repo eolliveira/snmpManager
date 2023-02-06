@@ -4,7 +4,7 @@ import com.example.snmpManager.dto.*;
 import com.example.snmpManager.entities.AtivoDiscoEntity;
 import com.example.snmpManager.entities.AtivoDiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import com.example.snmpManager.entities.InterfaceAtivoEntity;
+import com.example.snmpManager.entities.AtivoInterfaceEntity;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
@@ -101,7 +101,7 @@ public class EstacaoTrabalhoService {
         estacao = estacaoTrabalhoRepository.save(estacao);
 
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
-            InterfaceAtivoEntity inter = new InterfaceAtivoEntity();
+            AtivoInterfaceEntity inter = new AtivoInterfaceEntity();
             inter.setNomeLocal(i.getNomeLocal());
             inter.setFabricante(i.getFabricante());
             inter.setEnderecoMac(i.getEnderecoMac());
@@ -145,7 +145,7 @@ public class EstacaoTrabalhoService {
 
         WindowsObject objAgent = new WindowsObject();
 
-        for(InterfaceAtivoEntity i : estacaoTrabalho.getInterfaces()) {
+        for(AtivoInterfaceEntity i : estacaoTrabalho.getInterfaces()) {
             if(i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
                 WindowsObject obj = getObjectData(i.getEnderecoIp());
                 if (obj.getFabricante() != null) {
@@ -182,16 +182,18 @@ public class EstacaoTrabalhoService {
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
 
         //recupera todos as interfaces e discos da estação
-        List<InterfaceAtivoEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
+        List<AtivoInterfaceEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
         List<AtivoDiscoEntity> discos = discoAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
-        //remove tudo
-        interfaceAtivoRepository.deleteAll(interfaces);
-        discoAtivoRepository.deleteAll(discos);
+        if (!interfaces.isEmpty() && !discos.isEmpty()){
+            //remove tudo()
+            interfaceAtivoRepository.deleteAll(interfaces);
+            discoAtivoRepository.deleteAll(discos);
+        }
 
         //adiciona interfaces atualizadas
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
-            InterfaceAtivoEntity inter = new InterfaceAtivoEntity();
+            AtivoInterfaceEntity inter = new AtivoInterfaceEntity();
             inter.setNomeLocal(i.getNomeLocal());
             inter.setFabricante(i.getFabricante());
             inter.setEnderecoMac(i.getEnderecoMac());

@@ -26,7 +26,7 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String gateway;
 
     @OneToMany(mappedBy = "estacaoTrabalho")
-    private List<InterfaceAtivoEntity> interfaces = new ArrayList<>();
+    private List<AtivoInterfaceEntity> interfaces = new ArrayList<>();
 
     @OneToMany(mappedBy = "estacaoTrabalho")
     private List<AtivoDiscoEntity> discos = new ArrayList<>();

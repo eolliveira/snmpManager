@@ -5,16 +5,18 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 
-@Table(name = "INTERFACEATIVO")
+@Table(name = "ATIVOINTERFACE")
 @Entity
 @Getter
 @Setter
 @AllArgsConstructor
 @ToString
-public class InterfaceAtivoEntity implements Serializable {
+public class AtivoInterfaceEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "ID_ATIVOINTERFACE")
     private Long id;
     private String nomeLocal;
     private String fabricante;
@@ -26,7 +28,7 @@ public class InterfaceAtivoEntity implements Serializable {
     @JoinColumn(name = "ID_ESTACAO_TRABALHO")
     private EstacaoTrabalhoEntity estacaoTrabalho;
 
-    public InterfaceAtivoEntity() {
+    public AtivoInterfaceEntity() {
 
     }
 }

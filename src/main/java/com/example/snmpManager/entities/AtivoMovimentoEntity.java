@@ -15,7 +15,7 @@ public class AtivoMovimentoEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 
-    @Column(name = "ID_MOVIMENTOATIVO")
+    @Column(name = "ID_ATIVOMOVIMENTO")
     private Long id;
     private String descricao;
     private Date dtMovimento;
