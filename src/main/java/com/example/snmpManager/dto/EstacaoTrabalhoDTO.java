@@ -20,7 +20,7 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private String gateway;
 
     private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
-    private List<DiscoAtivoDTO> discos = new ArrayList<>();
+    private List<AtivoDiscoDTO> discos = new ArrayList<>();
 
     public EstacaoTrabalhoDTO(){
         super();
@@ -39,7 +39,7 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
         this.gateway = entity.getGateway();
 
         entity.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
-        entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
+        entity.getDiscos().stream().map(disco -> this.discos.add(new AtivoDiscoDTO(disco))).collect(Collectors.toList());
     }
 
 

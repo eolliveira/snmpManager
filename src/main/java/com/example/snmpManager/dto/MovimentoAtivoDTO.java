@@ -1,6 +1,6 @@
 package com.example.snmpManager.dto;
 
-import com.example.snmpManager.entities.MovimentoAtivoEntity;
+import com.example.snmpManager.entities.AtivoMovimentoEntity;
 import com.example.snmpManager.entities.StatusAtivo;
 import lombok.Data;
 
@@ -24,7 +24,7 @@ public class MovimentoAtivoDTO implements Serializable {
 
     private List<AnexoDTO> anexos = new ArrayList<>();
 
-    public MovimentoAtivoDTO(MovimentoAtivoEntity entity) {
+    public MovimentoAtivoDTO(AtivoMovimentoEntity entity) {
         this.id = entity.getId();
         this.descricao = entity.getDescricao();
         this.dtMovimento = entity.getDtMovimento();

@@ -16,8 +16,10 @@ public class LicencaEntity extends AtivoEntity {
     private String chaveLicenca;
     private TipoLicenca tipo;
 
+    //ativo a qual licenca é atribuida
+
     @ManyToOne
-    @JoinColumn(name = "ID_ATIVO")
+    @JoinColumn(name = "ID_ATIVO_LICENCA")
     private AtivoEntity ativo;
 
 }

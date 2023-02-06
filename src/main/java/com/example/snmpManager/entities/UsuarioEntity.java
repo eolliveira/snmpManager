@@ -20,5 +20,5 @@ public class UsuarioEntity {
     private List<AtivoEntity> ativos = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario")
-    private List<MovimentoAtivoEntity> movimentosAtivo = new ArrayList<>();
+    private List<AtivoMovimentoEntity> movimentosAtivo = new ArrayList<>();
 }

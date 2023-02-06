@@ -4,10 +4,10 @@ import lombok.Data;
 
 import javax.persistence.*;
 
-@Table(name = "DISCOATIVOPARTICAO")
+@Table(name = "ATIVODISCOPARTICAO")
 @Entity
 @Data
-public class DiscoAtivoParticaoEntity {
+public class AtivoDiscoParticaoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -17,6 +17,6 @@ public class DiscoAtivoParticaoEntity {
 
     @ManyToOne
     @JoinColumn(name = "ID_DISCO_ATIVO")
-    private DiscoAtivoEntity disco;
+    private AtivoDiscoEntity disco;
 
 }

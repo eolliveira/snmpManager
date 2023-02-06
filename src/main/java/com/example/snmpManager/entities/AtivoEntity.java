@@ -2,7 +2,6 @@ package com.example.snmpManager.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -20,6 +19,8 @@ public abstract class AtivoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "ID_ATIVO")
     private Long id;
     private String nome;
     private String fabricante;
@@ -41,7 +42,7 @@ public abstract class AtivoEntity {
     private UsuarioEntity usuario;
 
     @OneToMany(mappedBy = "ativo")
-    private List<MovimentoAtivoEntity> movimentos = new ArrayList<>();
+    private List<AtivoMovimentoEntity> movimentos = new ArrayList<>();
 
     @OneToMany(mappedBy = "ativo")
     private List<LicencaEntity> licencas = new ArrayList<>();

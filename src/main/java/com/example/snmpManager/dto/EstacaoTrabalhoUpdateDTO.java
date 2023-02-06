@@ -26,7 +26,7 @@ public class EstacaoTrabalhoUpdateDTO {
     private String gateway;
 
     private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
-    private List<DiscoAtivoDTO> discos = new ArrayList<>();
+    private List<AtivoDiscoDTO> discos = new ArrayList<>();
 
     public EstacaoTrabalhoUpdateDTO(){
         super();
@@ -65,7 +65,7 @@ public class EstacaoTrabalhoUpdateDTO {
         this.gateway = obj.getGateway();
 
         obj.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
-        obj.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
+        obj.getDiscos().stream().map(disco -> this.discos.add(new AtivoDiscoDTO(disco))).collect(Collectors.toList());
     }
 
 }

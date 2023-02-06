@@ -1,10 +1,10 @@
 package com.example.snmpManager.repositories;
 
-import com.example.snmpManager.entities.DiscoAtivoEntity;
+import com.example.snmpManager.entities.AtivoDiscoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface DiscoAtivoRepository extends JpaRepository<DiscoAtivoEntity, Long> {
-    List<DiscoAtivoEntity> findAllByEstacaoTrabalho_Id(Long id);
+public interface DiscoAtivoRepository extends JpaRepository<AtivoDiscoEntity, Long> {
+    List<AtivoDiscoEntity> findAllByEstacaoTrabalho_Id(Long id);
 }

@@ -29,7 +29,7 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private List<InterfaceAtivoEntity> interfaces = new ArrayList<>();
 
     @OneToMany(mappedBy = "estacaoTrabalho")
-    private List<DiscoAtivoEntity> discos = new ArrayList<>();
+    private List<AtivoDiscoEntity> discos = new ArrayList<>();
 
     public EstacaoTrabalhoEntity() {
 

@@ -1,7 +1,7 @@
 package com.example.snmpManager.repositories;
 
-import com.example.snmpManager.entities.DiscoAtivoParticaoEntity;
+import com.example.snmpManager.entities.AtivoDiscoParticaoEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-public interface DiscoAtivoParticaoRepository extends JpaRepository<DiscoAtivoParticaoEntity, Long> {
+public interface DiscoAtivoParticaoRepository extends JpaRepository<AtivoDiscoParticaoEntity, Long> {
 }

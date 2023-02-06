@@ -1,8 +1,8 @@
 package com.example.snmpManager.services;
 
 import com.example.snmpManager.dto.*;
-import com.example.snmpManager.entities.DiscoAtivoEntity;
-import com.example.snmpManager.entities.DiscoAtivoParticaoEntity;
+import com.example.snmpManager.entities.AtivoDiscoEntity;
+import com.example.snmpManager.entities.AtivoDiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.entities.InterfaceAtivoEntity;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
@@ -17,10 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
-import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class EstacaoTrabalhoService {
@@ -114,8 +112,8 @@ public class EstacaoTrabalhoService {
             interfaceAtivoRepository.save(inter);
         }
 
-        for (DiscoAtivoDTO d : dto.getDiscos()) {
-            DiscoAtivoEntity disco = new DiscoAtivoEntity();
+        for (AtivoDiscoDTO d : dto.getDiscos()) {
+            AtivoDiscoEntity disco = new AtivoDiscoEntity();
             disco.setNome(d.getNome());
             disco.setModelo(d.getModelo());
             disco.setNumeroSerie(d.getNumeroSerie());
@@ -126,8 +124,8 @@ public class EstacaoTrabalhoService {
 
             discoAtivoRepository.save(disco);
 
-            for (DiscoAtivoParticaoDTO dpd : d.getParticoes()) {
-                DiscoAtivoParticaoEntity dpe = new DiscoAtivoParticaoEntity();
+            for (AtivoDiscoParticaoDTO dpd : d.getParticoes()) {
+                AtivoDiscoParticaoEntity dpe = new AtivoDiscoParticaoEntity();
                 dpe.setCapacidade(dpd.getCapacidade());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
                 dpe.setDisco(disco);
@@ -185,7 +183,7 @@ public class EstacaoTrabalhoService {
 
         //recupera todos as interfaces e discos da estação
         List<InterfaceAtivoEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-        List<DiscoAtivoEntity> discos = discoAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
+        List<AtivoDiscoEntity> discos = discoAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
         //remove tudo
         interfaceAtivoRepository.deleteAll(interfaces);
@@ -204,8 +202,8 @@ public class EstacaoTrabalhoService {
         }
 
         //adiciona discos atualizados
-        for (DiscoAtivoDTO d : dto.getDiscos()) {
-            DiscoAtivoEntity disco = new DiscoAtivoEntity();
+        for (AtivoDiscoDTO d : dto.getDiscos()) {
+            AtivoDiscoEntity disco = new AtivoDiscoEntity();
             disco.setNome(d.getNome());
             disco.setModelo(d.getModelo());
             disco.setNumeroSerie(d.getNumeroSerie());
@@ -216,8 +214,8 @@ public class EstacaoTrabalhoService {
 
             discoAtivoRepository.save(disco);
 
-            for (DiscoAtivoParticaoDTO dpd : d.getParticoes()) {
-                DiscoAtivoParticaoEntity dpe = new DiscoAtivoParticaoEntity();
+            for (AtivoDiscoParticaoDTO dpd : d.getParticoes()) {
+                AtivoDiscoParticaoEntity dpe = new AtivoDiscoParticaoEntity();
                 dpe.setCapacidade(dpd.getCapacidade());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
                 dpe.setDisco(disco);

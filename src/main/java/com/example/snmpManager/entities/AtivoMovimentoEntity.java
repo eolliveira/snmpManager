@@ -7,13 +7,15 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-@Table(name = "MOVIMENTOATIVO")
+@Table(name = "ATIVOMOVIMENTO")
 @Entity
 @Data
-public class MovimentoAtivoEntity {
+public class AtivoMovimentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+    @Column(name = "ID_MOVIMENTOATIVO")
     private Long id;
     private String descricao;
     private Date dtMovimento;

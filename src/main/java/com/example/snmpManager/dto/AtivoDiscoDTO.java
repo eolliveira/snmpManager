@@ -1,6 +1,6 @@
 package com.example.snmpManager.dto;
 
-import com.example.snmpManager.entities.DiscoAtivoEntity;
+import com.example.snmpManager.entities.AtivoDiscoEntity;
 import com.example.snmpManager.objects.HardDiskObject;
 import lombok.Data;
 
@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
-public class DiscoAtivoDTO implements Serializable {
+public class AtivoDiscoDTO implements Serializable {
 
     private Long id;
     private String nome;
@@ -22,11 +22,11 @@ public class DiscoAtivoDTO implements Serializable {
 
     private EstacaoTrabalhoDTO estacaoTrabalho;
 
-    private List<DiscoAtivoParticaoDTO> particoes = new ArrayList<>();
+    private List<AtivoDiscoParticaoDTO> particoes = new ArrayList<>();
 
-    public DiscoAtivoDTO() {}
+    public AtivoDiscoDTO() {}
 
-    public DiscoAtivoDTO(DiscoAtivoEntity entity) {
+    public AtivoDiscoDTO(AtivoDiscoEntity entity) {
         this.id = entity.getId();
         this.nome = entity.getNome();
         this.modelo = entity.getModelo();
@@ -35,16 +35,16 @@ public class DiscoAtivoDTO implements Serializable {
         this.usado = entity.getUsado();
         this.disponivel = entity.getDisponivel();
         this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
-        entity.getParticoes().stream().map(particao -> this.particoes.add(new DiscoAtivoParticaoDTO(particao))).collect(Collectors.toList());
+        entity.getParticoes().stream().map(particao -> this.particoes.add(new AtivoDiscoParticaoDTO(particao))).collect(Collectors.toList());
     }
 
-    public DiscoAtivoDTO(HardDiskObject disc) {
+    public AtivoDiscoDTO(HardDiskObject disc) {
         this.nome = disc.getNome();
         this.modelo = disc.getModelo();
         this.numeroSerie = disc.getNumeroSerie();
         this.capacidade = disc.getCapacidade();
         this.usado = disc.getUsado();
         this.disponivel = disc.getDisponivel();
-        disc.getParticoes().stream().map(particao -> this.particoes.add(new DiscoAtivoParticaoDTO(particao))).collect(Collectors.toList());
+        disc.getParticoes().stream().map(particao -> this.particoes.add(new AtivoDiscoParticaoDTO(particao))).collect(Collectors.toList());
     }
 }
