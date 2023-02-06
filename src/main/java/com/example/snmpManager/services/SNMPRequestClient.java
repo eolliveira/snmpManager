@@ -17,10 +17,11 @@ public class SNMPRequestClient {
     private Snmp snmp;
     private String address;
     private String community;
+    private TransportMapping transport;
 
     public void start(String address, String commmunity)  {
         try {
-            TransportMapping transport = new DefaultUdpTransportMapping();
+            transport = new DefaultUdpTransportMapping();
             snmp = new Snmp(transport);
             this.address = address;
             this.community = commmunity;
@@ -29,6 +30,15 @@ public class SNMPRequestClient {
 
         } catch (IOException e) {
             throw new FailureInitializeUdpTransport("Falha ao inicializar o mapeamento de transporte UDP: " + e.getMessage());
+        }
+    }
+
+    public void close()  {
+        try {
+            transport.close();
+            snmp.close();
+        } catch (IOException e) {
+            throw new FailureInitializeUdpTransport("Falha ao encerrar o mapeamento de transporte UDP: " + e.getMessage());
         }
     }
 

@@ -80,6 +80,8 @@ public class EstacaoTrabalhoService {
         windowsObject.addInterfaces(interfaces);
         windowsObject.addHardDisk(discosRigidos);
 
+        client.close();
+
         return windowsObject;
     }
 
