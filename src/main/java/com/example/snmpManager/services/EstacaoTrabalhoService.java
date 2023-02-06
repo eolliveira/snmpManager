@@ -9,10 +9,10 @@ import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
-import com.example.snmpManager.repositories.DiscoAtivoParticaoRepository;
-import com.example.snmpManager.repositories.DiscoAtivoRepository;
+import com.example.snmpManager.repositories.AtivoDiscoParticaoRepository;
+import com.example.snmpManager.repositories.AtivoDiscoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
-import com.example.snmpManager.repositories.InterfaceAtivoRepository;
+import com.example.snmpManager.repositories.AtivoInterfaceRepository;
 import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,15 +29,14 @@ public class EstacaoTrabalhoService {
     private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
 
     @Autowired
-    private InterfaceAtivoRepository interfaceAtivoRepository;
+    private AtivoInterfaceRepository interfaceAtivoRepository;
 
     @Autowired
-    private DiscoAtivoRepository discoAtivoRepository;
+    private AtivoDiscoRepository discoAtivoRepository;
 
     @Autowired
-    private DiscoAtivoParticaoRepository discoAtivoParticaoRepository;
+    private AtivoDiscoParticaoRepository discoAtivoParticaoRepository;
 
-    //busca inf windows
     public WindowsObject getObjectData(String address) {
 
         if(!AddressValidation.isValidIpv4(address))
@@ -85,7 +84,6 @@ public class EstacaoTrabalhoService {
         return windowsObject;
     }
 
-    //salva nova estação de trabalho
     @Transactional
     public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
 
