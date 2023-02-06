@@ -1,6 +1,7 @@
 package com.example.snmpManager.controllers.exceptions;
 
 import com.example.snmpManager.exceptions.FailureInitializeUdpTransport;
+import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
 import org.springframework.http.HttpStatus;
@@ -51,5 +52,18 @@ public class ResourceExceptionHandler {
         error.setPath(request.getRequestURI());
         return ResponseEntity.status(httpStatus).body(error);
     }
+
+    @ExceptionHandler(InvalidAddressExecption.class)
+    public ResponseEntity<StandardError> entityNotFound(InvalidAddressExecption e, HttpServletRequest request) {
+        int httpStatus = HttpStatus.BAD_REQUEST.value();
+        StandardError error = new StandardError();
+        error.setTimestamp(Instant.now());
+        error.setStatus(httpStatus);
+        error.setError("Invalid Adrress");
+        error.setMessage(e.getMessage());
+        error.setPath(request.getRequestURI());
+        return ResponseEntity.status(httpStatus).body(error);
+    }
+
 
 }

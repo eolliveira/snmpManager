@@ -5,6 +5,7 @@ import com.example.snmpManager.entities.AtivoDiscoEntity;
 import com.example.snmpManager.entities.AtivoDiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.entities.AtivoInterfaceEntity;
+import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
@@ -12,6 +13,7 @@ import com.example.snmpManager.repositories.DiscoAtivoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoAtivoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.InterfaceAtivoRepository;
+import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,6 +39,9 @@ public class EstacaoTrabalhoService {
 
     //busca inf windows
     public WindowsObject getObjectData(String address) {
+
+        if(!AddressValidation.isValidIpv4(address))
+            throw new InvalidAddressExecption("Endereço ip [" + address + "] inválido!");
 
         SNMPRequestClient client = new SNMPRequestClient();
 
