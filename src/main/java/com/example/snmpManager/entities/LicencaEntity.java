@@ -1,5 +1,6 @@
 package com.example.snmpManager.entities;
 
+import com.example.snmpManager.dto.LicencaDTO;
 import lombok.Data;
 
 import javax.persistence.DiscriminatorValue;
@@ -21,5 +22,14 @@ public class LicencaEntity extends AtivoEntity {
     @ManyToOne
     @JoinColumn(name = "ID_ATIVO_LICENCA")
     private AtivoEntity ativo;
+
+    public LicencaEntity() {}
+
+    public LicencaEntity(LicencaDTO dto) {
+        this.software = dto.getSoftware();
+        this.qtdLicencas = dto.getQtdLicencas();
+        this.chaveLicenca = dto.getChaveLicenca();
+        this.tipo = dto.getTipo();
+    }
 
 }
