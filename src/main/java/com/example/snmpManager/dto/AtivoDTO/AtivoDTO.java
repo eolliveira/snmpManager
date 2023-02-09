@@ -58,7 +58,7 @@ public class AtivoDTO implements Serializable {
         this.obeservacao = entity.getObeservacao();
         //this.usuario = new UsuarioDTO(entity.getUsuario());
 
-        entity.getMovimentos().stream().map(m -> this.movimentos.add(new MovimentoAtivoDTO(m))).collect(Collectors.toList());
-        entity.getLicencas().stream().map(l -> this.licencas.add(new LicencaDTO(l))).collect(Collectors.toList());
+        //entity.getMovimentos().stream().map(m -> this.movimentos.add(new MovimentoAtivoDTO(m))).collect(Collectors.toList());
+        //entity.getLicencas().stream().map(l -> this.licencas.add(new LicencaDTO(l))).collect(Collectors.toList());
     }
 }

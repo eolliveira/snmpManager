@@ -1,5 +1,6 @@
 package com.example.snmpManager.controllers;
 
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.objects.WindowsObject;
@@ -18,8 +19,8 @@ public class EstacaoTrabalhoController {
     private EstacaoTrabalhoService estacaoTrabalhoService;
 
     @GetMapping
-    public ResponseEntity<List<EstacaoTrabalhoDTO>> findAll() {
-        List<EstacaoTrabalhoDTO> estacoes = estacaoTrabalhoService.findAll();
+    public ResponseEntity<List<EstacaoTrabalhoBasicDTO>> findAll() {
+        List<EstacaoTrabalhoBasicDTO> estacoes = estacaoTrabalhoService.findAll();
         return ResponseEntity.ok(estacoes);
     }
 

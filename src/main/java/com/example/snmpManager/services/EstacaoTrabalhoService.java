@@ -2,6 +2,7 @@ package com.example.snmpManager.services;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
@@ -43,9 +44,9 @@ public class EstacaoTrabalhoService {
     private AtivoDiscoParticaoRepository discoAtivoParticaoRepository;
 
     @Transactional
-    public List<EstacaoTrabalhoDTO> findAll() {
+    public List<EstacaoTrabalhoBasicDTO> findAll() {
         List<EstacaoTrabalhoEntity> estacoes = estacaoTrabalhoRepository.findAll();
-        return estacoes.stream().map(EstacaoTrabalhoDTO::new).collect(Collectors.toList());
+        return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
     }
 
     public WindowsObject getObjectData(String address) {
