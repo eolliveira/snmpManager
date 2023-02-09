@@ -1,6 +1,6 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import lombok.*;
 
 import javax.persistence.DiscriminatorValue;

@@ -1,6 +1,10 @@
 package com.example.snmpManager.services;
 
-import com.example.snmpManager.dto.*;
+import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
+import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoSynchronizeDTO;
+import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.entities.DiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
@@ -110,7 +114,7 @@ public class EstacaoTrabalhoService {
             interfaceAtivoRepository.save(inter);
         }
 
-        for (AtivoDiscoDTO d : dto.getDiscos()) {
+        for (DiscoDTO d : dto.getDiscos()) {
             DiscoEntity disco = new DiscoEntity();
             disco.setNome(d.getNome());
             disco.setModelo(d.getModelo());
@@ -122,7 +126,7 @@ public class EstacaoTrabalhoService {
 
             discoAtivoRepository.save(disco);
 
-            for (AtivoDiscoParticaoDTO dpd : d.getParticoes()) {
+            for (DiscoParticaoDTO dpd : d.getParticoes()) {
                 DiscoParticaoEntity dpe = new DiscoParticaoEntity();
                 dpe.setCapacidade(dpd.getCapacidade());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
@@ -156,13 +160,13 @@ public class EstacaoTrabalhoService {
             throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idAtivo);
         }
 
-        EstacaoTrabalhoUpdateDTO dto = new EstacaoTrabalhoUpdateDTO(objAgent);
+        EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
         updateWorkStation(idAtivo, dto);
     }
 
     //atualiza estação informando id do ativo e dto
     @Transactional
-    public EstacaoTrabalhoUpdateDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoUpdateDTO dto) {
+    public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
 
         EstacaoTrabalhoEntity estacaoTrabalho = estacaoTrabalhoRepository.getReferenceById(idAtivo);
 
@@ -202,7 +206,7 @@ public class EstacaoTrabalhoService {
         }
 
         //adiciona discos atualizados
-        for (AtivoDiscoDTO d : dto.getDiscos()) {
+        for (DiscoDTO d : dto.getDiscos()) {
             DiscoEntity disco = new DiscoEntity();
             disco.setNome(d.getNome());
             disco.setModelo(d.getModelo());
@@ -214,7 +218,7 @@ public class EstacaoTrabalhoService {
 
             discoAtivoRepository.save(disco);
 
-            for (AtivoDiscoParticaoDTO dpd : d.getParticoes()) {
+            for (DiscoParticaoDTO dpd : d.getParticoes()) {
                 DiscoParticaoEntity dpe = new DiscoParticaoEntity();
                 dpe.setCapacidade(dpd.getCapacidade());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
@@ -225,7 +229,7 @@ public class EstacaoTrabalhoService {
         }
 
         estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
-        return new EstacaoTrabalhoUpdateDTO(estacaoTrabalho);
+        return new EstacaoTrabalhoSynchronizeDTO(estacaoTrabalho);
     }
 
 }

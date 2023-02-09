@@ -1,5 +1,8 @@
-package com.example.snmpManager.dto;
+package com.example.snmpManager.dto.MotivoAtivoDTO;
 
+import com.example.snmpManager.dto.AnexoDTO.AnexoDTO;
+import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
+import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.MovimentoEntity;
 import com.example.snmpManager.entities.StatusAtivo;
 import lombok.Data;

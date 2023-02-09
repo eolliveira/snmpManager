@@ -1,7 +1,7 @@
 package com.example.snmpManager.controllers;
 
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoUpdateDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.objects.WindowsObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,7 +39,7 @@ public class EstacaoTrabalhoController {
 
     //atualiza estação passando o id
     @PutMapping(value = "/{idActive}/update")
-    public ResponseEntity<EstacaoTrabalhoUpdateDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoUpdateDTO dto) {
+    public ResponseEntity<EstacaoTrabalhoSynchronizeDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoSynchronizeDTO dto) {
         dto = estacaoTrabalhoService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
     }

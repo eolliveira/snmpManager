@@ -1,5 +1,7 @@
-package com.example.snmpManager.dto;
+package com.example.snmpManager.dto.UsuarioDTO;
 
+import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
+import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoAtivoDTO;
 import com.example.snmpManager.entities.UsuarioEntity;
 import lombok.Data;
 

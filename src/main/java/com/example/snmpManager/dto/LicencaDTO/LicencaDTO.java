@@ -1,5 +1,6 @@
-package com.example.snmpManager.dto;
+package com.example.snmpManager.dto.LicencaDTO;
 
+import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.entities.LicencaEntity;
 import com.example.snmpManager.entities.TipoLicenca;
 import lombok.*;

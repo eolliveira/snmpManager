@@ -1,5 +1,6 @@
-package com.example.snmpManager.dto;
+package com.example.snmpManager.dto.AnexoDTO;
 
+import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.AnexoEntity;
 import lombok.Data;
 

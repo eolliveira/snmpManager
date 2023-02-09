@@ -1,5 +1,8 @@
-package com.example.snmpManager.dto;
+package com.example.snmpManager.dto.EstacaoTrabalhoDTO;
 
+import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
+import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
+import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import lombok.*;
 
@@ -20,7 +23,7 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private String gateway;
 
     private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
-    private List<AtivoDiscoDTO> discos = new ArrayList<>();
+    private List<DiscoDTO> discos = new ArrayList<>();
 
     public EstacaoTrabalhoDTO(){
         super();
@@ -39,7 +42,7 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
         this.gateway = entity.getGateway();
 
         entity.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
-        entity.getDiscos().stream().map(disco -> this.discos.add(new AtivoDiscoDTO(disco))).collect(Collectors.toList());
+        entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoDTO(disco))).collect(Collectors.toList());
     }
 
 

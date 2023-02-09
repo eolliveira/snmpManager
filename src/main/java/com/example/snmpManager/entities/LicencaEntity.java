@@ -1,6 +1,6 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.LicencaDTO;
+import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
 import lombok.Data;
 
 import javax.persistence.*;

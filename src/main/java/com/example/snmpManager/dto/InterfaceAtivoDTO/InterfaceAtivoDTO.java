@@ -1,5 +1,6 @@
-package com.example.snmpManager.dto;
+package com.example.snmpManager.dto.InterfaceAtivoDTO;
 
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.objects.InterfaceObject;
 import lombok.Data;
