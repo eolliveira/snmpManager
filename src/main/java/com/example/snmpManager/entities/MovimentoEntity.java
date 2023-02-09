@@ -10,7 +10,7 @@ import java.util.List;
 @Table(name = "ATIVOMOVIMENTO")
 @Entity
 @Data
-public class AtivoMovimentoEntity {
+public class MovimentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

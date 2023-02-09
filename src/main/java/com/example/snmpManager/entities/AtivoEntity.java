@@ -27,6 +27,8 @@ public abstract class AtivoEntity {
     private String descricao;
     private String numeroSerie;
     private Boolean inativo;
+
+    @Enumerated(EnumType.STRING)
     private StatusAtivo status;
     private Date dtAquisicao;
     private Date dtVencimentoGarantia;
@@ -41,9 +43,10 @@ public abstract class AtivoEntity {
     private UsuarioEntity usuario;
 
     @OneToMany(mappedBy = "ativo")
-    private List<AtivoMovimentoEntity> movimentos = new ArrayList<>();
+    private List<MovimentoEntity> movimentos = new ArrayList<>();
 
     @OneToMany(mappedBy = "ativo")
     private List<LicencaEntity> licencas = new ArrayList<>();
+
 
 }

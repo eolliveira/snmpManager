@@ -7,7 +7,7 @@ import javax.persistence.*;
 @Table(name = "ATIVODISCOPARTICAO")
 @Entity
 @Data
-public class AtivoDiscoParticaoEntity {
+public class DiscoParticaoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,6 +18,6 @@ public class AtivoDiscoParticaoEntity {
 
     @ManyToOne
     @JoinColumn(name = "ID_ATIVODISCO")
-    private AtivoDiscoEntity disco;
+    private DiscoEntity disco;
 
 }

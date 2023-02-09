@@ -1,10 +1,10 @@
 package com.example.snmpManager.services;
 
 import com.example.snmpManager.dto.*;
-import com.example.snmpManager.entities.AtivoDiscoEntity;
-import com.example.snmpManager.entities.AtivoDiscoParticaoEntity;
+import com.example.snmpManager.entities.DiscoEntity;
+import com.example.snmpManager.entities.DiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import com.example.snmpManager.entities.AtivoInterfaceEntity;
+import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.mibs.WindowsMIB;
@@ -92,7 +92,7 @@ public class EstacaoTrabalhoService {
         estacao = estacaoTrabalhoRepository.save(estacao);
 
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
-            AtivoInterfaceEntity inter = new AtivoInterfaceEntity();
+            InterfaceEntity inter = new InterfaceEntity();
             inter.setNomeLocal(i.getNomeLocal());
             inter.setFabricante(i.getFabricante());
             inter.setEnderecoMac(i.getEnderecoMac());
@@ -104,7 +104,7 @@ public class EstacaoTrabalhoService {
         }
 
         for (AtivoDiscoDTO d : dto.getDiscos()) {
-            AtivoDiscoEntity disco = new AtivoDiscoEntity();
+            DiscoEntity disco = new DiscoEntity();
             disco.setNome(d.getNome());
             disco.setModelo(d.getModelo());
             disco.setNumeroSerie(d.getNumeroSerie());
@@ -116,7 +116,7 @@ public class EstacaoTrabalhoService {
             discoAtivoRepository.save(disco);
 
             for (AtivoDiscoParticaoDTO dpd : d.getParticoes()) {
-                AtivoDiscoParticaoEntity dpe = new AtivoDiscoParticaoEntity();
+                DiscoParticaoEntity dpe = new DiscoParticaoEntity();
                 dpe.setCapacidade(dpd.getCapacidade());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
                 dpe.setDisco(disco);
@@ -136,7 +136,7 @@ public class EstacaoTrabalhoService {
 
         WindowsObject objAgent = new WindowsObject();
 
-        for(AtivoInterfaceEntity i : estacaoTrabalho.getInterfaces()) {
+        for(InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
             if(i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
                 WindowsObject obj = getObjectData(i.getEnderecoIp());
                 if (obj.getFabricante() != null) {
@@ -173,8 +173,8 @@ public class EstacaoTrabalhoService {
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
 
         //recupera todos as interfaces e discos da estação
-        List<AtivoInterfaceEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-        List<AtivoDiscoEntity> discos = discoAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
+        List<InterfaceEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
+        List<DiscoEntity> discos = discoAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
         if (!interfaces.isEmpty() && !discos.isEmpty()){
             //remove tudo()
@@ -184,7 +184,7 @@ public class EstacaoTrabalhoService {
 
         //adiciona interfaces atualizadas
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
-            AtivoInterfaceEntity inter = new AtivoInterfaceEntity();
+            InterfaceEntity inter = new InterfaceEntity();
             inter.setNomeLocal(i.getNomeLocal());
             inter.setFabricante(i.getFabricante());
             inter.setEnderecoMac(i.getEnderecoMac());
@@ -196,7 +196,7 @@ public class EstacaoTrabalhoService {
 
         //adiciona discos atualizados
         for (AtivoDiscoDTO d : dto.getDiscos()) {
-            AtivoDiscoEntity disco = new AtivoDiscoEntity();
+            DiscoEntity disco = new DiscoEntity();
             disco.setNome(d.getNome());
             disco.setModelo(d.getModelo());
             disco.setNumeroSerie(d.getNumeroSerie());
@@ -208,7 +208,7 @@ public class EstacaoTrabalhoService {
             discoAtivoRepository.save(disco);
 
             for (AtivoDiscoParticaoDTO dpd : d.getParticoes()) {
-                AtivoDiscoParticaoEntity dpe = new AtivoDiscoParticaoEntity();
+                DiscoParticaoEntity dpe = new DiscoParticaoEntity();
                 dpe.setCapacidade(dpd.getCapacidade());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
                 dpe.setDisco(disco);

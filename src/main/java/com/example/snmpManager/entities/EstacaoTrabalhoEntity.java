@@ -27,16 +27,16 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String gateway;
 
     @OneToMany(mappedBy = "estacaoTrabalho")
-    private List<AtivoInterfaceEntity> interfaces = new ArrayList<>();
+    private List<InterfaceEntity> interfaces = new ArrayList<>();
 
     @OneToMany(mappedBy = "estacaoTrabalho")
-    private List<AtivoDiscoEntity> discos = new ArrayList<>();
+    private List<DiscoEntity> discos = new ArrayList<>();
 
-    public EstacaoTrabalhoEntity() {
-
-    }
+    public EstacaoTrabalhoEntity() {}
 
     public EstacaoTrabalhoEntity(EstacaoTrabalhoDTO dto) {
+        this.setInativo(false);
+        this.setStatus(StatusAtivo.DISPONIVEL);
         this.setFabricante(dto.getFabricante());
         this.setNumeroSerie(dto.getNumeroSerie());
         this.setModelo(dto.getModelo());

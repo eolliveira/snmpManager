@@ -11,7 +11,7 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-public class AtivoDiscoEntity {
+public class DiscoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,8 +29,8 @@ public class AtivoDiscoEntity {
     private EstacaoTrabalhoEntity estacaoTrabalho;
 
     @OneToMany(mappedBy = "disco", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<AtivoDiscoParticaoEntity> particoes = new ArrayList<>();
+    private List<DiscoParticaoEntity> particoes = new ArrayList<>();
 
-    public AtivoDiscoEntity() {
+    public DiscoEntity() {
     }
 }

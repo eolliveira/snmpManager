@@ -3,10 +3,7 @@ package com.example.snmpManager.entities;
 import com.example.snmpManager.dto.LicencaDTO;
 import lombok.Data;
 
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 @Data
@@ -15,10 +12,12 @@ public class LicencaEntity extends AtivoEntity {
     private String software;
     private Integer qtdLicencas;
     private String chaveLicenca;
+    @Enumerated(EnumType.STRING)
     private TipoLicenca tipo;
 
     //ativo a qual licenca é atribuida
 
+    //TODO(Verificar relacionamento de ativo e licenca )
     @ManyToOne
     @JoinColumn(name = "ID_ATIVO_LICENCA")
     private AtivoEntity ativo;
@@ -26,6 +25,8 @@ public class LicencaEntity extends AtivoEntity {
     public LicencaEntity() {}
 
     public LicencaEntity(LicencaDTO dto) {
+        this.setStatus(StatusAtivo.DISPONIVEL);
+        this.setInativo(false);
         this.software = dto.getSoftware();
         this.qtdLicencas = dto.getQtdLicencas();
         this.chaveLicenca = dto.getChaveLicenca();

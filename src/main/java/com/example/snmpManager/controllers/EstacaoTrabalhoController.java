@@ -16,7 +16,6 @@ public class EstacaoTrabalhoController {
     private EstacaoTrabalhoService estacaoTrabalhoService;
 
 
-    //consulta estação pelo ip
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WindowsObject> findAll(@PathVariable String ipAddress) {
         WindowsObject win = estacaoTrabalhoService.getObjectData(ipAddress);

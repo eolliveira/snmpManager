@@ -1,6 +1,6 @@
 package com.example.snmpManager.dto;
 
-import com.example.snmpManager.entities.AtivoDiscoEntity;
+import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.objects.HardDiskObject;
 import lombok.Data;
 
@@ -26,7 +26,7 @@ public class AtivoDiscoDTO implements Serializable {
 
     public AtivoDiscoDTO() {}
 
-    public AtivoDiscoDTO(AtivoDiscoEntity entity) {
+    public AtivoDiscoDTO(DiscoEntity entity) {
         this.id = entity.getId();
         this.nome = entity.getNome();
         this.modelo = entity.getModelo();

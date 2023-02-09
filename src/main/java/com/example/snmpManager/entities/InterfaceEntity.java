@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 @AllArgsConstructor
 @ToString
-public class AtivoInterfaceEntity implements Serializable {
+public class InterfaceEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,7 +27,5 @@ public class AtivoInterfaceEntity implements Serializable {
     @JoinColumn(name = "ID_ESTACAO_TRABALHO")
     private EstacaoTrabalhoEntity estacaoTrabalho;
 
-    public AtivoInterfaceEntity() {
-
-    }
+    public InterfaceEntity() {}
 }

@@ -1,6 +1,6 @@
 package com.example.snmpManager.dto;
 
-import com.example.snmpManager.entities.AtivoInterfaceEntity;
+import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.objects.InterfaceObject;
 import lombok.Data;
 
@@ -19,7 +19,7 @@ public class InterfaceAtivoDTO implements Serializable {
 
     public InterfaceAtivoDTO(){}
 
-    public InterfaceAtivoDTO(AtivoInterfaceEntity entity) {
+    public InterfaceAtivoDTO(InterfaceEntity entity) {
         this.id = entity.getId();
         this.nomeLocal = entity.getNomeLocal();
         this.fabricante = entity.getFabricante();
