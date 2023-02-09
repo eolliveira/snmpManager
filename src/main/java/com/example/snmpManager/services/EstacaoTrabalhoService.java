@@ -11,8 +11,8 @@ import com.example.snmpManager.mibs.WindowsMIB;
 import com.example.snmpManager.objects.WindowsObject;
 import com.example.snmpManager.repositories.AtivoDiscoParticaoRepository;
 import com.example.snmpManager.repositories.AtivoDiscoRepository;
-import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.AtivoInterfaceRepository;
+import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class EstacaoTrabalhoService {
@@ -36,6 +37,12 @@ public class EstacaoTrabalhoService {
 
     @Autowired
     private AtivoDiscoParticaoRepository discoAtivoParticaoRepository;
+
+    @Transactional
+    public List<EstacaoTrabalhoDTO> findAll() {
+        List<EstacaoTrabalhoEntity> estacoes = estacaoTrabalhoRepository.findAll();
+        return estacoes.stream().map(EstacaoTrabalhoDTO::new).collect(Collectors.toList());
+    }
 
     public WindowsObject getObjectData(String address) {
 

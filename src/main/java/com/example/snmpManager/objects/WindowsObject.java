@@ -25,14 +25,12 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
     public void addHardDisk(String arrayDisk) {
         Gson gson = new Gson();
         List<HardDiskObject> listDisk = gson.fromJson(arrayDisk, new TypeToken<List<HardDiskObject>>(){}.getType());
-
         listDisk.stream().map(i -> this.discos.add(i)).collect(Collectors.toList());
     }
 
     public void addInterfaces(String arrayInterfaces) {
         Gson gson = new Gson();
         List<InterfaceObject> listInterfaces = gson.fromJson(arrayInterfaces, new TypeToken<List<InterfaceObject>>(){}.getType());
-
         listInterfaces.stream().map(i -> super.getInterfaces().add(i)).collect(Collectors.toList());
     }
 }

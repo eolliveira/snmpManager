@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/workstation")
 public class EstacaoTrabalhoController {
@@ -15,13 +17,17 @@ public class EstacaoTrabalhoController {
     @Autowired
     private EstacaoTrabalhoService estacaoTrabalhoService;
 
+    @GetMapping
+    public ResponseEntity<List<EstacaoTrabalhoDTO>> findAll() {
+        List<EstacaoTrabalhoDTO> estacoes = estacaoTrabalhoService.findAll();
+        return ResponseEntity.ok(estacoes);
+    }
 
     @GetMapping(value = "/{ipAddress}")
-    public ResponseEntity<WindowsObject> findAll(@PathVariable String ipAddress) {
+    public ResponseEntity<WindowsObject> getDataByAddress(@PathVariable String ipAddress) {
         WindowsObject win = estacaoTrabalhoService.getObjectData(ipAddress);
         return ResponseEntity.ok(win);
     }
-
 
     //add nova estação de trabalho
     @PostMapping()
