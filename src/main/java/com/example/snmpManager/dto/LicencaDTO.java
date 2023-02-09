@@ -15,7 +15,7 @@ public class LicencaDTO extends AtivoDTO implements Serializable {
     private TipoLicenca tipo;
     private AtivoDTO ativo;
 
-    public LicencaDTO( ) {}
+    public LicencaDTO() {}
 
     public LicencaDTO(LicencaEntity entity) {
         super(entity);

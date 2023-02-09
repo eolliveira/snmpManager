@@ -1,6 +1,5 @@
 package com.example.snmpManager.controllers;
 
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.LicencaDTO;
 import com.example.snmpManager.services.LicencaService;
 import org.springframework.beans.factory.annotation.Autowired;
