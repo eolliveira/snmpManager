@@ -19,7 +19,20 @@ public class LicencaDTO extends AtivoDTO implements Serializable {
     public LicencaDTO() {}
 
     public LicencaDTO(LicencaEntity entity) {
-        super(entity);
+        this.setNome(entity.getNome());
+        this.setFabricante(entity.getFabricante());
+        this.setModelo(entity.getModelo());
+        this.setDescricao(entity.getDescricao());
+        this.setNumeroSerie(entity.getNumeroSerie());
+        this.setInativo(entity.getInativo());
+        this.setStatus(entity.getStatus());
+        this.setDtAquisicao(entity.getDtAquisicao());
+        this.setDtVencimentoGarantia(entity.getDtVencimentoGarantia());
+        this.setDtExpiracao(entity.getDtExpiracao());
+        this.setUltimoSincronismo(entity.getUltimoSincronismo());
+        this.setValorCompra(entity.getValorCompra());
+        this.setFornecedor(entity.getFornecedor());
+        this.setObeservacao(entity.getObeservacao());
         this.software = entity.getSoftware();
         this.qtdLicencas = entity.getQtdLicencas();
         this.chaveLicenca = entity.getChaveLicenca();

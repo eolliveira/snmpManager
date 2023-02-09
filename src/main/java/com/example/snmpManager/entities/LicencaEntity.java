@@ -17,7 +17,7 @@ public class LicencaEntity extends AtivoEntity {
 
     //ativo a qual licenca é atribuida
 
-    //TODO(Verificar relacionamento de ativo e licenca )
+    //TODO(fazer relacionamento muitos para muitos licenca e ativo)
     @ManyToOne
     @JoinColumn(name = "ID_ATIVO_LICENCA")
     private AtivoEntity ativo;
@@ -32,5 +32,4 @@ public class LicencaEntity extends AtivoEntity {
         this.chaveLicenca = dto.getChaveLicenca();
         this.tipo = dto.getTipo();
     }
-
 }

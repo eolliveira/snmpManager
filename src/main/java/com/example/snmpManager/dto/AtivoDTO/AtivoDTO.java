@@ -12,7 +12,6 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Data
 public class AtivoDTO implements Serializable {
@@ -41,6 +40,7 @@ public class AtivoDTO implements Serializable {
     public AtivoDTO(){}
 
     public AtivoDTO(AtivoEntity entity) {
+        //TODO(VERIFICAR SE É NECESSARIO ESSE CONSTRUTOR)
         this.id = entity.getId();
         this.nome = entity.getNome();
         this.fabricante = entity.getFabricante();

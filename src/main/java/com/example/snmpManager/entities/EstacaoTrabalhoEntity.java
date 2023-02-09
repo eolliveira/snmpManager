@@ -35,11 +35,20 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     public EstacaoTrabalhoEntity() {}
 
     public EstacaoTrabalhoEntity(EstacaoTrabalhoDTO dto) {
+        this.setNome(dto.getNome());
+        this.setDescricao(dto.getDescricao());
         this.setInativo(false);
         this.setStatus(StatusAtivo.DISPONIVEL);
         this.setFabricante(dto.getFabricante());
         this.setNumeroSerie(dto.getNumeroSerie());
         this.setModelo(dto.getModelo());
+        this.setDtAquisicao(dto.getDtAquisicao());
+        this.setDtVencimentoGarantia(dto.getDtVencimentoGarantia());
+        this.setDtExpiracao(dto.getDtExpiracao());
+        this.setUltimoSincronismo(dto.getUltimoSincronismo());
+        this.setValorCompra(dto.getValorCompra());
+        this.setFornecedor(dto.getFornecedor());
+        this.setObeservacao(getObeservacao());
         this.sistemaOperacional = dto.getSistemaOperacional();
         this.processador = dto.getProcessador();
         this.arquiteturaSo = dto.getArquiteturaSo();

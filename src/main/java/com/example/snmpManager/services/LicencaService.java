@@ -27,6 +27,7 @@ public class LicencaService {
         LicencaEntity licenca = new LicencaEntity(dto);
         licenca = licencaRepository.save(licenca);
         return new LicencaDTO(licenca);
+        //TODO(VERIFICAR NULL LICENCAS AO SALVAR)
     }
 
 }

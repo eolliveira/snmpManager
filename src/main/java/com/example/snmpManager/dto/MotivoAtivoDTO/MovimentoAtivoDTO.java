@@ -15,7 +15,6 @@ import java.util.stream.Collectors;
 
 @Data
 public class MovimentoAtivoDTO implements Serializable {
-
     private Long id;
     private String descricao;
     private Date dtMovimento;
