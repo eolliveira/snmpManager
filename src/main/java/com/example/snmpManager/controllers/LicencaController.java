@@ -15,7 +15,6 @@ public class LicencaController {
     @Autowired
     private LicencaService licencaService;
 
-
     @GetMapping
     public ResponseEntity<List<LicencaDTO>> findAll() {
         List<LicencaDTO> licencas = licencaService.findAll();

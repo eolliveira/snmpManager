@@ -5,9 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Table(name = "ATIVO")
 @Entity
@@ -44,8 +42,10 @@ public abstract class AtivoEntity {
     @OneToMany(mappedBy = "ativo")
     private List<MovimentoEntity> movimentos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "ativo")
-    private List<LicencaEntity> licencas = new ArrayList<>();
-
+    @ManyToMany
+    @JoinTable(name = "ATIVOLICENCA",
+            joinColumns = @JoinColumn(name = "ID_ATIVO"),
+            inverseJoinColumns = @JoinColumn(name = "ID_LICENCA"))
+    private Set<LicencaEntity> licencas = new HashSet<>();
 
 }

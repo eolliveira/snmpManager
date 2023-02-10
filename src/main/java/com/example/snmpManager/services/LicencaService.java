@@ -19,7 +19,7 @@ public class LicencaService {
     @Transactional
     public List<LicencaDTO> findAll() {
         List<LicencaEntity> licencas = licencaRepository.findAll();
-        return licencas.stream().map(l -> new LicencaDTO(l)).collect(Collectors.toList());
+        return licencas.stream().map(LicencaDTO::new).collect(Collectors.toList());
     }
 
     @Transactional
@@ -27,7 +27,5 @@ public class LicencaService {
         LicencaEntity licenca = new LicencaEntity(dto);
         licenca = licencaRepository.save(licenca);
         return new LicencaDTO(licenca);
-        //TODO(VERIFICAR NULL LICENCAS AO SALVAR)
     }
-
 }

@@ -4,6 +4,8 @@ import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Data
@@ -15,16 +17,26 @@ public class LicencaEntity extends AtivoEntity {
     @Enumerated(EnumType.STRING)
     private TipoLicenca tipo;
 
-    //ativo a qual licenca é atribuida
+    @ManyToMany(mappedBy = "licencas")
+    private final Set<AtivoEntity> products = new HashSet<>();
 
-    //TODO(fazer relacionamento muitos para muitos licenca e ativo)
-    @ManyToOne
-    @JoinColumn(name = "ID_ATIVO_LICENCA")
-    private AtivoEntity ativo;
 
     public LicencaEntity() {}
 
     public LicencaEntity(LicencaDTO dto) {
+        this.setId(dto.getId());
+        this.setNome(dto.getNome());
+        this.setDescricao(dto.getDescricao());
+        this.setFabricante(dto.getFabricante());
+        this.setNumeroSerie(dto.getNumeroSerie());
+        this.setModelo(dto.getModelo());
+        this.setDtAquisicao(dto.getDtAquisicao());
+        this.setDtVencimentoGarantia(dto.getDtVencimentoGarantia());
+        this.setDtExpiracao(dto.getDtExpiracao());
+        this.setUltimoSincronismo(dto.getUltimoSincronismo());
+        this.setValorCompra(dto.getValorCompra());
+        this.setFornecedor(dto.getFornecedor());
+        this.setObeservacao(getObeservacao());
         this.setStatus(StatusAtivo.DISPONIVEL);
         this.setInativo(false);
         this.software = dto.getSoftware();
