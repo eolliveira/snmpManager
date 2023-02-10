@@ -2,6 +2,7 @@ package com.example.snmpManager.entities;
 
 import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -9,6 +10,7 @@ import java.util.Set;
 
 @Entity
 @Data
+@EqualsAndHashCode(callSuper = false)
 @DiscriminatorValue(value = "LICENCA")
 public class LicencaEntity extends AtivoEntity {
     private String software;

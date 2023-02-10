@@ -3,6 +3,7 @@ package com.example.snmpManager.objects;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -10,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class WindowsObject extends DeviceObjectAbstract implements Serializable {
 
     private String sistemaOperacional;

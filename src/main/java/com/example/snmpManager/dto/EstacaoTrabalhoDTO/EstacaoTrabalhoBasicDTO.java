@@ -3,8 +3,10 @@ package com.example.snmpManager.dto.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class EstacaoTrabalhoBasicDTO extends AtivoDTO {
     private String sistemaOperacional;
     private String processador;

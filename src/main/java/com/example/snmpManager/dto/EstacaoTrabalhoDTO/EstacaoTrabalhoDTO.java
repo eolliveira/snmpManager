@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Data
+@EqualsAndHashCode(callSuper = false)
 public class EstacaoTrabalhoDTO extends AtivoDTO {
     private String sistemaOperacional;
     private String processador;
