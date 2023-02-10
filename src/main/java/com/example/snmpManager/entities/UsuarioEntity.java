@@ -1,5 +1,6 @@
 package com.example.snmpManager.entities;
 
+import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -10,7 +11,6 @@ import java.util.List;
 @Table(name = "USUARIO")
 @Data
 public class UsuarioEntity {
-    //tabela de ususário ja existente
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,4 +21,11 @@ public class UsuarioEntity {
 
     @OneToMany(mappedBy = "usuario")
     private List<MovimentoEntity> movimentosAtivo = new ArrayList<>();
+
+    public UsuarioEntity() {}
+
+    public UsuarioEntity(UsuarioDTO dto) {
+        this.id = dto.getId();
+    }
+
 }

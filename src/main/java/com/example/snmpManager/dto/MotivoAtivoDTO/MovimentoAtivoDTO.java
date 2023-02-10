@@ -4,13 +4,12 @@ import com.example.snmpManager.dto.AnexoDTO.AnexoDTO;
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.MovimentoEntity;
-import com.example.snmpManager.entities.StatusAtivo;
+import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
 
 import java.io.Serializable;
 import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +25,9 @@ public class MovimentoAtivoDTO implements Serializable {
     private UsuarioDTO usuario;
 
     private List<AnexoDTO> anexos = new ArrayList<>();
+
+    public MovimentoAtivoDTO() {
+    }
 
     public MovimentoAtivoDTO(MovimentoEntity entity) {
         this.id = entity.getId();

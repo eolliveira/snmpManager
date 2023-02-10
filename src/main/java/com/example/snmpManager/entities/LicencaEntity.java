@@ -1,6 +1,8 @@
 package com.example.snmpManager.entities;
 
 import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
+import com.example.snmpManager.entities.enums.StatusAtivo;
+import com.example.snmpManager.entities.enums.TipoLicenca;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 

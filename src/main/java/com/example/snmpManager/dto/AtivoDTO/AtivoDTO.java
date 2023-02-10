@@ -4,7 +4,7 @@ import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoAtivoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.AtivoEntity;
-import com.example.snmpManager.entities.StatusAtivo;
+import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
 
 import java.io.Serializable;

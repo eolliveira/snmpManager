@@ -1,4 +1,4 @@
-package com.example.snmpManager.entities;
+package com.example.snmpManager.entities.enums;
 
 public enum TipoLicenca {
     OEM,

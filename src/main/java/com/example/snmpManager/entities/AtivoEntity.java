@@ -1,5 +1,8 @@
 package com.example.snmpManager.entities;
 
+import com.example.snmpManager.InterfaceTeste;
+import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
+import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +16,7 @@ import java.util.*;
 @DiscriminatorColumn(name = "TP_ATIVO")
 @Data
 @NoArgsConstructor
-public abstract class AtivoEntity {
+public abstract class AtivoEntity implements InterfaceTeste {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -48,4 +51,7 @@ public abstract class AtivoEntity {
             inverseJoinColumns = @JoinColumn(name = "ID_LICENCA"))
     private Set<LicencaEntity> licencas = new HashSet<>();
 
+    public AtivoEntity(AtivoDTO dto) {
+        this.id = dto.getId();
+    }
 }

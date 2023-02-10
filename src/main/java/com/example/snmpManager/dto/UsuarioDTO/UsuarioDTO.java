@@ -16,6 +16,9 @@ public class UsuarioDTO implements Serializable {
     private List<AtivoDTO> ativos = new ArrayList<>();
     private List<MovimentoAtivoDTO> movimentosAtivo = new ArrayList<>();
 
+    public UsuarioDTO() {
+    }
+
     public UsuarioDTO(UsuarioEntity entity) {
         this.id = entity.getId();
 
