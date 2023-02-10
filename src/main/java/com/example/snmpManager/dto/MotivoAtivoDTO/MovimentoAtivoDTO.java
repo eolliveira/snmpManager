@@ -8,6 +8,7 @@ import com.example.snmpManager.entities.StatusAtivo;
 import lombok.Data;
 
 import java.io.Serializable;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,7 @@ import java.util.stream.Collectors;
 public class MovimentoAtivoDTO implements Serializable {
     private Long id;
     private String descricao;
-    private Date dtMovimento;
+    private Instant dtMovimento;
     private StatusAtivo statusAtivoAnterior;
     private StatusAtivo statusAtivo;
 

@@ -3,6 +3,7 @@ package com.example.snmpManager.entities;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -17,7 +18,9 @@ public class MovimentoEntity {
     @Column(name = "ID_ATIVOMOVIMENTO")
     private Long id;
     private String descricao;
-    private Date dtMovimento;
+
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+    private Instant dtMovimento;
     private StatusAtivo statusAtivoAnterior;
     private StatusAtivo statusAtivo;
 
