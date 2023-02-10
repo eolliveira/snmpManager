@@ -23,9 +23,10 @@ public class MovimentoController {
     }
 
     @PostMapping()
-    public ResponseEntity<MovimentoAtivoDTO> newMovement(@RequestBody MovimentoAtivoDTO dto) {
-        MovimentoAtivoDTO movimento = movimentoService.insertNewMoviment(dto);
-        return ResponseEntity.ok(movimento);
+    public ResponseEntity<Void> newMovement(@RequestBody MovimentoAtivoDTO dto) {
+        movimentoService.insertNewMoviment(dto);
+        return null;
+        //TODO(Retornar Created)
     }
 
 }

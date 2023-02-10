@@ -1,5 +1,6 @@
 package com.example.snmpManager.entities;
 
+import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import com.example.snmpManager.entities.enums.TipoLicenca;
@@ -48,4 +49,5 @@ public class LicencaEntity extends AtivoEntity {
         this.chaveLicenca = dto.getChaveLicenca();
         this.tipo = dto.getTipo();
     }
+
 }

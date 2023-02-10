@@ -44,7 +44,7 @@ public class MovimentoEntity {
         this.dtMovimento = dto.getDtMovimento();
         this.statusAtivoAnterior = dto.getStatusAtivoAnterior();
         this.statusAtivo = dto.getStatusAtivo();
-        this.ativo = new AtivoEntity(dto.getAtivo());
-        this.usuario = new UsuarioEntity(dto.getUsuario());
+        //this.ativo = new AtivoEntity(dto.getAtivo());
+        //this.usuario = new UsuarioEntity(dto.getUsuario());
     }
 }
