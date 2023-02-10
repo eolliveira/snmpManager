@@ -3,7 +3,7 @@ package com.example.snmpManager.dto.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.DiscoEntity;
-import com.example.snmpManager.objects.HardDiskObject;
+import com.example.snmpManager.objects.EstacaoTrabalho.HardDiskObject;
 import lombok.Data;
 
 import java.io.Serializable;

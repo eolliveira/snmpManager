@@ -3,7 +3,7 @@ package com.example.snmpManager.controllers;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoSynchronizeDTO;
-import com.example.snmpManager.objects.WindowsObject;
+import com.example.snmpManager.objects.EstacaoTrabalho.WindowsObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

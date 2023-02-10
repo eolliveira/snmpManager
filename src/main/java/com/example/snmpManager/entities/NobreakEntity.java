@@ -10,5 +10,4 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "NOBREAK")
 public class NobreakEntity extends AtivoEntity {
 
-
 }

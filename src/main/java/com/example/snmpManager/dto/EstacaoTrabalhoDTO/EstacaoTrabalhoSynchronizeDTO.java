@@ -3,7 +3,7 @@ package com.example.snmpManager.dto.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import com.example.snmpManager.objects.WindowsObject;
+import com.example.snmpManager.objects.EstacaoTrabalho.WindowsObject;
 import lombok.Getter;
 import lombok.Setter;
 

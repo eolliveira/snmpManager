@@ -28,11 +28,9 @@ public class MovimentoService {
 
     @Transactional
     public void insertNewMoviment(MovimentoAtivoDTO dto) {
-        //valida ativo
         Optional<AtivoEntity> optAtivo = ativoRepository.findById(dto.getAtivo().getId());
         AtivoEntity ativo = optAtivo.orElseThrow(() -> new ResourceNotFoundException("Ativo id: " + dto.getAtivo().getId() + " não encontrado."));
 
-        //valida usuário
         Optional<UsuarioEntity> optUser = usuarioRepository.findById(dto.getUsuario().getId());
         UsuarioEntity usuario = optUser.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + " não encontrado."));
 

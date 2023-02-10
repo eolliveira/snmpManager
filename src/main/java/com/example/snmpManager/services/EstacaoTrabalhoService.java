@@ -12,11 +12,11 @@ import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
-import com.example.snmpManager.mibs.WindowsMIB;
-import com.example.snmpManager.objects.WindowsObject;
-import com.example.snmpManager.repositories.AtivoDiscoParticaoRepository;
-import com.example.snmpManager.repositories.AtivoDiscoRepository;
-import com.example.snmpManager.repositories.AtivoInterfaceRepository;
+import com.example.snmpManager.mibs.EstacaoTrabalhoMIB;
+import com.example.snmpManager.objects.EstacaoTrabalho.WindowsObject;
+import com.example.snmpManager.repositories.DiscoParticaoRepository;
+import com.example.snmpManager.repositories.DiscoRepository;
+import com.example.snmpManager.repositories.InterfaceRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
@@ -35,13 +35,13 @@ public class EstacaoTrabalhoService {
     private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
 
     @Autowired
-    private AtivoInterfaceRepository interfaceAtivoRepository;
+    private InterfaceRepository interfaceAtivoRepository;
 
     @Autowired
-    private AtivoDiscoRepository discoAtivoRepository;
+    private DiscoRepository discoAtivoRepository;
 
     @Autowired
-    private AtivoDiscoParticaoRepository discoAtivoParticaoRepository;
+    private DiscoParticaoRepository discoAtivoParticaoRepository;
 
     @Transactional
     public List<EstacaoTrabalhoBasicDTO> findAll() {
@@ -58,7 +58,7 @@ public class EstacaoTrabalhoService {
 
         client.start("udp:" + address + "/161", "public");
 
-        WindowsMIB mib = new WindowsMIB();
+        EstacaoTrabalhoMIB mib = new EstacaoTrabalhoMIB();
         WindowsObject windowsObject = new WindowsObject();
 
         String sistemaOperacional = client.getAsString(new OID(mib.getSO_OID()));

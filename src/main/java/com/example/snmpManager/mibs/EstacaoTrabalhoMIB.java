@@ -3,7 +3,7 @@ package com.example.snmpManager.mibs;
 import lombok.Data;
 
 @Data
-public class WindowsMIB {
+public class EstacaoTrabalhoMIB {
     public static final String BASE_OID = ".1.3.6.1.4.1.12345";
 
     private final String SO_OID = BASE_OID + ".1.1.0";

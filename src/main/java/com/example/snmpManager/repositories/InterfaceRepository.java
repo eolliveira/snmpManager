@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface AtivoInterfaceRepository extends JpaRepository<InterfaceEntity, Long> {
+public interface InterfaceRepository extends JpaRepository<InterfaceEntity, Long> {
     List<InterfaceEntity> findAllByEstacaoTrabalho_Id(Long id);
 }

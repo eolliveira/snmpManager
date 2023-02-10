@@ -1,4 +1,4 @@
-package com.example.snmpManager.objects;
+package com.example.snmpManager.objects.EstacaoTrabalho;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
