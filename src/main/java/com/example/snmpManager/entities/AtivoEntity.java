@@ -27,7 +27,6 @@ public abstract class AtivoEntity {
     private String descricao;
     private String numeroSerie;
     private Boolean inativo;
-
     @Enumerated(EnumType.STRING)
     private StatusAtivo status;
     private Date dtAquisicao;

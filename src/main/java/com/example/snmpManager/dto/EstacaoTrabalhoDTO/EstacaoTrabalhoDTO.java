@@ -30,7 +30,21 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     }
 
     public EstacaoTrabalhoDTO(EstacaoTrabalhoEntity entity) {
-        super(entity);
+        this.setId(entity.getId());
+        this.setNome(entity.getNome());
+        this.setFabricante(entity.getFabricante());
+        this.setModelo(entity.getModelo());
+        this.setDescricao(entity.getDescricao());
+        this.setNumeroSerie(entity.getNumeroSerie());
+        this.setInativo(entity.getInativo());
+        this.setStatus(entity.getStatus());
+        this.setDtAquisicao(entity.getDtAquisicao());
+        this.setDtVencimentoGarantia(entity.getDtVencimentoGarantia());
+        this.setDtExpiracao(entity.getDtExpiracao());
+        this.setUltimoSincronismo(entity.getUltimoSincronismo());
+        this.setValorCompra(entity.getValorCompra());
+        this.setFornecedor(entity.getFornecedor());
+        this.setObservacao(entity.getObeservacao());
         this.sistemaOperacional = entity.getSistemaOperacional();
         this.processador = entity.getProcessador();
         this.arquiteturaSo = entity.getArquiteturaSo();

@@ -32,7 +32,7 @@ public class LicencaDTO extends AtivoDTO implements Serializable {
         this.setUltimoSincronismo(entity.getUltimoSincronismo());
         this.setValorCompra(entity.getValorCompra());
         this.setFornecedor(entity.getFornecedor());
-        this.setObeservacao(entity.getObeservacao());
+        this.setObservacao(entity.getObeservacao());
         this.software = entity.getSoftware();
         this.qtdLicencas = entity.getQtdLicencas();
         this.chaveLicenca = entity.getChaveLicenca();

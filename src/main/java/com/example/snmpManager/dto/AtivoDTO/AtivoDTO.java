@@ -30,7 +30,7 @@ public class AtivoDTO implements Serializable {
     private Date ultimoSincronismo;
     private BigDecimal valorCompra;
     private String fornecedor;
-    private String obeservacao;
+    private String observacao;
 
     private UsuarioDTO usuario;
 
@@ -55,7 +55,7 @@ public class AtivoDTO implements Serializable {
         this.ultimoSincronismo = entity.getUltimoSincronismo();
         this.valorCompra = entity.getValorCompra();
         this.fornecedor = entity.getFornecedor();
-        this.obeservacao = entity.getObeservacao();
+        this.observacao = entity.getObeservacao();
         //this.usuario = new UsuarioDTO(entity.getUsuario());
 
         //entity.getMovimentos().stream().map(m -> this.movimentos.add(new MovimentoAtivoDTO(m))).collect(Collectors.toList());
