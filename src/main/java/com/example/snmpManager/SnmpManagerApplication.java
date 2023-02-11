@@ -14,6 +14,7 @@ public class SnmpManagerApplication {
 //		SNMPTrapReciever trapReciever = new SNMPTrapReciever();
 //		trapReciever.listen(new UdpAddress("localhost/162"));
 
+		//TODO(Tipo da licença talvez devesse ser uma entidade)
 
 	}
 
