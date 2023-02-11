@@ -40,13 +40,14 @@ public class MovimentoEntity {
 
     public MovimentoEntity() {
     }
-    public MovimentoEntity(MovimentoAtivoDTO dto) {
+    public MovimentoEntity(MovimentoAtivoDTO dto, AtivoEntity ativo, UsuarioEntity usuario) {
         this.id = dto.getId();
         this.descricao = dto.getDescricao();
         this.dtMovimento = dto.getDtMovimento();
         this.statusAtivoAnterior = dto.getStatusAtivoAnterior();
         this.statusAtivo = dto.getStatusAtivo();
-        //this.ativo = new AtivoEntity(dto.getAtivo());
-        //this.usuario = new UsuarioEntity(dto.getUsuario());
+        this.dtMovimento = Instant.now();
+        this.ativo = ativo;
+        this.usuario = usuario;
     }
 }

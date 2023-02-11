@@ -28,6 +28,7 @@ public abstract class AtivoEntity implements InterfaceTeste {
     private String descricao;
     private String numeroSerie;
     private Boolean inativo;
+
     @Enumerated(EnumType.STRING)
     private StatusAtivo status;
     private Date dtAquisicao;
