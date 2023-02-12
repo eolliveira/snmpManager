@@ -22,10 +22,11 @@ public class MovimentoEntity {
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dtMovimento;
-    @Enumerated(EnumType.STRING)
-    private StatusAtivo statusAtivoAnterior;
+
     @Enumerated(EnumType.STRING)
     private StatusAtivo statusAtivo;
+    @Enumerated(EnumType.STRING)
+    private StatusAtivo statusAtivoAnterior;
 
     @ManyToOne
     @JoinColumn(name = "ID_ATIVO")
