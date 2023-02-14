@@ -62,6 +62,7 @@ public class EstacaoTrabalhoService {
         EstacaoTrabalhoMIB mib = new EstacaoTrabalhoMIB();
         WindowsObject windowsObject = new WindowsObject();
 
+
         String sistemaOperacional = client.getAsString(new OID(mib.getSO_OID()));
         String arquitetura = client.getAsString(new OID(mib.getARQUITETURA_SO_OID()));
         String fabricante = client.getAsString(new OID(mib.getFABRICANTE_OID()));
