@@ -49,6 +49,7 @@ public class EstacaoTrabalhoService {
         return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
     }
 
+
     public WindowsObject getObjectData(String address) {
 
         if(!AddressValidation.isValidIpv4(address))
