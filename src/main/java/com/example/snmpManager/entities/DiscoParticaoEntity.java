@@ -15,6 +15,7 @@ public class DiscoParticaoEntity {
     private Long id;
     private String pontoMontagem;
     private String capacidade;
+    private String usado;
 
     @ManyToOne
     @JoinColumn(name = "ID_ATIVODISCO")

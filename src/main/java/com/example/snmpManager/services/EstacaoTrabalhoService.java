@@ -129,6 +129,7 @@ public class EstacaoTrabalhoService {
             for (DiscoParticaoDTO dpd : d.getParticoes()) {
                 DiscoParticaoEntity dpe = new DiscoParticaoEntity();
                 dpe.setCapacidade(dpd.getCapacidade());
+                dpe.setUsado(dpd.getUsado());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
                 dpe.setDisco(disco);
 
@@ -222,6 +223,7 @@ public class EstacaoTrabalhoService {
             for (DiscoParticaoDTO dpd : d.getParticoes()) {
                 DiscoParticaoEntity dpe = new DiscoParticaoEntity();
                 dpe.setCapacidade(dpd.getCapacidade());
+                dpe.setUsado(dpd.getUsado());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
                 dpe.setDisco(disco);
 

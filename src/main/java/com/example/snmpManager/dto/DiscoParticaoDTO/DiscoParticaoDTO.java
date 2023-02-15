@@ -12,6 +12,7 @@ public class DiscoParticaoDTO implements Serializable {
     private Long id;
     private String pontoMontagem;
     private String capacidade;
+    private String usado;
     private DiscoDTO disco;
 
     public DiscoParticaoDTO() {
@@ -21,11 +22,13 @@ public class DiscoParticaoDTO implements Serializable {
         this.id = entity.getId();
         this.pontoMontagem = entity.getPontoMontagem();
         this.capacidade = entity.getCapacidade();
+        this.usado = entity.getUsado();
         this.disco = new DiscoDTO(entity.getDisco());
     }
 
     public DiscoParticaoDTO(PartitionObject obj) {
         this.pontoMontagem = obj.getPontoMontagem();
         this.capacidade = obj.getCapacidade();
+        this.usado = obj.getUsado();
     }
 }
