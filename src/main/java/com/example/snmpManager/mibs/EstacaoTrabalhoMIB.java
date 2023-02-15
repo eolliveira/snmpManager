@@ -15,9 +15,10 @@ public class EstacaoTrabalhoMIB {
     private final String MEMORIA_RAM_OID = BASE_OID + ".2.1.0";
     private final String NOME_OID = BASE_OID + ".2.2.1.0";
     private final String DOMINIO_OID = BASE_OID + ".2.2.2.0";
-    private final String USUARIO_LOGADO = BASE_OID + ".2.2.5.0";
+    private final String USUARIO_LOGADO_OID = BASE_OID + ".2.2.5.0";
     private final String GATEWAY_OID = BASE_OID + ".2.2.3.0";
     private final String DNS_OID = BASE_OID + ".2.2.4.0";
     private final String INTERFACES_OID = BASE_OID + ".2.2.6.0";
-    private final String DISCO_RIGIDO = BASE_OID + ".2.2.7.0";
+    private final String DISCO_RIGIDO_OID = BASE_OID + ".2.2.7.0";
+    private final String IMPRESSORAS_OID = BASE_OID + ".2.2.8.0";
 }

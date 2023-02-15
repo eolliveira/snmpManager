@@ -21,8 +21,15 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
     private String nomeHost;
     private String dominio;
     private String ultimoUsuarioLogado;
-
     private List<HardDiskObject> discos = new ArrayList<>();
+
+    private List<PrinterObject> impressoras = new ArrayList<>();
+
+    public void addPrinters(String arrayPrinters) {
+        Gson gson = new Gson();
+        List<PrinterObject> listImpressora = gson.fromJson(arrayPrinters, new TypeToken<List<PrinterObject>>(){}.getType());
+        listImpressora.stream().map(impressora -> this.impressoras.add(impressora)).collect(Collectors.toList());
+    }
 
     public void addHardDisk(String arrayDisk) {
         Gson gson = new Gson();

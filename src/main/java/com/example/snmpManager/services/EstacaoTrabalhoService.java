@@ -71,11 +71,12 @@ public class EstacaoTrabalhoService {
         String memoriaRam = client.getAsString(new OID(mib.getMEMORIA_RAM_OID()));
         String nomeMaquina = client.getAsString(new OID(mib.getNOME_OID()));
         String dominio = client.getAsString(new OID(mib.getDOMINIO_OID()));
-        String usuarioLogado = client.getAsString(new OID(mib.getUSUARIO_LOGADO()));
+        String usuarioLogado = client.getAsString(new OID(mib.getUSUARIO_LOGADO_OID()));
         String gateway = client.getAsString(new OID(mib.getGATEWAY_OID()));
         String dns = client.getAsString(new OID(mib.getDNS_OID()));
         String interfaces = client.getAsString(new OID(mib.getINTERFACES_OID()));
-        String discosRigidos = client.getAsString(new OID(mib.getDISCO_RIGIDO()));
+        String discosRigidos = client.getAsString(new OID(mib.getDISCO_RIGIDO_OID()));
+        String impressoras = client.getAsString(new OID(mib.getIMPRESSORAS_OID()));
 
         windowsObject.setSistemaOperacional(sistemaOperacional);
         windowsObject.setArquiteturaSo(arquitetura);
@@ -91,6 +92,7 @@ public class EstacaoTrabalhoService {
         windowsObject.setDnsList(dns);
         windowsObject.addInterfaces(interfaces);
         windowsObject.addHardDisk(discosRigidos);
+        windowsObject.addPrinters(impressoras);
 
         client.close();
 
