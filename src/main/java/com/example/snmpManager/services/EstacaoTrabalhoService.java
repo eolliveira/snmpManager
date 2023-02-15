@@ -122,8 +122,6 @@ public class EstacaoTrabalhoService {
             disco.setModelo(d.getModelo());
             disco.setNumeroSerie(d.getNumeroSerie());
             disco.setCapacidade(d.getCapacidade());
-            disco.setUsado(d.getUsado());
-            disco.setDisponivel(d.getDisponivel());
             disco.setEstacaoTrabalho(estacao);
 
             discoAtivoRepository.save(disco);
@@ -217,8 +215,6 @@ public class EstacaoTrabalhoService {
             disco.setModelo(d.getModelo());
             disco.setNumeroSerie(d.getNumeroSerie());
             disco.setCapacidade(d.getCapacidade());
-            disco.setUsado(d.getUsado());
-            disco.setDisponivel(d.getDisponivel());
             disco.setEstacaoTrabalho(estacaoTrabalho);
 
             discoAtivoRepository.save(disco);

@@ -12,8 +12,5 @@ public class HardDiskObject implements Serializable {
     private String modelo;
     private String numeroSerie;
     private String capacidade;
-    private String usado;
-    private String disponivel;
-
     private List<PartitionObject> particoes = new ArrayList<>();
 }

@@ -21,8 +21,6 @@ public class DiscoEntity {
     private String modelo;
     private String numeroSerie;
     private String capacidade;
-    private String usado;
-    private String disponivel;
 
     @ManyToOne
     @JoinColumn(name = "ID_ESTACAO_TRABALHO")

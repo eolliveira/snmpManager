@@ -19,8 +19,6 @@ public class DiscoDTO implements Serializable {
     private String modelo;
     private String numeroSerie;
     private String capacidade;
-    private String usado;
-    private String disponivel;
 
     private EstacaoTrabalhoDTO estacaoTrabalho;
 
@@ -34,8 +32,6 @@ public class DiscoDTO implements Serializable {
         this.modelo = entity.getModelo();
         this.numeroSerie = entity.getNumeroSerie();
         this.capacidade = entity.getCapacidade();
-        this.usado = entity.getUsado();
-        this.disponivel = entity.getDisponivel();
         this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
         entity.getParticoes().stream().map(particao -> this.particoes.add(new DiscoParticaoDTO(particao))).collect(Collectors.toList());
     }
@@ -45,8 +41,6 @@ public class DiscoDTO implements Serializable {
         this.modelo = disc.getModelo();
         this.numeroSerie = disc.getNumeroSerie();
         this.capacidade = disc.getCapacidade();
-        this.usado = disc.getUsado();
-        this.disponivel = disc.getDisponivel();
         disc.getParticoes().stream().map(particao -> this.particoes.add(new DiscoParticaoDTO(particao))).collect(Collectors.toList());
     }
 }
