@@ -1,4 +1,4 @@
-package com.example.snmpManager.dto.EstacaoTrabalhoDTO;
+package com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class EstacaoTrabalhoSynchronizeDTO {
+public class WindowsSynchronizeDTO {
     private String fabricante;
     private String numeroSerie;
     private String modelo;
@@ -30,11 +30,11 @@ public class EstacaoTrabalhoSynchronizeDTO {
     private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
     private List<DiscoDTO> discos = new ArrayList<>();
 
-    public EstacaoTrabalhoSynchronizeDTO(){
+    public WindowsSynchronizeDTO(){
         super();
     }
 
-    public EstacaoTrabalhoSynchronizeDTO(EstacaoTrabalhoEntity entity) {
+    public WindowsSynchronizeDTO(EstacaoTrabalhoEntity entity) {
         this.fabricante = entity.getFabricante();
         this.numeroSerie = entity.getNumeroSerie();
         this.modelo = entity.getModelo();
@@ -52,7 +52,7 @@ public class EstacaoTrabalhoSynchronizeDTO {
 //        entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
     }
 
-    public EstacaoTrabalhoSynchronizeDTO(WindowsObject obj) {
+    public WindowsSynchronizeDTO(WindowsObject obj) {
         this.fabricante = obj.getFabricante();
         this.numeroSerie = obj.getNumeroSerie();
         this.modelo = obj.getModelo();

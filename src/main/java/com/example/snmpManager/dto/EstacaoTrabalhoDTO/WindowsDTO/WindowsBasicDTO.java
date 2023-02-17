@@ -1,4 +1,4 @@
-package com.example.snmpManager.dto.EstacaoTrabalhoDTO;
+package com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO;
 
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
@@ -7,7 +7,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class EstacaoTrabalhoBasicDTO extends AtivoDTO {
+public class WindowsBasicDTO extends AtivoDTO {
     private String sistemaOperacional;
     private String processador;
     private String arquiteturaSo;
@@ -18,11 +18,11 @@ public class EstacaoTrabalhoBasicDTO extends AtivoDTO {
     private String dnsList;
     private String gateway;
 
-    public EstacaoTrabalhoBasicDTO(){
+    public WindowsBasicDTO(){
         super();
     }
 
-    public EstacaoTrabalhoBasicDTO(EstacaoTrabalhoEntity entity) {
+    public WindowsBasicDTO(EstacaoTrabalhoEntity entity) {
         this.setId(entity.getId());
         this.setNome(entity.getNome());
         this.setFabricante(entity.getFabricante());

@@ -1,4 +1,4 @@
-package com.example.snmpManager.dto.EstacaoTrabalhoDTO;
+package com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO;
 
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class EstacaoTrabalhoDTO extends AtivoDTO {
+public class WindowsDTO extends AtivoDTO {
     private String sistemaOperacional;
     private String processador;
     private String arquiteturaSo;
@@ -26,11 +26,11 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
     private List<DiscoDTO> discos = new ArrayList<>();
 
-    public EstacaoTrabalhoDTO(){
+    public WindowsDTO(){
         super();
     }
 
-    public EstacaoTrabalhoDTO(EstacaoTrabalhoEntity entity) {
+    public WindowsDTO(EstacaoTrabalhoEntity entity) {
         this.setId(entity.getId());
         this.setNome(entity.getNome());
         this.setFabricante(entity.getFabricante());

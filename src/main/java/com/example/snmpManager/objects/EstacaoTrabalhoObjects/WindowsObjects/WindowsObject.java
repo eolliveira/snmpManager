@@ -1,7 +1,6 @@
 package com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects;
 
-import com.example.snmpManager.objects.EstacaoTrabalhoObjects.DeviceObjectAbstract;
-import com.example.snmpManager.objects.EstacaoTrabalhoObjects.PrinterObjects.PrinterObject;
+import com.example.snmpManager.objects.DeviceObjectAbstract;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.Data;
@@ -23,9 +22,11 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
     private String nomeHost;
     private String dominio;
     private String ultimoUsuarioLogado;
-    private List<HardDiskObject> discos = new ArrayList<>();
 
+    private List<HardDiskObject> discos = new ArrayList<>();
     private List<PrinterObject> impressoras = new ArrayList<>();
+    private List<VideoCardObject> placasVideo = new ArrayList<>();
+    private List<ProgramObject> programas = new ArrayList<>();
 
     public void addPrinters(String arrayPrinters) {
         Gson gson = new Gson();
@@ -43,5 +44,17 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
         Gson gson = new Gson();
         List<InterfaceObject> listInterfaces = gson.fromJson(arrayInterfaces, new TypeToken<List<InterfaceObject>>(){}.getType());
         listInterfaces.stream().map(i -> super.getInterfaces().add(i)).collect(Collectors.toList());
+    }
+
+    public void addVideoCards(String arrayPlacasVideo) {
+        Gson gson = new Gson();
+        List<VideoCardObject> listVideoCards = gson.fromJson(arrayPlacasVideo, new TypeToken<List<VideoCardObject>>(){}.getType());
+        listVideoCards.stream().map(p -> this.placasVideo.add(p)).collect(Collectors.toList());
+    }
+
+    public void addSoftware(String arrayPrograms) {
+        Gson gson = new Gson();
+        List<ProgramObject> listPrograms = gson.fromJson(arrayPrograms, new TypeToken<List<ProgramObject>>(){}.getType());
+        listPrograms.stream().map(p -> this.programas.add(p)).collect(Collectors.toList());
     }
 }

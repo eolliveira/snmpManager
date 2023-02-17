@@ -1,4 +1,4 @@
-package com.example.snmpManager.objects.EstacaoTrabalhoObjects.PrinterObjects;
+package com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects;
 
 import lombok.Data;
 

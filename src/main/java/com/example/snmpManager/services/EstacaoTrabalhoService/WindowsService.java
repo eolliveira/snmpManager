@@ -2,9 +2,9 @@ package com.example.snmpManager.services.EstacaoTrabalhoService;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoSynchronizeDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsBasicDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsSynchronizeDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.entities.DiscoParticaoEntity;
@@ -43,9 +43,9 @@ public class WindowsService {
 
 
     @Transactional
-    public List<EstacaoTrabalhoBasicDTO> findAll() {
+    public List<WindowsBasicDTO> findAll() {
         List<EstacaoTrabalhoEntity> estacoes = estacaoTrabalhoRepository.findAll();
-        return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
+        return estacoes.stream().map(WindowsBasicDTO::new).collect(Collectors.toList());
     }
 
     public WindowsObject getObjectData(String address) {
@@ -75,6 +75,8 @@ public class WindowsService {
         String interfaces = client.getAsString(new OID(mib.getINTERFACES_OID()));
         String discosRigidos = client.getAsString(new OID(mib.getDISCO_RIGIDO_OID()));
         String impressoras = client.getAsString(new OID(mib.getIMPRESSORAS_OID()));
+        String placasVideo = client.getAsString(new OID(mib.getPLACAS_VIDEO_OID()));
+        String programasInstalados = client.getAsString(new OID(mib.getPROGRAMAS_OID()));
 
         windowsObject.setSistemaOperacional(sistemaOperacional);
         windowsObject.setArquiteturaSo(arquitetura);
@@ -91,6 +93,8 @@ public class WindowsService {
         windowsObject.addInterfaces(interfaces);
         windowsObject.addHardDisk(discosRigidos);
         windowsObject.addPrinters(impressoras);
+        windowsObject.addVideoCards(placasVideo);
+        windowsObject.addSoftware(programasInstalados);
 
         client.close();
 
@@ -98,7 +102,7 @@ public class WindowsService {
     }
 
     @Transactional
-    public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
+    public WindowsDTO insertNewWorkStation(WindowsDTO dto) {
 
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
 
@@ -137,7 +141,7 @@ public class WindowsService {
             }
         }
 
-        return new EstacaoTrabalhoDTO(estacao);
+        return new WindowsDTO(estacao);
     }
 
     @Transactional
@@ -161,12 +165,12 @@ public class WindowsService {
             throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idAtivo);
         }
 
-        EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
+        WindowsSynchronizeDTO dto = new WindowsSynchronizeDTO(objAgent);
         updateWorkStation(idAtivo, dto);
     }
 
     @Transactional
-    public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
+    public WindowsSynchronizeDTO updateWorkStation(Long idAtivo, WindowsSynchronizeDTO dto) {
 
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
@@ -231,7 +235,7 @@ public class WindowsService {
         }
 
         estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
-        return new EstacaoTrabalhoSynchronizeDTO(estacaoTrabalho);
+        return new WindowsSynchronizeDTO(estacaoTrabalho);
     }
 
 }

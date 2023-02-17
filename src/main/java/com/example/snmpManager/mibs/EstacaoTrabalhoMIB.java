@@ -21,4 +21,6 @@ public class EstacaoTrabalhoMIB {
     private final String INTERFACES_OID = BASE_OID + ".2.2.6.0";
     private final String DISCO_RIGIDO_OID = BASE_OID + ".2.2.7.0";
     private final String IMPRESSORAS_OID = BASE_OID + ".2.2.8.0";
+    public final String PLACAS_VIDEO_OID = BASE_OID + ".2.3.0.0";
+    public final String PROGRAMAS_OID = BASE_OID + ".2.3.1.0";
 }

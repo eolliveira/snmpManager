@@ -1,8 +1,8 @@
 package com.example.snmpManager.controllers.EstacaoTrabalhoController;
 
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoSynchronizeDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsBasicDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsSynchronizeDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.WindowsObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.WindowsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +19,8 @@ public class WindowsController {
     private WindowsService windowsService;
 
     @GetMapping
-    public ResponseEntity<List<EstacaoTrabalhoBasicDTO>> findAll() {
-        List<EstacaoTrabalhoBasicDTO> estacoes = windowsService.findAll();
+    public ResponseEntity<List<WindowsBasicDTO>> findAll() {
+        List<WindowsBasicDTO> estacoes = windowsService.findAll();
         return ResponseEntity.ok(estacoes);
     }
 
@@ -32,14 +32,14 @@ public class WindowsController {
 
     //add nova estação de trabalho
     @PostMapping()
-    public ResponseEntity<EstacaoTrabalhoDTO> insertNewWorkStation(@RequestBody EstacaoTrabalhoDTO dto) {
-        EstacaoTrabalhoDTO estacaoCriada = windowsService.insertNewWorkStation(dto);
+    public ResponseEntity<WindowsDTO> insertNewWorkStation(@RequestBody WindowsDTO dto) {
+        WindowsDTO estacaoCriada = windowsService.insertNewWorkStation(dto);
         return ResponseEntity.ok(estacaoCriada);
     }
 
     //atualiza estação passando o id
     @PutMapping(value = "/{idActive}/update")
-    public ResponseEntity<EstacaoTrabalhoSynchronizeDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoSynchronizeDTO dto) {
+    public ResponseEntity<WindowsSynchronizeDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody WindowsSynchronizeDTO dto) {
         dto = windowsService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
     }
