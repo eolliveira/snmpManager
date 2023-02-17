@@ -72,5 +72,4 @@ public class SNMPTrapReciever implements CommandResponder {
         }
     }
 
-
 }
