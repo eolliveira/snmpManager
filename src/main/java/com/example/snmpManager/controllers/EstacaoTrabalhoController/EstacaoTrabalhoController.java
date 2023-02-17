@@ -14,21 +14,32 @@ import java.util.List;
 @RestController
 @RequestMapping("/workstation")
 public class EstacaoTrabalhoController {
-
     @Autowired
     private WindowsService windowsService;
 
+
+    //obtem dados da estação de trabalho
+    @GetMapping(value = "/{ipAddress}")
+    public ResponseEntity<WindowsObject> getDataByAddress(@PathVariable String ipAddress) {
+        WindowsObject win = windowsService.getObjectData(ipAddress);
+        return ResponseEntity.ok(win);
+    }
+
+
+    //sincroniza dados pelo id do da estaço de trabalho
+    @PutMapping(value = "/{idActive}/synchronize")
+    public void synchronize(@PathVariable Long idActive) {
+        windowsService.synchronize(idActive);
+    }
+
+
+    //lista basica ,todas as estações
     @GetMapping
     public ResponseEntity<List<EstacaoTrabalhoBasicDTO>> findAll() {
         List<EstacaoTrabalhoBasicDTO> estacoes = windowsService.findAll();
         return ResponseEntity.ok(estacoes);
     }
 
-    @GetMapping(value = "/{ipAddress}")
-    public ResponseEntity<WindowsObject> getDataByAddress(@PathVariable String ipAddress) {
-        WindowsObject win = windowsService.getObjectData(ipAddress);
-        return ResponseEntity.ok(win);
-    }
 
     //add nova estação de trabalho
     @PostMapping()
@@ -37,16 +48,12 @@ public class EstacaoTrabalhoController {
         return ResponseEntity.ok(estacaoCriada);
     }
 
+
     //atualiza estação passando o id
     @PutMapping(value = "/{idActive}/update")
     public ResponseEntity<EstacaoTrabalhoSynchronizeDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoSynchronizeDTO dto) {
         dto = windowsService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
-    }
-
-    @PutMapping(value = "/{idActive}/synchronize")
-    public void synchronize(@PathVariable Long idActive) {
-        windowsService.synchronize(idActive);
     }
 
 }
