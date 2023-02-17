@@ -2,9 +2,9 @@ package com.example.snmpManager.services.EstacaoTrabalhoService;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsBasicDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsSynchronizeDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.entities.DiscoParticaoEntity;
@@ -43,9 +43,9 @@ public class WindowsService {
 
 
     @Transactional
-    public List<WindowsBasicDTO> findAll() {
+    public List<EstacaoTrabalhoBasicDTO> findAll() {
         List<EstacaoTrabalhoEntity> estacoes = estacaoTrabalhoRepository.findAll();
-        return estacoes.stream().map(WindowsBasicDTO::new).collect(Collectors.toList());
+        return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
     }
 
     public WindowsObject getObjectData(String address) {
@@ -102,7 +102,7 @@ public class WindowsService {
     }
 
     @Transactional
-    public WindowsDTO insertNewWorkStation(WindowsDTO dto) {
+    public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
 
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
 
@@ -141,7 +141,7 @@ public class WindowsService {
             }
         }
 
-        return new WindowsDTO(estacao);
+        return new EstacaoTrabalhoDTO(estacao);
     }
 
     @Transactional
@@ -165,12 +165,12 @@ public class WindowsService {
             throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idAtivo);
         }
 
-        WindowsSynchronizeDTO dto = new WindowsSynchronizeDTO(objAgent);
+        EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
         updateWorkStation(idAtivo, dto);
     }
 
     @Transactional
-    public WindowsSynchronizeDTO updateWorkStation(Long idAtivo, WindowsSynchronizeDTO dto) {
+    public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
 
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
@@ -235,7 +235,7 @@ public class WindowsService {
         }
 
         estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
-        return new WindowsSynchronizeDTO(estacaoTrabalho);
+        return new EstacaoTrabalhoSynchronizeDTO(estacaoTrabalho);
     }
 
 }

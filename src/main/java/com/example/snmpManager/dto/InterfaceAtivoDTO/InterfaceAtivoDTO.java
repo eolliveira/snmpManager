@@ -1,6 +1,6 @@
 package com.example.snmpManager.dto.InterfaceAtivoDTO;
 
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.InterfaceObject;
 import lombok.Data;
@@ -16,7 +16,7 @@ public class InterfaceAtivoDTO implements Serializable {
     private String enderecoIp;
     private String mascaraSubRede;
 
-    private WindowsDTO estacaoTrabalho;
+    private EstacaoTrabalhoDTO estacaoTrabalho;
 
     public InterfaceAtivoDTO(){}
 
@@ -27,7 +27,7 @@ public class InterfaceAtivoDTO implements Serializable {
         this.enderecoMac = entity.getEnderecoMac();
         this.enderecoIp = entity.getEnderecoIp();
         this.mascaraSubRede = entity.getMascaraSubRede();
-        this.estacaoTrabalho = new WindowsDTO(entity.getEstacaoTrabalho());
+        this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
     }
 
     public InterfaceAtivoDTO(InterfaceObject obj) {

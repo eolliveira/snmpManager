@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Getter
 @Setter
-public class WindowsSynchronizeDTO {
+public class EstacaoTrabalhoSynchronizeDTO {
     private String fabricante;
     private String numeroSerie;
     private String modelo;
@@ -30,11 +30,11 @@ public class WindowsSynchronizeDTO {
     private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
     private List<DiscoDTO> discos = new ArrayList<>();
 
-    public WindowsSynchronizeDTO(){
+    public EstacaoTrabalhoSynchronizeDTO(){
         super();
     }
 
-    public WindowsSynchronizeDTO(EstacaoTrabalhoEntity entity) {
+    public EstacaoTrabalhoSynchronizeDTO(EstacaoTrabalhoEntity entity) {
         this.fabricante = entity.getFabricante();
         this.numeroSerie = entity.getNumeroSerie();
         this.modelo = entity.getModelo();
@@ -52,7 +52,7 @@ public class WindowsSynchronizeDTO {
 //        entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
     }
 
-    public WindowsSynchronizeDTO(WindowsObject obj) {
+    public EstacaoTrabalhoSynchronizeDTO(WindowsObject obj) {
         this.fabricante = obj.getFabricante();
         this.numeroSerie = obj.getNumeroSerie();
         this.modelo = obj.getModelo();

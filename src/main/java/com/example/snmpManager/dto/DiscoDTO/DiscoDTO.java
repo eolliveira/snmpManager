@@ -1,7 +1,7 @@
 package com.example.snmpManager.dto.DiscoDTO;
 
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.HardDiskObject;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class DiscoDTO implements Serializable {
     private String numeroSerie;
     private String capacidade;
 
-    private WindowsDTO estacaoTrabalho;
+    private EstacaoTrabalhoDTO estacaoTrabalho;
 
     private List<DiscoParticaoDTO> particoes = new ArrayList<>();
 
@@ -32,7 +32,7 @@ public class DiscoDTO implements Serializable {
         this.modelo = entity.getModelo();
         this.numeroSerie = entity.getNumeroSerie();
         this.capacidade = entity.getCapacidade();
-        this.estacaoTrabalho = new WindowsDTO(entity.getEstacaoTrabalho());
+        this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
         entity.getParticoes().stream().map(particao -> this.particoes.add(new DiscoParticaoDTO(particao))).collect(Collectors.toList());
     }
 

@@ -1,6 +1,6 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.WindowsDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.*;
 
@@ -35,7 +35,7 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
 
     public EstacaoTrabalhoEntity() {}
 
-    public EstacaoTrabalhoEntity(WindowsDTO dto) {
+    public EstacaoTrabalhoEntity(EstacaoTrabalhoDTO dto) {
         this.setNome(dto.getNome());
         this.setDescricao(dto.getDescricao());
         this.setInativo(false);
