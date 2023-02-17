@@ -1,4 +1,4 @@
-package com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects;
+package com.example.snmpManager.objects.EstacaoTrabalhoObjects;
 
 import com.example.snmpManager.objects.DeviceObjectAbstract;
 import com.google.gson.Gson;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 
 @Data
 @EqualsAndHashCode(callSuper = false)
-public class WindowsObject extends DeviceObjectAbstract implements Serializable {
+public class WorkstationObject extends DeviceObjectAbstract implements Serializable {
 
     private String sistemaOperacional;
     private String arquiteturaSo;
@@ -31,13 +31,13 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
     public void addPrinters(String arrayPrinters) {
         Gson gson = new Gson();
         List<PrinterObject> listImpressora = gson.fromJson(arrayPrinters, new TypeToken<List<PrinterObject>>(){}.getType());
-        listImpressora.stream().map(impressora -> this.impressoras.add(impressora)).collect(Collectors.toList());
+        listImpressora.stream().map(printer -> this.impressoras.add(printer)).collect(Collectors.toList());
     }
 
     public void addHardDisk(String arrayDisk) {
         Gson gson = new Gson();
         List<HardDiskObject> listDisk = gson.fromJson(arrayDisk, new TypeToken<List<HardDiskObject>>(){}.getType());
-        listDisk.stream().map(i -> this.discos.add(i)).collect(Collectors.toList());
+        listDisk.stream().map(disk -> this.discos.add(disk)).collect(Collectors.toList());
     }
 
     public void addInterfaces(String arrayInterfaces) {
@@ -49,7 +49,7 @@ public class WindowsObject extends DeviceObjectAbstract implements Serializable 
     public void addVideoCards(String arrayPlacasVideo) {
         Gson gson = new Gson();
         List<VideoCardObject> listVideoCards = gson.fromJson(arrayPlacasVideo, new TypeToken<List<VideoCardObject>>(){}.getType());
-        listVideoCards.stream().map(p -> this.placasVideo.add(p)).collect(Collectors.toList());
+        listVideoCards.stream().map(videoCard -> this.placasVideo.add(videoCard)).collect(Collectors.toList());
     }
 
     public void addSoftware(String arrayPrograms) {

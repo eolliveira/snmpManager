@@ -2,7 +2,7 @@ package com.example.snmpManager.dto.InterfaceAtivoDTO;
 
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.InterfaceEntity;
-import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.InterfaceObject;
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.InterfaceObject;
 import lombok.Data;
 
 import java.io.Serializable;

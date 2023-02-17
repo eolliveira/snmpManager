@@ -1,4 +1,4 @@
-package com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects;
+package com.example.snmpManager.objects.EstacaoTrabalhoObjects;
 
 import lombok.Data;
 

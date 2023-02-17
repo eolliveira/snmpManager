@@ -3,7 +3,7 @@ package com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO;
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.WindowsObject;
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,7 +52,7 @@ public class EstacaoTrabalhoSynchronizeDTO {
 //        entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoAtivoDTO(disco))).collect(Collectors.toList());
     }
 
-    public EstacaoTrabalhoSynchronizeDTO(WindowsObject obj) {
+    public EstacaoTrabalhoSynchronizeDTO(WorkstationObject obj) {
         this.fabricante = obj.getFabricante();
         this.numeroSerie = obj.getNumeroSerie();
         this.modelo = obj.getModelo();

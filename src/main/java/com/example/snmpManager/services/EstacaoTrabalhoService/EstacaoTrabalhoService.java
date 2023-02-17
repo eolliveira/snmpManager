@@ -13,7 +13,7 @@ import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.mibs.EstacaoTrabalhoMIB;
-import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.WindowsObject;
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.InterfaceRepository;
@@ -30,7 +30,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class WindowsService {
+public class EstacaoTrabalhoService {
 
     @Autowired
     private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
@@ -48,7 +48,7 @@ public class WindowsService {
         return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
     }
 
-    public WindowsObject getObjectData(String address) {
+    public WorkstationObject getObjectData(String address) {
 
         if(!AddressValidation.isValidIpv4(address))
             throw new InvalidAddressExecption("Endereço ip [" + address + "] inválido!");
@@ -58,7 +58,7 @@ public class WindowsService {
         client.start("udp:" + address + "/161", "public");
 
         EstacaoTrabalhoMIB mib = new EstacaoTrabalhoMIB();
-        WindowsObject windowsObject = new WindowsObject();
+        WorkstationObject windowsObject = new WorkstationObject();
 
         String sistemaOperacional = client.getAsString(new OID(mib.getSO_OID()));
         String arquitetura = client.getAsString(new OID(mib.getARQUITETURA_SO_OID()));
@@ -150,11 +150,11 @@ public class WindowsService {
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
 
-        WindowsObject objAgent = new WindowsObject();
+        WorkstationObject objAgent = new WorkstationObject();
 
         for(InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
             if(i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
-                WindowsObject obj = getObjectData(i.getEnderecoIp());
+                WorkstationObject obj = getObjectData(i.getEnderecoIp());
                 if (obj.getFabricante() != null) {
                     objAgent = obj;
                 }
