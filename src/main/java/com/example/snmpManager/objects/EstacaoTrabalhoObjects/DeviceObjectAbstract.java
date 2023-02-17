@@ -1,5 +1,6 @@
-package com.example.snmpManager.objects.EstacaoTrabalho;
+package com.example.snmpManager.objects.EstacaoTrabalhoObjects;
 
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.InterfaceObject;
 import lombok.Data;
 
 import java.util.ArrayList;

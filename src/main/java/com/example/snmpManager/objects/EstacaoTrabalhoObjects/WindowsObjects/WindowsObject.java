@@ -1,5 +1,7 @@
-package com.example.snmpManager.objects.EstacaoTrabalho;
+package com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects;
 
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.DeviceObjectAbstract;
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.PrinterObjects.PrinterObject;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import lombok.Data;

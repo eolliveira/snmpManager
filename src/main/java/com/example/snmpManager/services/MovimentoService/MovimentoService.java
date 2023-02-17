@@ -1,4 +1,4 @@
-package com.example.snmpManager.services;
+package com.example.snmpManager.services.MovimentoService;
 
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoAtivoDTO;
 import com.example.snmpManager.entities.AtivoEntity;

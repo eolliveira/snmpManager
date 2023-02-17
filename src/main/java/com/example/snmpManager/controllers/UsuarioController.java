@@ -1,7 +1,7 @@
 package com.example.snmpManager.controllers;
 
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
-import com.example.snmpManager.services.UsuarioService;
+import com.example.snmpManager.services.UsuarioService.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

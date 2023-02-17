@@ -1,5 +1,6 @@
-package com.example.snmpManager.objects.EstacaoTrabalho;
+package com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects;
 
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.PartitionObject;
 import lombok.Data;
 
 import java.io.Serializable;

@@ -1,4 +1,4 @@
-package com.example.snmpManager.services;
+package com.example.snmpManager.services.UsuarioService;
 
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.UsuarioEntity;

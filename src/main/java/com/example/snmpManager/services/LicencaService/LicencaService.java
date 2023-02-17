@@ -1,4 +1,4 @@
-package com.example.snmpManager.services;
+package com.example.snmpManager.services.LicencaService;
 
 import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
 import com.example.snmpManager.entities.*;

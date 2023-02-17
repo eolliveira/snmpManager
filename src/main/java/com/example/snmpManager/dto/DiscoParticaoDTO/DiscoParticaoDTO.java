@@ -2,7 +2,7 @@ package com.example.snmpManager.dto.DiscoParticaoDTO;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.entities.DiscoParticaoEntity;
-import com.example.snmpManager.objects.EstacaoTrabalho.PartitionObject;
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.PartitionObject;
 import lombok.Data;
 
 import java.io.Serializable;

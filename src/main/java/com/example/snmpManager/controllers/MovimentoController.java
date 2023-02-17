@@ -2,7 +2,7 @@ package com.example.snmpManager.controllers;
 
 import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoAtivoDTO;
-import com.example.snmpManager.services.MovimentoService;
+import com.example.snmpManager.services.MovimentoService.MovimentoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,4 +1,4 @@
-package com.example.snmpManager.services;
+package com.example.snmpManager.services.EstacaoTrabalhoService;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
@@ -13,11 +13,12 @@ import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.mibs.EstacaoTrabalhoMIB;
-import com.example.snmpManager.objects.EstacaoTrabalho.WindowsObject;
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WindowsObjects.WindowsObject;
 import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.InterfaceRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
+import com.example.snmpManager.services.SNMPRequestClient;
 import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,26 +30,23 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class EstacaoTrabalhoService {
+public class WindowsService {
 
     @Autowired
     private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
-
     @Autowired
     private InterfaceRepository interfaceAtivoRepository;
-
     @Autowired
     private DiscoRepository discoAtivoRepository;
-
     @Autowired
     private DiscoParticaoRepository discoAtivoParticaoRepository;
+
 
     @Transactional
     public List<EstacaoTrabalhoBasicDTO> findAll() {
         List<EstacaoTrabalhoEntity> estacoes = estacaoTrabalhoRepository.findAll();
         return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
     }
-
 
     public WindowsObject getObjectData(String address) {
 
@@ -167,7 +165,6 @@ public class EstacaoTrabalhoService {
         updateWorkStation(idAtivo, dto);
     }
 
-    //atualiza estação informando id do ativo e dto
     @Transactional
     public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
 
