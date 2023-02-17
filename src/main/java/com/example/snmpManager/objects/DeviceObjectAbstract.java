@@ -13,6 +13,5 @@ public abstract class DeviceObjectAbstract {
     private String modelo;
     private String gateway;
     private String dnsList;
-
     private List<InterfaceObject> interfaces = new ArrayList<>();
 }
