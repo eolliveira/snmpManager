@@ -10,6 +10,7 @@ import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.entities.DiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.entities.InterfaceEntity;
+import com.example.snmpManager.exceptions.DataBaseException;
 import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.mibs.EstacaoTrabalhoMIB;
@@ -22,6 +23,8 @@ import com.example.snmpManager.services.SNMPRequestClient;
 import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -48,7 +51,7 @@ public class EstacaoTrabalhoService {
         return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
     }
 
-    public WorkstationObject getObjectData(String address) {
+    public WorkstationObject getWorkstationData(String address) {
 
         if(!AddressValidation.isValidIpv4(address))
             throw new InvalidAddressExecption("Endereço ip [" + address + "] inválido!");
@@ -145,7 +148,7 @@ public class EstacaoTrabalhoService {
     }
 
     @Transactional
-    public void synchronize(Long idAtivo) {
+    public void synchronizeWorstation(Long idAtivo) {
 
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
@@ -154,7 +157,7 @@ public class EstacaoTrabalhoService {
 
         for(InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
             if(i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
-                WorkstationObject obj = getObjectData(i.getEnderecoIp());
+                WorkstationObject obj = getWorkstationData(i.getEnderecoIp());
                 if (obj.getFabricante() != null) {
                     objAgent = obj;
                 }
@@ -238,4 +241,15 @@ public class EstacaoTrabalhoService {
         return new EstacaoTrabalhoSynchronizeDTO(estacaoTrabalho);
     }
 
+    public void deleteWorkstation(Long id) {
+        try {
+            estacaoTrabalhoRepository.deleteById(id);
+        }
+        catch (EmptyResultDataAccessException e) {
+            throw new ResourceNotFoundException("Estação id: " + id + " não encontrada.");
+        }
+        catch (DataIntegrityViolationException e) {
+            throw new DataBaseException("Violação da integridade do banco de dados");
+        }
+    }
 }

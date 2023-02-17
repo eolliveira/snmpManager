@@ -8,7 +8,9 @@ import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoSe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -21,7 +23,7 @@ public class EstacaoTrabalhoController {
     //obtem dados da estação de trabalho
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WorkstationObject> getDataByAddress(@PathVariable String ipAddress) {
-        WorkstationObject win = estacaoTrabalhoService.getObjectData(ipAddress);
+        WorkstationObject win = estacaoTrabalhoService.getWorkstationData(ipAddress);
         return ResponseEntity.ok(win);
     }
 
@@ -29,7 +31,7 @@ public class EstacaoTrabalhoController {
     //sincroniza dados pelo id da estação de trabalho
     @PutMapping(value = "/{idActive}/synchronize")
     public void synchronize(@PathVariable Long idActive) {
-        estacaoTrabalhoService.synchronize(idActive);
+        estacaoTrabalhoService.synchronizeWorstation(idActive);
     }
 
 
@@ -44,8 +46,9 @@ public class EstacaoTrabalhoController {
     //add nova estação de trabalho
     @PostMapping()
     public ResponseEntity<EstacaoTrabalhoDTO> insertNewWorkStation(@RequestBody EstacaoTrabalhoDTO dto) {
+        URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         EstacaoTrabalhoDTO estacaoCriada = estacaoTrabalhoService.insertNewWorkStation(dto);
-        return ResponseEntity.ok(estacaoCriada);
+        return ResponseEntity.created(uri).body(estacaoCriada);
     }
 
 
@@ -54,6 +57,13 @@ public class EstacaoTrabalhoController {
     public ResponseEntity<EstacaoTrabalhoSynchronizeDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoSynchronizeDTO dto) {
         dto = estacaoTrabalhoService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
+    }
+
+
+    @DeleteMapping(value = "/{idActive}")
+    public ResponseEntity<Void> deleteWorkstation(@PathVariable Long id){
+        estacaoTrabalhoService.deleteWorkstation(id);
+        return ResponseEntity.noContent().build();
     }
 
 }

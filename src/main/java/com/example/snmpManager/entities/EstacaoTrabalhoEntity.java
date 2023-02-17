@@ -4,6 +4,7 @@ import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalho
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
@@ -27,10 +28,10 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String dnsList;
     private String gateway;
 
-    @OneToMany(mappedBy = "estacaoTrabalho")
+    @OneToMany(mappedBy = "estacaoTrabalho", cascade = CascadeType.ALL, orphanRemoval = true )
     private List<InterfaceEntity> interfaces = new ArrayList<>();
 
-    @OneToMany(mappedBy = "estacaoTrabalho")
+    @OneToMany(mappedBy = "estacaoTrabalho", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DiscoEntity> discos = new ArrayList<>();
 
     public EstacaoTrabalhoEntity() {}
