@@ -7,4 +7,6 @@ import java.util.List;
 
 public interface InterfaceRepository extends JpaRepository<InterfaceEntity, Long> {
     List<InterfaceEntity> findAllByEstacaoTrabalho_Id(Long id);
+
+    InterfaceEntity findByEnderecoIp(String ip);
 }

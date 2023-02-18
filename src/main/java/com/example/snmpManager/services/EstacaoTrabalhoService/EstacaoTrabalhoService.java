@@ -252,4 +252,21 @@ public class EstacaoTrabalhoService {
             throw new DataBaseException("Violação da integridade do banco de dados");
         }
     }
+
+
+
+    public void synchronizeWorstationTeste(String ipAdrress) {
+
+
+
+//        WorkstationObject objAgent = new WorkstationObject();
+//
+//        for(InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
+//            if(i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
+//                WorkstationObject obj = getWorkstationData(i.getEnderecoIp());
+//                if (obj.getFabricante() != null) {
+//                    objAgent = obj;
+//                }
+//            }
+        }
 }
