@@ -17,8 +17,8 @@ import com.example.snmpManager.mibs.EstacaoTrabalhoMIB;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
-import com.example.snmpManager.repositories.InterfaceRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
+import com.example.snmpManager.repositories.InterfaceRepository;
 import com.example.snmpManager.services.SNMPRequestClient;
 import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
@@ -35,229 +35,229 @@ import java.util.stream.Collectors;
 @Service
 public class EstacaoTrabalhoService {
 
-    @Autowired
-    private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
-    @Autowired
-    private InterfaceRepository interfaceAtivoRepository;
-    @Autowired
-    private DiscoRepository discoAtivoRepository;
-    @Autowired
-    private DiscoParticaoRepository discoAtivoParticaoRepository;
+  @Autowired
+  private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
+  @Autowired
+  private InterfaceRepository interfaceAtivoRepository;
+  @Autowired
+  private DiscoRepository discoAtivoRepository;
+  @Autowired
+  private DiscoParticaoRepository discoAtivoParticaoRepository;
 
 
-    @Transactional
-    public List<EstacaoTrabalhoBasicDTO> findAll() {
-        List<EstacaoTrabalhoEntity> estacoes = estacaoTrabalhoRepository.findAll();
-        return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
+  @Transactional
+  public List<EstacaoTrabalhoBasicDTO> findAll() {
+    List<EstacaoTrabalhoEntity> estacoes = estacaoTrabalhoRepository.findAll();
+    return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
+  }
+
+  public WorkstationObject getWorkstationData(String address) {
+
+    if (!AddressValidation.isValidIpv4(address))
+      throw new InvalidAddressExecption("Endereço ip [" + address + "] inválido!");
+
+    SNMPRequestClient client = new SNMPRequestClient();
+
+    client.start("udp:" + address + "/161", "public");
+
+    EstacaoTrabalhoMIB mib = new EstacaoTrabalhoMIB();
+    WorkstationObject windowsObject = new WorkstationObject();
+
+    String sistemaOperacional = client.getAsString(new OID(mib.getSO_OID()));
+    String arquitetura = client.getAsString(new OID(mib.getARQUITETURA_SO_OID()));
+    String fabricante = client.getAsString(new OID(mib.getFABRICANTE_OID()));
+    String modelo = client.getAsString(new OID(mib.getMODELO_OID()));
+    String numeroSerie = client.getAsString(new OID(mib.getNUMERO_SERIE_OID()));
+    String processador = client.getAsString(new OID(mib.getPROCESSADOR_OID()));
+    String memoriaRam = client.getAsString(new OID(mib.getMEMORIA_RAM_OID()));
+    String nomeMaquina = client.getAsString(new OID(mib.getNOME_OID()));
+    String dominio = client.getAsString(new OID(mib.getDOMINIO_OID()));
+    String usuarioLogado = client.getAsString(new OID(mib.getUSUARIO_LOGADO_OID()));
+    String gateway = client.getAsString(new OID(mib.getGATEWAY_OID()));
+    String dns = client.getAsString(new OID(mib.getDNS_OID()));
+    String interfaces = client.getAsString(new OID(mib.getINTERFACES_OID()));
+    String discosRigidos = client.getAsString(new OID(mib.getDISCO_RIGIDO_OID()));
+    String impressoras = client.getAsString(new OID(mib.getIMPRESSORAS_OID()));
+    String placasVideo = client.getAsString(new OID(mib.getPLACAS_VIDEO_OID()));
+//        String programasInstalados = client.getAsString(new OID(mib.getPROGRAMAS_OID()));
+
+    windowsObject.setSistemaOperacional(sistemaOperacional);
+    windowsObject.setArquiteturaSo(arquitetura);
+    windowsObject.setFabricante(fabricante);
+    windowsObject.setModelo(modelo);
+    windowsObject.setNumeroSerie(numeroSerie);
+    windowsObject.setProcessador(processador);
+    windowsObject.setMemoriaRam(memoriaRam);
+    windowsObject.setNomeHost(nomeMaquina);
+    windowsObject.setDominio(dominio);
+    windowsObject.setUltimoUsuarioLogado(usuarioLogado);
+    windowsObject.setGateway(gateway);
+    windowsObject.setDnsList(dns);
+    windowsObject.addInterfaces(interfaces);
+    windowsObject.addHardDisk(discosRigidos);
+    windowsObject.addPrinters(impressoras);
+    windowsObject.addVideoCards(placasVideo);
+//        windowsObject.addSoftware(programasInstalados);
+
+    client.close();
+
+    return windowsObject;
+  }
+
+  @Transactional
+  public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
+
+    EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
+
+    estacao = estacaoTrabalhoRepository.save(estacao);
+
+    for (InterfaceAtivoDTO i : dto.getInterfaces()) {
+      InterfaceEntity inter = new InterfaceEntity();
+      inter.setNomeLocal(i.getNomeLocal());
+      inter.setFabricante(i.getFabricante());
+      inter.setEnderecoMac(i.getEnderecoMac());
+      inter.setEnderecoIp(i.getEnderecoIp());
+      inter.setMascaraSubRede(i.getMascaraSubRede());
+      inter.setEstacaoTrabalho(estacao);
+
+      interfaceAtivoRepository.save(inter);
     }
 
-    public WorkstationObject getWorkstationData(String address) {
+    for (DiscoDTO d : dto.getDiscos()) {
+      DiscoEntity disco = new DiscoEntity();
+      disco.setNome(d.getNome());
+      disco.setModelo(d.getModelo());
+      disco.setNumeroSerie(d.getNumeroSerie());
+      disco.setCapacidade(d.getCapacidade());
+      disco.setEstacaoTrabalho(estacao);
 
-        if(!AddressValidation.isValidIpv4(address))
-            throw new InvalidAddressExecption("Endereço ip [" + address + "] inválido!");
+      discoAtivoRepository.save(disco);
 
-        SNMPRequestClient client = new SNMPRequestClient();
+      for (DiscoParticaoDTO dpd : d.getParticoes()) {
+        DiscoParticaoEntity dpe = new DiscoParticaoEntity();
+        dpe.setCapacidade(dpd.getCapacidade());
+        dpe.setUsado(dpd.getUsado());
+        dpe.setPontoMontagem(dpd.getPontoMontagem());
+        dpe.setDisco(disco);
 
-        client.start("udp:" + address + "/161", "public");
-
-        EstacaoTrabalhoMIB mib = new EstacaoTrabalhoMIB();
-        WorkstationObject windowsObject = new WorkstationObject();
-
-        String sistemaOperacional = client.getAsString(new OID(mib.getSO_OID()));
-        String arquitetura = client.getAsString(new OID(mib.getARQUITETURA_SO_OID()));
-        String fabricante = client.getAsString(new OID(mib.getFABRICANTE_OID()));
-        String modelo = client.getAsString(new OID(mib.getMODELO_OID()));
-        String numeroSerie = client.getAsString(new OID(mib.getNUMERO_SERIE_OID()));
-        String processador = client.getAsString(new OID(mib.getPROCESSADOR_OID()));
-        String memoriaRam = client.getAsString(new OID(mib.getMEMORIA_RAM_OID()));
-        String nomeMaquina = client.getAsString(new OID(mib.getNOME_OID()));
-        String dominio = client.getAsString(new OID(mib.getDOMINIO_OID()));
-        String usuarioLogado = client.getAsString(new OID(mib.getUSUARIO_LOGADO_OID()));
-        String gateway = client.getAsString(new OID(mib.getGATEWAY_OID()));
-        String dns = client.getAsString(new OID(mib.getDNS_OID()));
-        String interfaces = client.getAsString(new OID(mib.getINTERFACES_OID()));
-        String discosRigidos = client.getAsString(new OID(mib.getDISCO_RIGIDO_OID()));
-        String impressoras = client.getAsString(new OID(mib.getIMPRESSORAS_OID()));
-        String placasVideo = client.getAsString(new OID(mib.getPLACAS_VIDEO_OID()));
-        String programasInstalados = client.getAsString(new OID(mib.getPROGRAMAS_OID()));
-
-        windowsObject.setSistemaOperacional(sistemaOperacional);
-        windowsObject.setArquiteturaSo(arquitetura);
-        windowsObject.setFabricante(fabricante);
-        windowsObject.setModelo(modelo);
-        windowsObject.setNumeroSerie(numeroSerie);
-        windowsObject.setProcessador(processador);
-        windowsObject.setMemoriaRam(memoriaRam);
-        windowsObject.setNomeHost(nomeMaquina);
-        windowsObject.setDominio(dominio);
-        windowsObject.setUltimoUsuarioLogado(usuarioLogado);
-        windowsObject.setGateway(gateway);
-        windowsObject.setDnsList(dns);
-        windowsObject.addInterfaces(interfaces);
-        windowsObject.addHardDisk(discosRigidos);
-        windowsObject.addPrinters(impressoras);
-        windowsObject.addVideoCards(placasVideo);
-        windowsObject.addSoftware(programasInstalados);
-
-        client.close();
-
-        return windowsObject;
+        discoAtivoParticaoRepository.save(dpe);
+      }
     }
 
-    @Transactional
-    public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
+    return new EstacaoTrabalhoDTO(estacao);
+  }
 
-        EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
+  @Transactional
+  public void synchronizeWorstation(Long idAtivo) {
 
-        estacao = estacaoTrabalhoRepository.save(estacao);
+    Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
+    EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
 
-        for (InterfaceAtivoDTO i : dto.getInterfaces()) {
-            InterfaceEntity inter = new InterfaceEntity();
-            inter.setNomeLocal(i.getNomeLocal());
-            inter.setFabricante(i.getFabricante());
-            inter.setEnderecoMac(i.getEnderecoMac());
-            inter.setEnderecoIp(i.getEnderecoIp());
-            inter.setMascaraSubRede(i.getMascaraSubRede());
-            inter.setEstacaoTrabalho(estacao);
+    WorkstationObject objAgent = new WorkstationObject();
 
-            interfaceAtivoRepository.save(inter);
+    for (InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
+      if (i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
+        WorkstationObject obj = getWorkstationData(i.getEnderecoIp());
+        if (obj.getFabricante() != null) {
+          objAgent = obj;
         }
-
-        for (DiscoDTO d : dto.getDiscos()) {
-            DiscoEntity disco = new DiscoEntity();
-            disco.setNome(d.getNome());
-            disco.setModelo(d.getModelo());
-            disco.setNumeroSerie(d.getNumeroSerie());
-            disco.setCapacidade(d.getCapacidade());
-            disco.setEstacaoTrabalho(estacao);
-
-            discoAtivoRepository.save(disco);
-
-            for (DiscoParticaoDTO dpd : d.getParticoes()) {
-                DiscoParticaoEntity dpe = new DiscoParticaoEntity();
-                dpe.setCapacidade(dpd.getCapacidade());
-                dpe.setUsado(dpd.getUsado());
-                dpe.setPontoMontagem(dpd.getPontoMontagem());
-                dpe.setDisco(disco);
-
-                discoAtivoParticaoRepository.save(dpe);
-            }
-        }
-
-        return new EstacaoTrabalhoDTO(estacao);
+      }
     }
 
-    @Transactional
-    public void synchronizeWorstation(Long idAtivo) {
-
-        Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
-        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
-
-        WorkstationObject objAgent = new WorkstationObject();
-
-        for(InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
-            if(i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
-                WorkstationObject obj = getWorkstationData(i.getEnderecoIp());
-                if (obj.getFabricante() != null) {
-                    objAgent = obj;
-                }
-            }
-        }
-
-        if(objAgent.getFabricante() == null) {
-            throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idAtivo);
-        }
-
-        EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
-        updateWorkStation(idAtivo, dto);
+    if (objAgent.getFabricante() == null) {
+      throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idAtivo);
     }
 
-    @Transactional
-    public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
+    EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
+    updateWorkStation(idAtivo, dto);
+  }
 
-        Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
-        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
+  @Transactional
+  public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
 
-        //EstacaoTrabalhoEntity estacaoTrabalho = estacaoTrabalhoRepository.getReferenceById(idAtivo);
+    Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
+    EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
 
-        estacaoTrabalho.setFabricante(dto.getFabricante());
-        estacaoTrabalho.setNumeroSerie(dto.getNumeroSerie());
-        estacaoTrabalho.setModelo(dto.getModelo());
-        estacaoTrabalho.setGateway(dto.getGateway());
-        estacaoTrabalho.setDnsList(dto.getDnsList());
-        estacaoTrabalho.setSistemaOperacional(dto.getSistemaOperacional());
-        estacaoTrabalho.setArquiteturaSo(dto.getArquiteturaSo());
-        estacaoTrabalho.setProcessador(dto.getProcessador());
-        estacaoTrabalho.setMemoriaRam(dto.getMemoriaRam());
-        estacaoTrabalho.setNomeHost(dto.getNomeHost());
-        estacaoTrabalho.setDominio(dto.getDominio());
-        estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
+    //EstacaoTrabalhoEntity estacaoTrabalho = estacaoTrabalhoRepository.getReferenceById(idAtivo);
 
-        //recupera todos as interfaces e discos da estação
-        List<InterfaceEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-        List<DiscoEntity> discos = discoAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
+    estacaoTrabalho.setFabricante(dto.getFabricante());
+    estacaoTrabalho.setNumeroSerie(dto.getNumeroSerie());
+    estacaoTrabalho.setModelo(dto.getModelo());
+    estacaoTrabalho.setGateway(dto.getGateway());
+    estacaoTrabalho.setDnsList(dto.getDnsList());
+    estacaoTrabalho.setSistemaOperacional(dto.getSistemaOperacional());
+    estacaoTrabalho.setArquiteturaSo(dto.getArquiteturaSo());
+    estacaoTrabalho.setProcessador(dto.getProcessador());
+    estacaoTrabalho.setMemoriaRam(dto.getMemoriaRam());
+    estacaoTrabalho.setNomeHost(dto.getNomeHost());
+    estacaoTrabalho.setDominio(dto.getDominio());
+    estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
 
-        if (!interfaces.isEmpty() && !discos.isEmpty()){
-            //remove tudo()
-            interfaceAtivoRepository.deleteAll(interfaces);
-            discoAtivoRepository.deleteAll(discos);
-        }
+    //recupera todos as interfaces e discos da estação
+    List<InterfaceEntity> interfaces = interfaceAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
+    List<DiscoEntity> discos = discoAtivoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
-        //adiciona interfaces atualizadas
-        for (InterfaceAtivoDTO i : dto.getInterfaces()) {
-            InterfaceEntity inter = new InterfaceEntity();
-            inter.setNomeLocal(i.getNomeLocal());
-            inter.setFabricante(i.getFabricante());
-            inter.setEnderecoMac(i.getEnderecoMac());
-            inter.setEnderecoIp(i.getEnderecoIp());
-            inter.setMascaraSubRede(i.getMascaraSubRede());
-            inter.setEstacaoTrabalho(estacaoTrabalho);
-            interfaceAtivoRepository.save(inter);
-        }
-
-        //adiciona discos atualizados
-        for (DiscoDTO d : dto.getDiscos()) {
-            DiscoEntity disco = new DiscoEntity();
-            disco.setNome(d.getNome());
-            disco.setModelo(d.getModelo());
-            disco.setNumeroSerie(d.getNumeroSerie());
-            disco.setCapacidade(d.getCapacidade());
-            disco.setEstacaoTrabalho(estacaoTrabalho);
-
-            discoAtivoRepository.save(disco);
-
-            for (DiscoParticaoDTO dpd : d.getParticoes()) {
-                DiscoParticaoEntity dpe = new DiscoParticaoEntity();
-                dpe.setCapacidade(dpd.getCapacidade());
-                dpe.setUsado(dpd.getUsado());
-                dpe.setPontoMontagem(dpd.getPontoMontagem());
-                dpe.setDisco(disco);
-
-                discoAtivoParticaoRepository.save(dpe);
-            }
-        }
-
-        estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
-        return new EstacaoTrabalhoSynchronizeDTO(estacaoTrabalho);
+    if (!interfaces.isEmpty() && !discos.isEmpty()) {
+      //remove tudo()
+      interfaceAtivoRepository.deleteAll(interfaces);
+      discoAtivoRepository.deleteAll(discos);
     }
 
-    public void deleteWorkstation(Long id) {
-        try {
-            estacaoTrabalhoRepository.deleteById(id);
-        }
-        catch (EmptyResultDataAccessException e) {
-            throw new ResourceNotFoundException("Estação id: " + id + " não encontrada.");
-        }
-        catch (DataIntegrityViolationException e) {
-            throw new DataBaseException("Violação da integridade do banco de dados");
-        }
+    //adiciona interfaces atualizadas
+    for (InterfaceAtivoDTO i : dto.getInterfaces()) {
+      InterfaceEntity inter = new InterfaceEntity();
+      inter.setNomeLocal(i.getNomeLocal());
+      inter.setFabricante(i.getFabricante());
+      inter.setEnderecoMac(i.getEnderecoMac());
+      inter.setEnderecoIp(i.getEnderecoIp());
+      inter.setMascaraSubRede(i.getMascaraSubRede());
+      inter.setEstacaoTrabalho(estacaoTrabalho);
+      interfaceAtivoRepository.save(inter);
     }
 
+    //adiciona discos atualizados
+    for (DiscoDTO d : dto.getDiscos()) {
+      DiscoEntity disco = new DiscoEntity();
+      disco.setNome(d.getNome());
+      disco.setModelo(d.getModelo());
+      disco.setNumeroSerie(d.getNumeroSerie());
+      disco.setCapacidade(d.getCapacidade());
+      disco.setEstacaoTrabalho(estacaoTrabalho);
+
+      discoAtivoRepository.save(disco);
+
+      for (DiscoParticaoDTO dpd : d.getParticoes()) {
+        DiscoParticaoEntity dpe = new DiscoParticaoEntity();
+        dpe.setCapacidade(dpd.getCapacidade());
+        dpe.setUsado(dpd.getUsado());
+        dpe.setPontoMontagem(dpd.getPontoMontagem());
+        dpe.setDisco(disco);
+
+        discoAtivoParticaoRepository.save(dpe);
+      }
+    }
+
+    estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
+    return new EstacaoTrabalhoSynchronizeDTO(estacaoTrabalho);
+  }
+
+  public void deleteWorkstation(Long id) {
+    try {
+      estacaoTrabalhoRepository.deleteById(id);
+    } catch (EmptyResultDataAccessException e) {
+      throw new ResourceNotFoundException("Estação id: " + id + " não encontrada.");
+    } catch (DataIntegrityViolationException e) {
+      throw new DataBaseException("Violação da integridade do banco de dados");
+    }
+  }
 
 
-    public void synchronizeWorstationTeste(String ipAdrress) {
+  public void synchronizeWorstationTeste(String ipAdrress) {
+    try {
+      InterfaceEntity byEnderecoIp = this.interfaceAtivoRepository.findByEnderecoIp(ipAdrress);
+      var teste = this.interfaceAtivoRepository.findAll();
 
-
+      System.out.println("teste");
 
 //        WorkstationObject objAgent = new WorkstationObject();
 //
@@ -268,5 +268,8 @@ public class EstacaoTrabalhoService {
 //                    objAgent = obj;
 //                }
 //            }
-        }
+    } catch (Exception e) {
+      System.out.println(e.getMessage());
+    }
+  }
 }

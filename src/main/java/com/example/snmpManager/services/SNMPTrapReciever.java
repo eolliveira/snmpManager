@@ -6,30 +6,39 @@ import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoSe
 import org.snmp4j.*;
 import org.snmp4j.mp.MPv1;
 import org.snmp4j.mp.MPv2c;
-import org.snmp4j.mp.SnmpConstants;
 import org.snmp4j.security.Priv3DES;
 import org.snmp4j.security.SecurityProtocols;
-import org.snmp4j.smi.*;
+import org.snmp4j.smi.OctetString;
+import org.snmp4j.smi.TcpAddress;
+import org.snmp4j.smi.TransportIpAddress;
+import org.snmp4j.smi.UdpAddress;
 import org.snmp4j.transport.AbstractTransportMapping;
 import org.snmp4j.transport.DefaultTcpTransportMapping;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 import org.snmp4j.util.MultiThreadedMessageDispatcher;
 import org.snmp4j.util.ThreadPool;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
 //escuta msg trap do agente
-@Service
+@Component
 public class SNMPTrapReciever implements CommandResponder {
-
-    ///teste impor service workspace(para realizar sincronismo )
     @Autowired
     private EstacaoTrabalhoService estacaoTrabalhoService;
 
-    @Autowired
-    private InterfaceRepository interfaceRepository;
+//    public SNMPTrapReciever(InterfaceRepository interfaceRepository, EstacaoTrabalhoService estacaoTrabalhoService) {
+//        this.interfaceRepository = interfaceRepository;
+//        this.estacaoTrabalhoService = estacaoTrabalhoService;
+//    }
+///teste impor service workspace(para realizar sincronismo )
+//    @Autowired
+//    private EstacaoTrabalhoService estacaoTrabalhoService;
+
+//    @Autowired
+//    private InterfaceRepository interfaceRepository;
 
     public synchronized void listen(TransportIpAddress address)
             throws IOException {
@@ -95,15 +104,7 @@ public class SNMPTrapReciever implements CommandResponder {
 
 //            System.out.println("teste servico - chegou receivier");
 
-            InterfaceEntity interfaceAtivo = interfaceRepository.findByEnderecoIp(ipAddress);
-            InterfaceEntity interfaceAtivo2 = interfaceRepository.findByEnderecoIp("25145");
-
-
-
-            System.out.println(interfaceAtivo);
-
-
+            this.estacaoTrabalhoService.synchronizeWorstationTeste("10.0.5.36");
         }
     }
-
 }
