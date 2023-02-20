@@ -1,6 +1,5 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.InterfaceTeste;
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
@@ -16,7 +15,7 @@ import java.util.*;
 @DiscriminatorColumn(name = "TP_ATIVO")
 @Data
 @NoArgsConstructor
-public abstract class AtivoEntity implements InterfaceTeste {
+public abstract class AtivoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

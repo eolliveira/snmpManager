@@ -78,9 +78,8 @@ public class SNMPTrapReciever implements CommandResponder {
         }
     }
 
-    /**
-     Este método será chamado sempre que um pdu for recebido na porta especificada no método listen()
-     */
+
+     //Este método será chamado sempre que um pdu for recebido na porta especificada no método listen()
     public synchronized void processPdu(CommandResponderEvent cmdRespEvent) {
         System.out.println("PDU Recebido...");
         PDU pdu = cmdRespEvent.getPDU();
@@ -95,16 +94,10 @@ public class SNMPTrapReciever implements CommandResponder {
             String ipAddress = pdu.get(2).getVariable().toString(); // ip
             String instante = pdu.get(3).getVariable().toString(); // instante requisição
 
-            //System.out.println(descricao); // descrição solictação
-            //System.out.println(tipoAtivo); //tipo dispositivo
-            //System.out.println(ipAddress); // ip
-            //System.out.println(instante); // instante requisição
 
+            System.out.println("processPdu - " + Thread.currentThread().getName());
 
-
-//            System.out.println("teste servico - chegou receivier");
-
-            this.estacaoTrabalhoService.synchronizeWorstationTeste("10.0.5.36");
+            this.estacaoTrabalhoService.synchronizeWorstationTeste(ipAddress);
         }
     }
 }

@@ -255,19 +255,9 @@ public class EstacaoTrabalhoService {
   public void synchronizeWorstationTeste(String ipAdrress) {
     try {
       InterfaceEntity byEnderecoIp = this.interfaceAtivoRepository.findByEnderecoIp(ipAdrress);
-      var teste = this.interfaceAtivoRepository.findAll();
 
-      System.out.println("teste");
+      System.out.println(byEnderecoIp.getEnderecoMac());
 
-//        WorkstationObject objAgent = new WorkstationObject();
-//
-//        for(InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
-//            if(i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
-//                WorkstationObject obj = getWorkstationData(i.getEnderecoIp());
-//                if (obj.getFabricante() != null) {
-//                    objAgent = obj;
-//                }
-//            }
     } catch (Exception e) {
       System.out.println(e.getMessage());
     }
