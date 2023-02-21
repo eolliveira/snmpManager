@@ -3,6 +3,7 @@ package com.example.snmpManager.services;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.objects.TrapObject;
 import com.example.snmpManager.repositories.InterfaceRepository;
+import com.example.snmpManager.services.EstacaoTrabalhoService.AgentSynchronizeWorkstationService;
 import com.example.snmpManager.services.SyncService.SyncService;
 import org.snmp4j.*;
 import org.snmp4j.mp.MPv1;
@@ -22,12 +23,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.Objects;
 
 @Component
 public class SNMPTrapReciever implements CommandResponder {
     @Autowired
     private SyncService syncService;
 
+    @Autowired
+    private AgentSynchronizeWorkstationService agentSynchronizeWorkstationService;
 
     @Autowired
     private InterfaceRepository interfaceRepository;
@@ -87,9 +91,11 @@ public class SNMPTrapReciever implements CommandResponder {
 
             TrapObject trapObject = new TrapObject(descricao, tipoAtivo, ipAddress, instante);
 
-            syncService.checkAgentSync(trapObject);
-            InterfaceEntity entity = interfaceRepository.findByEnderecoIp(ipAddress);
-            System.out.println(entity.getEnderecoMac());
+            //if (Objects.equals(trapObject.getTipoAtivo(), "WORKSTATION")) {
+                agentSynchronizeWorkstationService.synchronizeWorstation(trapObject.getIpAddress());
+            //}
+
+            //syncService.checkAgentSync(trapObject);
         }
     }
 }

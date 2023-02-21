@@ -13,9 +13,7 @@ public class SyncService {
     @Autowired
     AgentSynchronizeWorkstationService agentSynchronizeWorkstationService;
     public void checkAgentSync(TrapObject trapObject) {
-        if (Objects.equals(trapObject.getTipoAtivo(), "WORKSTATION")) {
-                agentSynchronizeWorkstationService.synchronizeWorstation(trapObject.getIpAddress());
-        }
+
 
     }
 
