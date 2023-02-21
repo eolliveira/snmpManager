@@ -46,15 +46,7 @@ public class EstacaoTrabalhoService {
         return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
     }
 
-    @Transactional
-    public void synchronizeWorstation(String ipAdrress) {
 
-        //tratar exception
-        InterfaceEntity interfaceAtivo = interfaceAtivoRepository.findByEnderecoIp(ipAdrress);
-
-        //interfaceAtivo.getEstacaoTrabalho().getId();
-
-    }
 
 
     @Transactional

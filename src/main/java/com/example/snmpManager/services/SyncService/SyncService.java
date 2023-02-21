@@ -1,7 +1,7 @@
 package com.example.snmpManager.services.SyncService;
 
 import com.example.snmpManager.objects.TrapObject;
-import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.AgentSynchronizeWorkstation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,10 +11,10 @@ import java.util.Objects;
 public class SyncService {
 
     @Autowired
-    EstacaoTrabalhoService estacaoTrabalhoService;
+    AgentSynchronizeWorkstation agentSynchronizeWorkstation;
     public void checkAgentSync(TrapObject trapObject) {
         if (Objects.equals(trapObject.getTipoAtivo(), "WORKSTATION")) {
-                estacaoTrabalhoService.synchronizeWorstation(trapObject.getIpAddress());
+                agentSynchronizeWorkstation.synchronizeWorstation(trapObject.getIpAddress());
         }
 
     }
