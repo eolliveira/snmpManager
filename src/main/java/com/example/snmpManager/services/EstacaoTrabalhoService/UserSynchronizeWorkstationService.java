@@ -13,13 +13,13 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Component
-public class UserSynchronizeWorkstation {
+public class UserSynchronizeWorkstationService {
 
     @Autowired
     private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
 
     @Autowired
-    private EstacaoTrabalhoService estacaoTrabalhoService;
+    private FindWorkstationService findWorkstationService;
 
     @Autowired
     private UpdateWorkstationService updateWorkstationService;

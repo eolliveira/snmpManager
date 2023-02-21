@@ -20,7 +20,10 @@ public class EstacaoTrabalhoController {
     private GetDataFromWorkstationService getDataFromWorkstationService;
 
     @Autowired
-    private EstacaoTrabalhoService estacaoTrabalhoService;
+    private FindWorkstationService findWorkstationService;
+
+    @Autowired
+    private RemoveWorkstationService removeWorkstationService;
 
     @Autowired
     private UpdateWorkstationService updateWorkstationService;
@@ -29,7 +32,7 @@ public class EstacaoTrabalhoController {
     private NewWorkstationService newWorkstationService;
 
     @Autowired
-    private UserSynchronizeWorkstation userSynchronizeWorkstation;
+    private UserSynchronizeWorkstationService userSynchronizeWorkstationService;
 
 
     //obtem dados da estação de trabalho
@@ -43,14 +46,14 @@ public class EstacaoTrabalhoController {
     //sincroniza dados pelo id da estação de trabalho
     @PutMapping(value = "/{idActive}/synchronize")
     public void synchronize(@PathVariable Long idActive) {
-        userSynchronizeWorkstation.synchronizeWorstation(idActive);
+        userSynchronizeWorkstationService.synchronizeWorstation(idActive);
     }
 
 
     //lista basica ,todas as estações
     @GetMapping
     public ResponseEntity<List<EstacaoTrabalhoBasicDTO>> findAll() {
-        List<EstacaoTrabalhoBasicDTO> estacoes = estacaoTrabalhoService.findAll();
+        List<EstacaoTrabalhoBasicDTO> estacoes = findWorkstationService.findAll();
         return ResponseEntity.ok(estacoes);
     }
 
@@ -74,7 +77,7 @@ public class EstacaoTrabalhoController {
 
     @DeleteMapping(value = "/{idActive}")
     public ResponseEntity<Void> deleteWorkstation(@PathVariable Long id) {
-        estacaoTrabalhoService.deleteWorkstation(id);
+        removeWorkstationService.deleteWorkstation(id);
         return ResponseEntity.noContent().build();
     }
 
