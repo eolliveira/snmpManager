@@ -9,7 +9,7 @@ import org.snmp4j.smi.OID;
 import org.springframework.stereotype.Component;
 
 @Component
-public class WorkstationDataService {
+public class GetDataFromWorkstationService {
 
     public WorkstationObject getWorkstationData(String address) {
         if (!AddressValidation.isValidIpv4(address))

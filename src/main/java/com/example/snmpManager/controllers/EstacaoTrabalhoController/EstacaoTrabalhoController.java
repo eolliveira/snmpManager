@@ -6,7 +6,8 @@ import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalho
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.NewWorkstationService;
-import com.example.snmpManager.services.EstacaoTrabalhoService.WorkstationDataService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.GetDataFromWorkstationService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.UserSynchronizeWorkstation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,7 @@ import java.util.List;
 @RequestMapping("/workstation")
 public class EstacaoTrabalhoController {
     @Autowired
-    private WorkstationDataService workstationDataService;
+    private GetDataFromWorkstationService getDataFromWorkstationService;
 
     @Autowired
     private EstacaoTrabalhoService estacaoTrabalhoService;
@@ -27,11 +28,14 @@ public class EstacaoTrabalhoController {
     @Autowired
     private NewWorkstationService newWorkstationService;
 
+    @Autowired
+    private UserSynchronizeWorkstation userSynchronizeWorkstation;
+
 
     //obtem dados da estação de trabalho
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WorkstationObject> getDataByAddress(@PathVariable String ipAddress) {
-        WorkstationObject win = workstationDataService.getWorkstationData(ipAddress);
+        WorkstationObject win = getDataFromWorkstationService.getWorkstationData(ipAddress);
         return ResponseEntity.ok(win);
     }
 
@@ -39,7 +43,7 @@ public class EstacaoTrabalhoController {
     //sincroniza dados pelo id da estação de trabalho
     @PutMapping(value = "/{idActive}/synchronize")
     public void synchronize(@PathVariable Long idActive) {
-        estacaoTrabalhoService.synchronizeWorstation(idActive);
+        userSynchronizeWorkstation.synchronizeWorstation(idActive);
     }
 
 

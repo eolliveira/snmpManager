@@ -3,7 +3,6 @@ package com.example.snmpManager.services.EstacaoTrabalhoService;
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.DiscoEntity;
@@ -34,7 +33,7 @@ public class EstacaoTrabalhoService {
     private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
 
     @Autowired
-    private WorkstationDataService workstationDataService;
+    private GetDataFromWorkstationService getDataFromWorkstationService;
     @Autowired
     private InterfaceRepository interfaceAtivoRepository;
     @Autowired
@@ -47,9 +46,6 @@ public class EstacaoTrabalhoService {
         return estacoes.stream().map(EstacaoTrabalhoBasicDTO::new).collect(Collectors.toList());
     }
 
-
-
-
     @Transactional
     public void synchronizeWorstation(String ipAdrress) {
 
@@ -60,30 +56,6 @@ public class EstacaoTrabalhoService {
 
     }
 
-    @Transactional
-    public void synchronizeWorstation(Long idAtivo) {
-
-        Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
-        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
-
-        WorkstationObject objAgent = new WorkstationObject();
-
-        for (InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
-            if (i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
-                WorkstationObject obj = workstationDataService.getWorkstationData(i.getEnderecoIp());
-                if (obj.getFabricante() != null) {
-                    objAgent = obj;
-                }
-            }
-        }
-
-        if (objAgent.getFabricante() == null) {
-            throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idAtivo);
-        }
-
-        EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
-        updateWorkStation(idAtivo, dto);
-    }
 
     @Transactional
     public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
