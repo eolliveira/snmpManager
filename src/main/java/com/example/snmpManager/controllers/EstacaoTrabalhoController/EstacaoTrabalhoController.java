@@ -5,6 +5,7 @@ import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalho
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.NewWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.WorkstationDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -22,6 +23,9 @@ public class EstacaoTrabalhoController {
 
     @Autowired
     private EstacaoTrabalhoService estacaoTrabalhoService;
+
+    @Autowired
+    private NewWorkstationService newWorkstationService;
 
 
     //obtem dados da estação de trabalho
@@ -51,7 +55,7 @@ public class EstacaoTrabalhoController {
     @PostMapping()
     public ResponseEntity<EstacaoTrabalhoDTO> insertNewWorkStation(@RequestBody EstacaoTrabalhoDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-        EstacaoTrabalhoDTO estacaoCriada = estacaoTrabalhoService.insertNewWorkStation(dto);
+        EstacaoTrabalhoDTO estacaoCriada = newWorkstationService.insertNewWorkStation(dto);
         return ResponseEntity.created(uri).body(estacaoCriada);
     }
 

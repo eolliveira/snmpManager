@@ -6,9 +6,9 @@ import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.SNMPRequestClient;
 import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class WorkstationDataService {
 
     public WorkstationObject getWorkstationData(String address) {

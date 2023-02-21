@@ -48,48 +48,7 @@ public class EstacaoTrabalhoService {
     }
 
 
-    @Transactional
-    public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
 
-        EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
-
-        estacao = estacaoTrabalhoRepository.save(estacao);
-
-        for (InterfaceAtivoDTO i : dto.getInterfaces()) {
-            InterfaceEntity inter = new InterfaceEntity();
-            inter.setNomeLocal(i.getNomeLocal());
-            inter.setFabricante(i.getFabricante());
-            inter.setEnderecoMac(i.getEnderecoMac());
-            inter.setEnderecoIp(i.getEnderecoIp());
-            inter.setMascaraSubRede(i.getMascaraSubRede());
-            inter.setEstacaoTrabalho(estacao);
-
-            interfaceAtivoRepository.save(inter);
-        }
-
-        for (DiscoDTO d : dto.getDiscos()) {
-            DiscoEntity disco = new DiscoEntity();
-            disco.setNome(d.getNome());
-            disco.setModelo(d.getModelo());
-            disco.setNumeroSerie(d.getNumeroSerie());
-            disco.setCapacidade(d.getCapacidade());
-            disco.setEstacaoTrabalho(estacao);
-
-            discoAtivoRepository.save(disco);
-
-            for (DiscoParticaoDTO dpd : d.getParticoes()) {
-                DiscoParticaoEntity dpe = new DiscoParticaoEntity();
-                dpe.setCapacidade(dpd.getCapacidade());
-                dpe.setUsado(dpd.getUsado());
-                dpe.setPontoMontagem(dpd.getPontoMontagem());
-                dpe.setDisco(disco);
-
-                discoAtivoParticaoRepository.save(dpe);
-            }
-        }
-
-        return new EstacaoTrabalhoDTO(estacao);
-    }
 
     @Transactional
     public void synchronizeWorstation(String ipAdrress) {
