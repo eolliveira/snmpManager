@@ -1,7 +1,8 @@
 package com.example.snmpManager.services;
 
+import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.objects.TrapObject;
-import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoService;
+import com.example.snmpManager.repositories.InterfaceRepository;
 import com.example.snmpManager.services.SyncService.SyncService;
 import org.snmp4j.*;
 import org.snmp4j.mp.MPv1;
@@ -26,6 +27,10 @@ import java.io.IOException;
 public class SNMPTrapReciever implements CommandResponder {
     @Autowired
     private SyncService syncService;
+
+
+    @Autowired
+    private InterfaceRepository interfaceRepository;
 
     public synchronized void listen(TransportIpAddress address)
             throws IOException {
@@ -83,6 +88,8 @@ public class SNMPTrapReciever implements CommandResponder {
             TrapObject trapObject = new TrapObject(descricao, tipoAtivo, ipAddress, instante);
 
             syncService.checkAgentSync(trapObject);
+            InterfaceEntity entity = interfaceRepository.findByEnderecoIp(ipAddress);
+            System.out.println(entity.getEnderecoMac());
         }
     }
 }

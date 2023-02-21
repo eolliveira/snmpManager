@@ -5,6 +5,7 @@ import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalho
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.WorkstationDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -17,13 +18,16 @@ import java.util.List;
 @RequestMapping("/workstation")
 public class EstacaoTrabalhoController {
     @Autowired
+    private WorkstationDataService workstationDataService;
+
+    @Autowired
     private EstacaoTrabalhoService estacaoTrabalhoService;
 
 
     //obtem dados da estação de trabalho
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WorkstationObject> getDataByAddress(@PathVariable String ipAddress) {
-        WorkstationObject win = estacaoTrabalhoService.getWorkstationData(ipAddress);
+        WorkstationObject win = workstationDataService.getWorkstationData(ipAddress);
         return ResponseEntity.ok(win);
     }
 
@@ -61,7 +65,7 @@ public class EstacaoTrabalhoController {
 
 
     @DeleteMapping(value = "/{idActive}")
-    public ResponseEntity<Void> deleteWorkstation(@PathVariable Long id){
+    public ResponseEntity<Void> deleteWorkstation(@PathVariable Long id) {
         estacaoTrabalhoService.deleteWorkstation(id);
         return ResponseEntity.noContent().build();
     }
