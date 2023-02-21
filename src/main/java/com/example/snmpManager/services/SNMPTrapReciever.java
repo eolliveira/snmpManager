@@ -1,8 +1,8 @@
 package com.example.snmpManager.services;
 
-import com.example.snmpManager.entities.InterfaceEntity;
-import com.example.snmpManager.repositories.InterfaceRepository;
+import com.example.snmpManager.objects.TrapObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoService;
+import com.example.snmpManager.services.SyncService.SyncService;
 import org.snmp4j.*;
 import org.snmp4j.mp.MPv1;
 import org.snmp4j.mp.MPv2c;
@@ -19,26 +19,13 @@ import org.snmp4j.util.MultiThreadedMessageDispatcher;
 import org.snmp4j.util.ThreadPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.io.IOException;
 
-//escuta msg trap do agente
 @Component
 public class SNMPTrapReciever implements CommandResponder {
     @Autowired
-    private EstacaoTrabalhoService estacaoTrabalhoService;
-
-//    public SNMPTrapReciever(InterfaceRepository interfaceRepository, EstacaoTrabalhoService estacaoTrabalhoService) {
-//        this.interfaceRepository = interfaceRepository;
-//        this.estacaoTrabalhoService = estacaoTrabalhoService;
-//    }
-///teste impor service workspace(para realizar sincronismo )
-//    @Autowired
-//    private EstacaoTrabalhoService estacaoTrabalhoService;
-
-//    @Autowired
-//    private InterfaceRepository interfaceRepository;
+    private SyncService syncService;
 
     public synchronized void listen(TransportIpAddress address)
             throws IOException {
@@ -78,7 +65,6 @@ public class SNMPTrapReciever implements CommandResponder {
         }
     }
 
-
      //Este método será chamado sempre que um pdu for recebido na porta especificada no método listen()
     public synchronized void processPdu(CommandResponderEvent cmdRespEvent) {
         System.out.println("PDU Recebido...");
@@ -94,10 +80,9 @@ public class SNMPTrapReciever implements CommandResponder {
             String ipAddress = pdu.get(2).getVariable().toString(); // ip
             String instante = pdu.get(3).getVariable().toString(); // instante requisição
 
+            TrapObject trapObject = new TrapObject(descricao, tipoAtivo, ipAddress, instante);
 
-            System.out.println("processPdu - " + Thread.currentThread().getName());
-
-            this.estacaoTrabalhoService.synchronizeWorstationTeste(ipAddress);
+            syncService.checkAgentSync(trapObject);
         }
     }
 }
