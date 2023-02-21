@@ -4,10 +4,7 @@ import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalho
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
-import com.example.snmpManager.services.EstacaoTrabalhoService.EstacaoTrabalhoService;
-import com.example.snmpManager.services.EstacaoTrabalhoService.NewWorkstationService;
-import com.example.snmpManager.services.EstacaoTrabalhoService.GetDataFromWorkstationService;
-import com.example.snmpManager.services.EstacaoTrabalhoService.UserSynchronizeWorkstation;
+import com.example.snmpManager.services.EstacaoTrabalhoService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +21,9 @@ public class EstacaoTrabalhoController {
 
     @Autowired
     private EstacaoTrabalhoService estacaoTrabalhoService;
+
+    @Autowired
+    private UpdateWorkstationService updateWorkstationService;
 
     @Autowired
     private NewWorkstationService newWorkstationService;
@@ -67,7 +67,7 @@ public class EstacaoTrabalhoController {
     //atualiza estação passando o id
     @PutMapping(value = "/{idActive}/update")
     public ResponseEntity<EstacaoTrabalhoSynchronizeDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoSynchronizeDTO dto) {
-        dto = estacaoTrabalhoService.updateWorkStation(idActive, dto);
+        dto = updateWorkstationService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
     }
 

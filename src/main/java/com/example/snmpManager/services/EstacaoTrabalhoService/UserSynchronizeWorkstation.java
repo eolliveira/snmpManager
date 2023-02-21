@@ -22,6 +22,9 @@ public class UserSynchronizeWorkstation {
     private EstacaoTrabalhoService estacaoTrabalhoService;
 
     @Autowired
+    private UpdateWorkstationService updateWorkstationService;
+
+    @Autowired
     private GetDataFromWorkstationService getDataFromWorkstationService;
 
     @Transactional
@@ -46,7 +49,7 @@ public class UserSynchronizeWorkstation {
         }
 
         EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
-        estacaoTrabalhoService.updateWorkStation(idAtivo, dto);
+        updateWorkstationService.updateWorkStation(idAtivo, dto);
     }
 
 
