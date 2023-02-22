@@ -75,9 +75,9 @@ public class EstacaoTrabalhoController {
     }
 
 
-    @DeleteMapping(value = "/{id}")
-    public ResponseEntity<Void> deleteWorkstation(@PathVariable Long id) {
-        removeWorkstationService.deleteWorkstation(id);
+    @DeleteMapping(value = "/{idActive}")
+    public ResponseEntity<Void> deleteWorkstation(@PathVariable Long idActive) {
+        removeWorkstationService.deleteWorkstation(idActive);
         return ResponseEntity.noContent().build();
     }
 
