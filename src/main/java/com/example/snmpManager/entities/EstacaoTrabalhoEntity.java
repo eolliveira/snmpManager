@@ -25,11 +25,10 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String dnsList;
     private String gateway;
 
-    //TODO("Verificar (erro na hora de sincronizar)")
-    @OneToMany(mappedBy = "estacaoTrabalho", fetch = FetchType.EAGER/*, cascade = CascadeType.ALL, orphanRemoval = true*/)
+    @OneToMany(mappedBy = "estacaoTrabalho", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<InterfaceEntity> interfaces = new ArrayList<>();
 
-    @OneToMany(mappedBy = "estacaoTrabalho"/*, cascade = CascadeType.ALL, orphanRemoval = true*/)
+    @OneToMany(mappedBy = "estacaoTrabalho", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DiscoEntity> discos = new ArrayList<>();
 
     public EstacaoTrabalhoEntity() {}

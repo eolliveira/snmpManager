@@ -56,6 +56,7 @@ public class UpdateWorkstationService {
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
         estacaoTrabalho.setDominio(dto.getDominio());
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
+        estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
 
         //recupera todos as interfaces e discos da estação
         List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
@@ -101,7 +102,6 @@ public class UpdateWorkstationService {
             }
         }
 
-        estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
         return new EstacaoTrabalhoSynchronizeDTO(estacaoTrabalho);
     }
 
