@@ -91,11 +91,7 @@ public class SNMPTrapReciever implements CommandResponder {
 
             TrapObject trapObject = new TrapObject(descricao, tipoAtivo, ipAddress, instante);
 
-            //if (Objects.equals(trapObject.getTipoAtivo(), "WORKSTATION")) {
-                agentSynchronizeWorkstationService.synchronizeWorstation(trapObject.getIpAddress());
-            //}
-
-            //syncService.checkAgentSync(trapObject);
+            syncService.checkAgentSync(trapObject);
         }
     }
 }

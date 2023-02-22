@@ -4,10 +4,7 @@ import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalho
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.*;
 
-import javax.persistence.CascadeType;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -29,7 +26,7 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String gateway;
 
     //TODO("Verificar (erro na hora de sincronizar)")
-    @OneToMany(mappedBy = "estacaoTrabalho"/*, cascade = CascadeType.ALL, orphanRemoval = true*/)
+    @OneToMany(mappedBy = "estacaoTrabalho", fetch = FetchType.EAGER/*, cascade = CascadeType.ALL, orphanRemoval = true*/)
     private List<InterfaceEntity> interfaces = new ArrayList<>();
 
     @OneToMany(mappedBy = "estacaoTrabalho"/*, cascade = CascadeType.ALL, orphanRemoval = true*/)

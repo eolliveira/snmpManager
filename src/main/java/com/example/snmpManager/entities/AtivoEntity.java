@@ -3,7 +3,9 @@ package com.example.snmpManager.entities;
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -13,7 +15,8 @@ import java.util.*;
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "TP_ATIVO")
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 public abstract class AtivoEntity {
 
