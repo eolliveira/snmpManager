@@ -7,6 +7,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.io.IOException;
+
 @SpringBootApplication
 public class SnmpManagerApplication implements CommandLineRunner {
 
@@ -18,7 +20,11 @@ public class SnmpManagerApplication implements CommandLineRunner {
   }
 
   @Override
-  public void run(String... args) throws Exception {
-    trapReciever.listen(new UdpAddress("localhost/162"));
+  public void run(String... args) {
+    try {
+      trapReciever.listen(new UdpAddress("localhost/162"));
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

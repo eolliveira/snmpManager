@@ -1,10 +1,8 @@
 package com.example.snmpManager.services;
 
-import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.objects.TrapObject;
-import com.example.snmpManager.repositories.InterfaceRepository;
-import com.example.snmpManager.services.EstacaoTrabalhoService.AgentSynchronizeWorkstationService;
-import com.example.snmpManager.services.SyncService.SyncService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.FindWorkstationService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.GetDataFromWorkstationService;
 import org.snmp4j.*;
 import org.snmp4j.mp.MPv1;
 import org.snmp4j.mp.MPv2c;
@@ -23,18 +21,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Objects;
 
 @Component
 public class SNMPTrapReciever implements CommandResponder {
     @Autowired
-    private SyncService syncService;
+    FindWorkstationService findWorkstationService;
 
-    @Autowired
-    private AgentSynchronizeWorkstationService agentSynchronizeWorkstationService;
-
-    @Autowired
-    private InterfaceRepository interfaceRepository;
 
     public synchronized void listen(TransportIpAddress address)
             throws IOException {
@@ -74,7 +66,7 @@ public class SNMPTrapReciever implements CommandResponder {
         }
     }
 
-     //Este método será chamado sempre que um pdu for recebido na porta especificada no método listen()
+    //Este método será chamado sempre que um pdu for recebido na porta especificada no método listen()
     public synchronized void processPdu(CommandResponderEvent cmdRespEvent) {
         System.out.println("PDU Recebido...");
         PDU pdu = cmdRespEvent.getPDU();
@@ -91,7 +83,14 @@ public class SNMPTrapReciever implements CommandResponder {
 
             TrapObject trapObject = new TrapObject(descricao, tipoAtivo, ipAddress, instante);
 
-            syncService.checkAgentSync(trapObject);
+//            //atualizar ativo
+//            try {
+//                WorkstationObject listaEStacao = getDataFromWorkstationService.getWorkstationData("10.0.5.36");
+//                System.out.println(listaEStacao.getNomeHost());
+//            } catch (Exception e) {
+//                e.printStackTrace();
+//            }
+
         }
     }
 }
