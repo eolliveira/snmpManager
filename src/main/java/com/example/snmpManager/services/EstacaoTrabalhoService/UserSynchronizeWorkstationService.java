@@ -75,6 +75,7 @@ public class UserSynchronizeWorkstationService {
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
         estacaoTrabalho.setDominio(dto.getDominio());
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
+        estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
 
         //recupera todos as interfaces e discos da estação
         List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
