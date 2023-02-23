@@ -1,6 +1,5 @@
 package com.example.snmpManager.services;
 
-import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.objects.TrapObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.FindWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.GetDataFromWorkstationService;
@@ -19,15 +18,10 @@ import org.snmp4j.transport.DefaultTcpTransportMapping;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 import org.snmp4j.util.MultiThreadedMessageDispatcher;
 import org.snmp4j.util.ThreadPool;
-import org.snmp4j.util.WorkerPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
-import java.util.concurrent.TimeUnit;
 
 @Component
 public class SNMPTrapReciever implements CommandResponder {

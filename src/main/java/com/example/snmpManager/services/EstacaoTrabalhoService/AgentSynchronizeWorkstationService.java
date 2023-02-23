@@ -84,15 +84,8 @@ public class AgentSynchronizeWorkstationService {
         List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
         List<DiscoEntity> discos = discoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
-        if (!interfaces.isEmpty()) {
-            interfaces.clear();
-            interfaceRepository.deleteAll(interfaces);
-        }
-
-        if (!discos.isEmpty()) {
-            discoRepository.deleteAll(discos);
-        }
-
+        interfaceRepository.deleteAll(interfaces);
+        discoRepository.deleteAll(discos);
 
         //adiciona interfaces atualizadas
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
