@@ -28,17 +28,13 @@ public class SNMPTrapReciever implements CommandResponder {
     @Autowired
     FindWorkstationService findWorkstationService;
 
-
     @Autowired
     GetDataFromWorkstationService getDataFromWorkstationService;
-
 
     @Autowired
     SyncService syncService;
 
-
-    public synchronized void listen(TransportIpAddress address)
-            throws IOException {
+    public synchronized void listen(TransportIpAddress address) throws IOException {
         AbstractTransportMapping transport;
         if (address instanceof TcpAddress) {
             transport = new DefaultTcpTransportMapping((TcpAddress) address);
@@ -49,7 +45,6 @@ public class SNMPTrapReciever implements CommandResponder {
         ThreadPool threadPool = ThreadPool.create("DispatcherPool", 10);
         MessageDispatcher mDispathcher = new MultiThreadedMessageDispatcher(threadPool, new MessageDispatcherImpl());
 
-        //while (!threadPool.isIdle()){}
 
         // add message processing models
         mDispathcher.addMessageProcessingModel(new MPv1());
@@ -77,6 +72,7 @@ public class SNMPTrapReciever implements CommandResponder {
     }
 
     //Este método será chamado sempre que um pdu for recebido na porta especificada no método listen()
+    @Override
     public synchronized void processPdu(CommandResponderEvent cmdRespEvent) {
         System.out.println("PDU Recebido...");
         PDU pdu = cmdRespEvent.getPDU();
