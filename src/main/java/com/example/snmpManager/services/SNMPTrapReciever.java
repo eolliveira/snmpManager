@@ -26,6 +26,7 @@ import org.springframework.stereotype.Component;
 import java.io.IOException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
 @Component
@@ -54,7 +55,7 @@ public class SNMPTrapReciever implements CommandResponder {
         ThreadPool threadPool = ThreadPool.create("DispatcherPool", 10);
         MessageDispatcher mDispathcher = new MultiThreadedMessageDispatcher(threadPool, new MessageDispatcherImpl());
 
-        while (!threadPool.isIdle()){}
+        //while (!threadPool.isIdle()){}
 
         // add message processing models
         mDispathcher.addMessageProcessingModel(new MPv1());
@@ -98,23 +99,13 @@ public class SNMPTrapReciever implements CommandResponder {
 
             TrapObject trapObject = new TrapObject(descricao, tipoAtivo, ipAddress, instante);
 
-
             try {
-                Thread.sleep(8000);
+                Thread.sleep(8000);  //aguardar thresdpool terminar de executar
                 syncService.checkAgentSync(trapObject);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
 
-
-//            //teste
-//            try {
-//                Thread.sleep(8000);
-//                WorkstationObject listaEStacao = getDataFromWorkstationService.getWorkstationData("192.168.0.106");
-//                System.out.println(listaEStacao.getNomeHost());
-//            } catch (Exception e) {
-//                e.printStackTrace();
-//            }
 
         }
     }
