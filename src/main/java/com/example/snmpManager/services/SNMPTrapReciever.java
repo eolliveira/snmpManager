@@ -1,8 +1,10 @@
 package com.example.snmpManager.services;
 
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.objects.TrapObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.FindWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.GetDataFromWorkstationService;
+import com.example.snmpManager.services.SyncService.SyncService;
 import org.snmp4j.*;
 import org.snmp4j.mp.MPv1;
 import org.snmp4j.mp.MPv2c;
@@ -17,15 +19,27 @@ import org.snmp4j.transport.DefaultTcpTransportMapping;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
 import org.snmp4j.util.MultiThreadedMessageDispatcher;
 import org.snmp4j.util.ThreadPool;
+import org.snmp4j.util.WorkerPool;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 @Component
 public class SNMPTrapReciever implements CommandResponder {
     @Autowired
     FindWorkstationService findWorkstationService;
+
+
+    @Autowired
+    GetDataFromWorkstationService getDataFromWorkstationService;
+
+
+    @Autowired
+    SyncService syncService;
 
 
     public synchronized void listen(TransportIpAddress address)
@@ -38,8 +52,9 @@ public class SNMPTrapReciever implements CommandResponder {
         }
 
         ThreadPool threadPool = ThreadPool.create("DispatcherPool", 10);
-        MessageDispatcher mDispathcher = new MultiThreadedMessageDispatcher(
-                threadPool, new MessageDispatcherImpl());
+        MessageDispatcher mDispathcher = new MultiThreadedMessageDispatcher(threadPool, new MessageDispatcherImpl());
+
+        while (!threadPool.isIdle()){}
 
         // add message processing models
         mDispathcher.addMessageProcessingModel(new MPv1());
@@ -83,9 +98,19 @@ public class SNMPTrapReciever implements CommandResponder {
 
             TrapObject trapObject = new TrapObject(descricao, tipoAtivo, ipAddress, instante);
 
-//            //atualizar ativo
+
+            try {
+                Thread.sleep(8000);
+                syncService.checkAgentSync(trapObject);
+            } catch (InterruptedException e) {
+                throw new RuntimeException(e);
+            }
+
+
+//            //teste
 //            try {
-//                WorkstationObject listaEStacao = getDataFromWorkstationService.getWorkstationData("10.0.5.36");
+//                Thread.sleep(8000);
+//                WorkstationObject listaEStacao = getDataFromWorkstationService.getWorkstationData("192.168.0.106");
 //                System.out.println(listaEStacao.getNomeHost());
 //            } catch (Exception e) {
 //                e.printStackTrace();

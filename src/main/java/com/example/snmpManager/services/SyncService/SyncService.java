@@ -1,6 +1,5 @@
 package com.example.snmpManager.services.SyncService;
 
-import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.objects.TrapObject;
 import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
@@ -41,15 +40,7 @@ public class SyncService {
 
     public void checkAgentSync(TrapObject trapObject) {
         if (Objects.equals(trapObject.getTipoAtivo(), "WORKSTATION")) {
-
-            try{
-                WorkstationObject object = getDataFromWorkstationService.getWorkstationData(trapObject.getIpAddress());
-                System.out.println(object.getNomeHost());
-
-            } catch (Exception e){
-                e.printStackTrace();
-            }
-
+           agentSynchronizeWorkstationService.synchronizeWorstation(trapObject.getIpAddress());
         }
     }
 

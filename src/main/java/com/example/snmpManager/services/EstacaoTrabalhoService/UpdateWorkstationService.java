@@ -38,11 +38,11 @@ public class UpdateWorkstationService {
 
     @Transactional
     public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
+//TODO(DUPLICANDO INTERFACES)
+//        Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
+//        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
 
-        Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
-        EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
-
-        //EstacaoTrabalhoEntity estacaoTrabalho = estacaoTrabalhoRepository.getReferenceById(idAtivo);
+        EstacaoTrabalhoEntity estacaoTrabalho = estacaoTrabalhoRepository.getReferenceById(idAtivo);
 
         estacaoTrabalho.setFabricante(dto.getFabricante());
         estacaoTrabalho.setNumeroSerie(dto.getNumeroSerie());
@@ -56,15 +56,17 @@ public class UpdateWorkstationService {
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
         estacaoTrabalho.setDominio(dto.getDominio());
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
-        estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
+
 
         //recupera todos as interfaces e discos da estação
         List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
         List<DiscoEntity> discos = discoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
         if (!interfaces.isEmpty() && !discos.isEmpty()) {
-            //remove tudo()
             interfaceRepository.deleteAll(interfaces);
+        }
+
+        if (!discos.isEmpty()) {
             discoRepository.deleteAll(discos);
         }
 
