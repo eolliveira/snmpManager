@@ -73,13 +73,13 @@ public class SNMPTrapReciever implements CommandResponder {
 
     //Este método será chamado sempre que um pdu for recebido na porta especificada no método listen()
     @Override
-    public synchronized void processPdu(CommandResponderEvent cmdRespEvent) {
+    public void processPdu(CommandResponderEvent cmdRespEvent) {
+
         System.out.println("PDU Recebido...");
         PDU pdu = cmdRespEvent.getPDU();
         if (pdu != null) {
             System.out.println("Tipo da armadilha = " + pdu.getType());
-            System.out.println("Variaveis = " + pdu.getVariableBindings());
-
+            System.out.println("Variaveis = " + pdu.getVariableBindings() + " Thread: " + Thread.currentThread().getName());
 
             //RECEBE AS INFORMAÇÕES DO AGENTE QUE SOLICITA O SISNCRONISMO
             String descricao = pdu.get(0).getVariable().toString(); // descrição solictação
@@ -91,6 +91,7 @@ public class SNMPTrapReciever implements CommandResponder {
 
             try {
                 Thread.sleep(8000);  //aguardar thresdpool terminar de executar
+                System.out.println("entrando no metodo TRAP --------------------------------------------------- thread  = " + Thread.currentThread().getName());
                 syncService.checkAgentSync(trapObject);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
