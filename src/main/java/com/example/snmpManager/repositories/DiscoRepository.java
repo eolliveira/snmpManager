@@ -7,4 +7,7 @@ import java.util.List;
 
 public interface DiscoRepository extends JpaRepository<DiscoEntity, Long> {
     List<DiscoEntity> findAllByEstacaoTrabalho_Id(Long id);
+
+    void deleteAllByEstacaoTrabalho_Id(Long id);
+
 }

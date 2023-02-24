@@ -18,7 +18,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -79,15 +78,9 @@ public class AgentSynchronizeWorkstationService {
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
         estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
 
+        interfaceRepository.deleteAllByEstacaoTrabalhoId(estacaoTrabalho.getId());
+        discoRepository.deleteAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
-        //recupera todos as interfaces e discos da estação
-        List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-        List<DiscoEntity> discos = discoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-
-        interfaceRepository.deleteAll(interfaces);
-        discoRepository.deleteAll(discos);
-
-        //adiciona interfaces atualizadas
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
             InterfaceEntity inter = new InterfaceEntity();
             inter.setNomeLocal(i.getNomeLocal());
@@ -99,7 +92,6 @@ public class AgentSynchronizeWorkstationService {
             interfaceRepository.save(inter);
         }
 
-        //adiciona discos atualizados
         for (DiscoDTO d : dto.getDiscos()) {
             DiscoEntity disco = new DiscoEntity();
             disco.setNome(d.getNome());

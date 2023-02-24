@@ -48,7 +48,6 @@ public class NewWorkstationService {
             inter.setEnderecoIp(i.getEnderecoIp());
             inter.setMascaraSubRede(i.getMascaraSubRede());
             inter.setEstacaoTrabalho(estacao);
-
             interfaceRepository.save(inter);
         }
 
@@ -59,7 +58,6 @@ public class NewWorkstationService {
             disco.setNumeroSerie(d.getNumeroSerie());
             disco.setCapacidade(d.getCapacidade());
             disco.setEstacaoTrabalho(estacao);
-
             discoRepository.save(disco);
 
             for (DiscoParticaoDTO dpd : d.getParticoes()) {
@@ -68,7 +66,6 @@ public class NewWorkstationService {
                 dpe.setUsado(dpd.getUsado());
                 dpe.setPontoMontagem(dpd.getPontoMontagem());
                 dpe.setDisco(disco);
-
                 discoParticaoRepository.save(dpe);
             }
         }

@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
-import java.util.List;
 import java.util.Optional;
 
 @Component
@@ -38,7 +37,6 @@ public class UpdateWorkstationService {
 
     @Transactional
     public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
-        //TODO(DUPLICANDO INTERFACES)
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
 
@@ -54,12 +52,10 @@ public class UpdateWorkstationService {
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
         estacaoTrabalho.setDominio(dto.getDominio());
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
+        estacaoTrabalhoRepository.save(estacaoTrabalho);
 
-        List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-        List<DiscoEntity> discos = discoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-
-        interfaceRepository.deleteAll(interfaces);
-        discoRepository.deleteAll(discos);
+        interfaceRepository.deleteAllByEstacaoTrabalhoId(estacaoTrabalho.getId());
+        discoRepository.deleteAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
         //adiciona interfaces atualizadas
         for (InterfaceAtivoDTO i : dto.getInterfaces()) {
