@@ -18,10 +18,6 @@ public class EstacaoTrabalhoBasicDTO extends AtivoDTO {
     private String dnsList;
     private String gateway;
 
-    public EstacaoTrabalhoBasicDTO(){
-        super();
-    }
-
     public EstacaoTrabalhoBasicDTO(EstacaoTrabalhoEntity entity) {
         this.setId(entity.getId());
         this.setNome(entity.getNome());
