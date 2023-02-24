@@ -5,9 +5,9 @@ import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.InterfaceRepository;
-import com.example.snmpManager.services.EstacaoTrabalhoService.AgentSynchronizeWorkstationService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.SyncWorkstationByIpAddressService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.GetDataFromWorkstationService;
-import com.example.snmpManager.services.EstacaoTrabalhoService.UserSynchronizeWorkstationService;
+import com.example.snmpManager.services.EstacaoTrabalhoService.SyncWorkstationByAssetIdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +17,7 @@ import java.util.Objects;
 public class SyncService {
 
     @Autowired
-    AgentSynchronizeWorkstationService agentSynchronizeWorkstationService;
+    SyncWorkstationByIpAddressService syncWorkstationByIpAddressService;
 
     @Autowired
     InterfaceRepository interfaceRepository;
@@ -35,12 +35,12 @@ public class SyncService {
     GetDataFromWorkstationService getDataFromWorkstationService;
 
     @Autowired
-    UserSynchronizeWorkstationService userSynchronizeWorkstationService;
+    SyncWorkstationByAssetIdService syncWorkstationByAssetIdService;
 
 
     public void checkAgentSync(TrapObject trapObject) {
         if (Objects.equals(trapObject.getTipoAtivo(), "WORKSTATION")) {
-           agentSynchronizeWorkstationService.synchronizeWorstation(trapObject.getIpAddress());
+           syncWorkstationByIpAddressService.synchronizeWorstation(trapObject.getIpAddress());
         }
     }
 

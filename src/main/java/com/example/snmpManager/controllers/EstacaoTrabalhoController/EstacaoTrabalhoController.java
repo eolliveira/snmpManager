@@ -2,7 +2,6 @@ package com.example.snmpManager.controllers.EstacaoTrabalhoController;
 
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoSynchronizeDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,7 +31,7 @@ public class EstacaoTrabalhoController {
     private NewWorkstationService newWorkstationService;
 
     @Autowired
-    private UserSynchronizeWorkstationService userSynchronizeWorkstationService;
+    private SyncWorkstationByAssetIdService syncWorkstationByAssetIdService;
 
 
     //obtem dados da estação de trabalho
@@ -46,7 +45,7 @@ public class EstacaoTrabalhoController {
     //sincroniza dados pelo id da estação de trabalho
     @PutMapping(value = "/{idActive}/synchronize")
     public void synchronize(@PathVariable Long idActive) {
-        userSynchronizeWorkstationService.synchronizeWorstation(idActive);
+        syncWorkstationByAssetIdService.synchronizeWorstation(idActive);
     }
 
 

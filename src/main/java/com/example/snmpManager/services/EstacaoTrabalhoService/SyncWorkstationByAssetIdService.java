@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Component
-public class UserSynchronizeWorkstationService {
+public class SyncWorkstationByAssetIdService {
 
     @Autowired
     private EstacaoTrabalhoRepository estacaoTrabalhoRepository;

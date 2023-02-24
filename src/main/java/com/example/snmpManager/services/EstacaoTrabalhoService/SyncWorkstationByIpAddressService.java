@@ -22,7 +22,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
-public class AgentSynchronizeWorkstationService {
+public class SyncWorkstationByIpAddressService {
 
 
     @Autowired
