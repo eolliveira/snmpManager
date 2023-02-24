@@ -8,7 +8,7 @@ import lombok.Data;
 import java.io.Serializable;
 
 @Data
-public class InterfaceAtivoDTO implements Serializable {
+public class InterfaceDTO implements Serializable {
     private Long id;
     private String nomeLocal;
     private String fabricante;
@@ -16,21 +16,21 @@ public class InterfaceAtivoDTO implements Serializable {
     private String enderecoIp;
     private String mascaraSubRede;
 
-    private EstacaoTrabalhoDTO estacaoTrabalho;
+    //private EstacaoTrabalhoDTO estacaoTrabalho;
 
-    public InterfaceAtivoDTO(){}
+    public InterfaceDTO(){}
 
-    public InterfaceAtivoDTO(InterfaceEntity entity) {
+    public InterfaceDTO(InterfaceEntity entity) {
         this.id = entity.getId();
         this.nomeLocal = entity.getNomeLocal();
         this.fabricante = entity.getFabricante();
         this.enderecoMac = entity.getEnderecoMac();
         this.enderecoIp = entity.getEnderecoIp();
         this.mascaraSubRede = entity.getMascaraSubRede();
-        this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
+        //this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
     }
 
-    public InterfaceAtivoDTO(InterfaceObject obj) {
+    public InterfaceDTO(InterfaceObject obj) {
         this.nomeLocal = obj.getNomeLocal();
         this.fabricante = obj.getFabricante();
         this.enderecoMac = obj.getEnderecoMac();

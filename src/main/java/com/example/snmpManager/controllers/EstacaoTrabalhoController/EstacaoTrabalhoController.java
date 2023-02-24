@@ -2,6 +2,7 @@ package com.example.snmpManager.controllers.EstacaoTrabalhoController;
 
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,19 +34,15 @@ public class EstacaoTrabalhoController {
     @Autowired
     private SyncWorkstationByAssetIdService syncWorkstationByAssetIdService;
 
+    @Autowired
+    private FindInterfacesWorkstationService findInterfacesWorkstationService;
+
 
     //obtem dados da estação de trabalho
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WorkstationObject> getDataByAddress(@PathVariable String ipAddress) {
         WorkstationObject win = getDataFromWorkstationService.getWorkstationData(ipAddress);
         return ResponseEntity.ok(win);
-    }
-
-
-    //sincroniza dados pelo id da estação de trabalho
-    @PutMapping(value = "/{idActive}/synchronize")
-    public void synchronize(@PathVariable Long idActive) {
-        syncWorkstationByAssetIdService.synchronizeWorstation(idActive);
     }
 
 
@@ -57,12 +54,27 @@ public class EstacaoTrabalhoController {
     }
 
 
+    //lista interfaces da estação
+    @GetMapping(value = "/{idActive}/interfaces")
+    public ResponseEntity<List<InterfaceDTO>> findAllInterfaces(@PathVariable Long idActive) {
+        List<InterfaceDTO> interfaces = findInterfacesWorkstationService.findAllInterfaces(idActive);
+        return ResponseEntity.ok(interfaces);
+    }
+
+
     //add nova estação de trabalho
     @PostMapping()
     public ResponseEntity<EstacaoTrabalhoDTO> insertNewWorkStation(@RequestBody EstacaoTrabalhoDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         EstacaoTrabalhoDTO estacaoCriada = newWorkstationService.insertNewWorkStation(dto);
         return ResponseEntity.created(uri).body(estacaoCriada);
+    }
+
+
+    //sincroniza dados pelo id da estação de trabalho
+    @PutMapping(value = "/{idActive}/synchronize")
+    public void synchronize(@PathVariable Long idActive) {
+        syncWorkstationByAssetIdService.synchronizeWorstation(idActive);
     }
 
 

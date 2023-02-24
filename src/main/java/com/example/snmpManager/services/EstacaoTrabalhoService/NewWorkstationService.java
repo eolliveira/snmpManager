@@ -3,7 +3,7 @@ package com.example.snmpManager.services.EstacaoTrabalhoService;
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
+import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
 import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.entities.DiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
@@ -40,7 +40,7 @@ public class NewWorkstationService {
 
         estacao = estacaoTrabalhoRepository.save(estacao);
 
-        for (InterfaceAtivoDTO i : dto.getInterfaces()) {
+        for (InterfaceDTO i : dto.getInterfaces()) {
             InterfaceEntity inter = new InterfaceEntity();
             inter.setNomeLocal(i.getNomeLocal());
             inter.setFabricante(i.getFabricante());

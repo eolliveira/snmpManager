@@ -1,7 +1,7 @@
 package com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
+import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import lombok.Data;
@@ -25,7 +25,7 @@ public class EstacaoTrabalhoSynchronizeDTO {
     private String dnsList;
     private String gateway;
 
-    private List<InterfaceAtivoDTO> interfaces = new ArrayList<>();
+    private List<InterfaceDTO> interfaces = new ArrayList<>();
     private List<DiscoDTO> discos = new ArrayList<>();
 
     public EstacaoTrabalhoSynchronizeDTO() {
@@ -61,7 +61,7 @@ public class EstacaoTrabalhoSynchronizeDTO {
         this.dnsList = obj.getDnsList();
         this.gateway = obj.getGateway();
 
-        obj.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
+        obj.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceDTO(i))).collect(Collectors.toList());
         obj.getDiscos().stream().map(disco -> this.discos.add(new DiscoDTO(disco))).collect(Collectors.toList());
     }
 
