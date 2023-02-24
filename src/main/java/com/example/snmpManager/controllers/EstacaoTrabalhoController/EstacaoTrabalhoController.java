@@ -1,5 +1,6 @@
 package com.example.snmpManager.controllers.EstacaoTrabalhoController;
 
+import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
@@ -37,6 +38,9 @@ public class EstacaoTrabalhoController {
     @Autowired
     private FindInterfacesWorkstationService findInterfacesWorkstationService;
 
+    @Autowired
+    private FindDiscsWorkstationService findDiscsWorkstationService;
+
 
     //obtem dados da estação de trabalho
     @GetMapping(value = "/{ipAddress}")
@@ -59,6 +63,14 @@ public class EstacaoTrabalhoController {
     public ResponseEntity<List<InterfaceDTO>> findAllInterfaces(@PathVariable Long idActive) {
         List<InterfaceDTO> interfaces = findInterfacesWorkstationService.findAllInterfaces(idActive);
         return ResponseEntity.ok(interfaces);
+    }
+
+
+    //lista discos da estação
+    @GetMapping(value = "/{idActive}/hardDrives")
+    public ResponseEntity<List<DiscoDTO>> findAllDiscs(@PathVariable Long idActive) {
+        List<DiscoDTO> discos = findDiscsWorkstationService.findAllDiscs(idActive);
+        return ResponseEntity.ok(discos);
     }
 
 
