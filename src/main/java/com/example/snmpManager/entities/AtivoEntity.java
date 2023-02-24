@@ -2,7 +2,6 @@ package com.example.snmpManager.entities;
 
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
-import lombok.Data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -38,7 +37,7 @@ public abstract class AtivoEntity {
     private Date ultimoSincronismo;
     private BigDecimal valorCompra;
     private String fornecedor;
-    private String obeservacao;
+    private String observacao;
 
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO")

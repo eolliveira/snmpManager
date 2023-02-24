@@ -33,7 +33,7 @@ public class EstacaoTrabalhoBasicDTO extends AtivoDTO {
         this.setUltimoSincronismo(entity.getUltimoSincronismo());
         this.setValorCompra(entity.getValorCompra());
         this.setFornecedor(entity.getFornecedor());
-        this.setObservacao(entity.getObeservacao());
+        this.setObservacao(entity.getObservacao());
         this.sistemaOperacional = entity.getSistemaOperacional();
         this.processador = entity.getProcessador();
         this.arquiteturaSo = entity.getArquiteturaSo();

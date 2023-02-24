@@ -55,7 +55,7 @@ public class AtivoDTO implements Serializable {
         this.ultimoSincronismo = entity.getUltimoSincronismo();
         this.valorCompra = entity.getValorCompra();
         this.fornecedor = entity.getFornecedor();
-        this.observacao = entity.getObeservacao();
+        this.observacao = entity.getObservacao();
         //this.usuario = new UsuarioDTO(entity.getUsuario());
 
         //entity.getMovimentos().stream().map(m -> this.movimentos.add(new MovimentoAtivoDTO(m))).collect(Collectors.toList());

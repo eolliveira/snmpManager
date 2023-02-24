@@ -45,7 +45,7 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
         this.setUltimoSincronismo(entity.getUltimoSincronismo());
         this.setValorCompra(entity.getValorCompra());
         this.setFornecedor(entity.getFornecedor());
-        this.setObservacao(entity.getObeservacao());
+        this.setObservacao(entity.getObservacao());
         this.sistemaOperacional = entity.getSistemaOperacional();
         this.processador = entity.getProcessador();
         this.arquiteturaSo = entity.getArquiteturaSo();
@@ -56,8 +56,8 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
         this.dnsList = entity.getDnsList();
         this.gateway = entity.getGateway();
 
-        entity.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
-        entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoDTO(disco))).collect(Collectors.toList());
+        //entity.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
+        //entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoDTO(disco))).collect(Collectors.toList());
     }
 
 

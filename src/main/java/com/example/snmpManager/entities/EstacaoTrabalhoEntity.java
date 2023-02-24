@@ -47,7 +47,7 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
         this.setUltimoSincronismo(dto.getUltimoSincronismo());
         this.setValorCompra(dto.getValorCompra());
         this.setFornecedor(dto.getFornecedor());
-        this.setObeservacao(dto.getObservacao());
+        this.setObservacao(dto.getObservacao());
         this.sistemaOperacional = dto.getSistemaOperacional();
         this.processador = dto.getProcessador();
         this.arquiteturaSo = dto.getArquiteturaSo();

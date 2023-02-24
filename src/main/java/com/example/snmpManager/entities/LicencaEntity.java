@@ -1,6 +1,5 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import com.example.snmpManager.entities.enums.TipoLicenca;
@@ -41,7 +40,7 @@ public class LicencaEntity extends AtivoEntity {
         this.setUltimoSincronismo(dto.getUltimoSincronismo());
         this.setValorCompra(dto.getValorCompra());
         this.setFornecedor(dto.getFornecedor());
-        this.setObeservacao(getObeservacao());
+        this.setObservacao(getObservacao());
         this.setStatus(StatusAtivo.DISPONIVEL);
         this.setInativo(false);
         this.software = dto.getSoftware();

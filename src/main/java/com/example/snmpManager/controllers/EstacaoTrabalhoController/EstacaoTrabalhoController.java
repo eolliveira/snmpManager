@@ -69,7 +69,7 @@ public class EstacaoTrabalhoController {
 
     //atualiza estação passando o id
     @PutMapping(value = "/{idActive}/update")
-    public ResponseEntity<EstacaoTrabalhoSynchronizeDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoSynchronizeDTO dto) {
+    public ResponseEntity<EstacaoTrabalhoDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoDTO dto) {
         dto = updateWorkstationService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
     }

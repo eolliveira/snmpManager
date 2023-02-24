@@ -62,7 +62,7 @@ public class LicencaDTO implements Serializable {
         this.ultimoSincronismo = entity.getUltimoSincronismo();
         this.valorCompra = entity.getValorCompra();
         this.fornecedor = entity.getFornecedor();
-        this.observacao = entity.getObeservacao();
+        this.observacao = entity.getObservacao();
         this.software = entity.getSoftware();
         this.qtdLicencas = entity.getQtdLicencas();
         this.chaveLicenca = entity.getChaveLicenca();

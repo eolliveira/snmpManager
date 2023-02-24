@@ -2,7 +2,7 @@ package com.example.snmpManager.services.EstacaoTrabalhoService;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoSynchronizeDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceAtivoDTO;
 import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.entities.DiscoParticaoEntity;
@@ -36,10 +36,21 @@ public class UpdateWorkstationService {
 
 
     @Transactional
-    public EstacaoTrabalhoSynchronizeDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoSynchronizeDTO dto) {
+    public EstacaoTrabalhoDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoDTO dto) {
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
 
+        estacaoTrabalho.setNome(dto.getNome());
+        estacaoTrabalho.setDescricao(dto.getDescricao());
+        estacaoTrabalho.setInativo(dto.getInativo());
+        estacaoTrabalho.setStatus(dto.getStatus());
+        estacaoTrabalho.setDtAquisicao(dto.getDtAquisicao());
+        estacaoTrabalho.setDtVencimentoGarantia(dto.getDtVencimentoGarantia());
+        estacaoTrabalho.setDtExpiracao(dto.getDtExpiracao());
+        estacaoTrabalho.setUltimoSincronismo(dto.getUltimoSincronismo());
+        estacaoTrabalho.setValorCompra(dto.getValorCompra());
+        estacaoTrabalho.setFornecedor(dto.getFornecedor());
+        estacaoTrabalho.setObservacao(dto.getObservacao());
         estacaoTrabalho.setFabricante(dto.getFabricante());
         estacaoTrabalho.setNumeroSerie(dto.getNumeroSerie());
         estacaoTrabalho.setModelo(dto.getModelo());
@@ -91,7 +102,7 @@ public class UpdateWorkstationService {
             }
         }
 
-        return new EstacaoTrabalhoSynchronizeDTO(estacaoTrabalho);
+        return new EstacaoTrabalhoDTO(estacaoTrabalho);
     }
 
 
