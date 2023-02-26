@@ -73,7 +73,7 @@ public class SNMPTrapReciever implements CommandResponder {
 
     //Este método será chamado sempre que um pdu for recebido na porta especificada no método listen()
     @Override
-    public void processPdu(CommandResponderEvent cmdRespEvent) {
+    public synchronized void processPdu(CommandResponderEvent cmdRespEvent) {
 
         System.out.println("PDU Recebido...");
         PDU pdu = cmdRespEvent.getPDU();
