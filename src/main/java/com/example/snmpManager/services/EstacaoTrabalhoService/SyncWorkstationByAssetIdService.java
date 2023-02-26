@@ -77,17 +77,8 @@ public class SyncWorkstationByAssetIdService {
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
         estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
 
-        //recupera todos as interfaces e discos da estação
-        List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-        List<DiscoEntity> discos = discoRepository.findAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
-
-        if (!interfaces.isEmpty()) {
-            interfaceRepository.deleteAll(interfaces);
-        }
-
-        if (!discos.isEmpty()) {
-            discoRepository.deleteAll(discos);
-        }
+        interfaceRepository.deleteAllByEstacaoTrabalhoId(estacaoTrabalho.getId());
+        discoRepository.deleteAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
         //adiciona interfaces atualizadas
         for (InterfaceDTO i : dto.getInterfaces()) {
