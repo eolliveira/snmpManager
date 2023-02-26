@@ -8,6 +8,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.*;
 
 @Table(name = "ATIVO")
@@ -34,7 +35,7 @@ public abstract class AtivoEntity {
     private Date dtAquisicao;
     private Date dtVencimentoGarantia;
     private Date dtExpiracao;
-    private Date ultimoSincronismo;
+    private Instant ultimoSincronismo;
     private BigDecimal valorCompra;
     private String fornecedor;
     private String observacao;

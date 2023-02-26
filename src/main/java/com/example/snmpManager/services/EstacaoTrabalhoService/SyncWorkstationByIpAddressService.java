@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.time.Instant;
 import java.util.Objects;
 import java.util.Optional;
 
@@ -76,8 +77,10 @@ public class SyncWorkstationByIpAddressService {
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
         estacaoTrabalho.setDominio(dto.getDominio());
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
+        estacaoTrabalho.setUltimoSincronismo(Instant.now());
         estacaoTrabalho = estacaoTrabalhoRepository.save(estacaoTrabalho);
 
+        //TODO(Verificar alternativa para modificar lista )
         interfaceRepository.deleteAllByEstacaoTrabalhoId(estacaoTrabalho.getId());
         discoRepository.deleteAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 

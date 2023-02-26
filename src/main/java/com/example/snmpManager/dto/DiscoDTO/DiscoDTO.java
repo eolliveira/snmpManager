@@ -32,7 +32,6 @@ public class DiscoDTO implements Serializable {
         this.modelo = entity.getModelo();
         this.numeroSerie = entity.getNumeroSerie();
         this.capacidade = entity.getCapacidade();
-        //this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
         entity.getParticoes().stream().map(particao -> this.particoes.add(new DiscoParticaoDTO(particao))).collect(Collectors.toList());
     }
 

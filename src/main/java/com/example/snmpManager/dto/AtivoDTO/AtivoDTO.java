@@ -9,6 +9,7 @@ import lombok.Data;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -27,7 +28,7 @@ public class AtivoDTO implements Serializable {
     private Date dtAquisicao;
     private Date dtVencimentoGarantia;
     private Date dtExpiracao;
-    private Date ultimoSincronismo;
+    private Instant ultimoSincronismo;
     private BigDecimal valorCompra;
     private String fornecedor;
     private String observacao;
