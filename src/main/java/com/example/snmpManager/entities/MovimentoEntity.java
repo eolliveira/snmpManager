@@ -1,13 +1,11 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoAtivoDTO;
+import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoInsertDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.Instant;
-import java.util.ArrayList;
-import java.util.List;
 
 @Table(name = "ATIVOMOVIMENTO")
 @Entity
@@ -36,16 +34,13 @@ public class MovimentoEntity {
     @JoinColumn(name = "ID_USUARIO")
     private UsuarioEntity usuario;
 
-    @OneToMany(mappedBy = "movimento")
-    private List<AnexoEntity> anexos = new ArrayList<>();
-
     public MovimentoEntity() {
     }
-    public MovimentoEntity(MovimentoAtivoDTO dto, AtivoEntity ativo, UsuarioEntity usuario) {
+    public MovimentoEntity(MovimentoInsertDTO dto, AtivoEntity ativo, UsuarioEntity usuario) {
         this.id = dto.getId();
         this.descricao = dto.getDescricao();
         this.dtMovimento = dto.getDtMovimento();
-        this.statusAtivoAnterior = dto.getStatusAtivoAnterior();
+        this.statusAtivoAnterior = ativo.getStatus();
         this.statusAtivo = dto.getStatusAtivo();
         this.dtMovimento = Instant.now();
         this.ativo = ativo;

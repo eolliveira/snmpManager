@@ -1,6 +1,7 @@
 package com.example.snmpManager.services.MovimentoService;
 
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoAtivoDTO;
+import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
+import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoInsertDTO;
 import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.MovimentoEntity;
 import com.example.snmpManager.entities.UsuarioEntity;
@@ -15,7 +16,7 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
-public class MovimentoService {
+public class NewMovimentService {
 
     @Autowired
     private MovimentoAtivoRepository movimentoRepository;
@@ -28,15 +29,22 @@ public class MovimentoService {
 
 
     @Transactional
-    public void insertNewMoviment(MovimentoAtivoDTO dto) {
+    public MovimentoDTO insertNewMoviment(MovimentoInsertDTO dto) {
         Optional<AtivoEntity> optAtivo = ativoRepository.findById(dto.getAtivo().getId());
         AtivoEntity ativo = optAtivo.orElseThrow(() -> new ResourceNotFoundException("Ativo id: " + dto.getAtivo().getId() + " não encontrado."));
 
+
+        //TODO(Deve ser informado o id do usuário logado)
         Optional<UsuarioEntity> optUser = usuarioRepository.findById(dto.getUsuario().getId());
         UsuarioEntity usuario = optUser.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + " não encontrado."));
 
         MovimentoEntity movimento = new MovimentoEntity(dto, ativo, usuario);
-
         movimentoRepository.save(movimento);
+
+        //altera o status do ativo
+        ativo.setStatus(dto.getStatusAtivo());
+        ativoRepository.save(ativo);
+
+        return new MovimentoDTO(movimento);
     }
 }

@@ -1,7 +1,7 @@
 package com.example.snmpManager.dto.AtivoDTO;
 
 import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoAtivoDTO;
+import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.enums.StatusAtivo;
@@ -35,7 +35,7 @@ public class AtivoDTO implements Serializable {
 
     private UsuarioDTO usuario;
 
-    private List<MovimentoAtivoDTO> movimentos = new ArrayList<>();
+    private List<MovimentoDTO> movimentos = new ArrayList<>();
     private List<LicencaDTO> licencas = new ArrayList<>();
 
     public AtivoDTO(){}
