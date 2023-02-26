@@ -7,7 +7,9 @@ import lombok.*;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
@@ -29,7 +31,7 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private List<InterfaceEntity> interfaces = new ArrayList<>();
 
     @OneToMany(mappedBy = "estacaoTrabalho", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DiscoEntity> discos = new ArrayList<>();
+    private Set<DiscoEntity> discos = new HashSet<>();
 
     public EstacaoTrabalhoEntity() {}
 

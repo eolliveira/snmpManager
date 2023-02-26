@@ -5,7 +5,9 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Table(name = "ATIVODISCO")
 @Entity
@@ -26,8 +28,8 @@ public class DiscoEntity {
     @JoinColumn(name = "ID_ESTACAO_TRABALHO")
     private EstacaoTrabalhoEntity estacaoTrabalho;
 
-    @OneToMany(mappedBy = "disco", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DiscoParticaoEntity> particoes = new ArrayList<>();
+    @OneToMany(mappedBy = "disco", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<DiscoParticaoEntity> particoes = new HashSet<>();
 
     public DiscoEntity() {
     }
