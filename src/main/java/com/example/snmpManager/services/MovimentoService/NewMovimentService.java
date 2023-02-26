@@ -7,7 +7,7 @@ import com.example.snmpManager.entities.MovimentoEntity;
 import com.example.snmpManager.entities.UsuarioEntity;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
 import com.example.snmpManager.repositories.AtivoRepository;
-import com.example.snmpManager.repositories.MovimentoAtivoRepository;
+import com.example.snmpManager.repositories.MovimentoRepository;
 import com.example.snmpManager.repositories.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,7 +19,7 @@ import java.util.Optional;
 public class NewMovimentService {
 
     @Autowired
-    private MovimentoAtivoRepository movimentoRepository;
+    private MovimentoRepository movimentoRepository;
 
     @Autowired
     private AtivoRepository ativoRepository;

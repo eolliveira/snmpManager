@@ -1,11 +1,13 @@
-package com.example.snmpManager.controllers.EstacaoTrabalhoController;
+package com.example.snmpManager.controllers;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
+import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
+import com.example.snmpManager.services.MovimentoService.FindMovesWorkstationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +43,9 @@ public class EstacaoTrabalhoController {
     @Autowired
     private FindDiscsWorkstationService findDiscsWorkstationService;
 
+    @Autowired
+    private FindMovesWorkstationService findMovesWorkstationService;
+
 
     //obtem dados da estação de trabalho
     @GetMapping(value = "/{ipAddress}")
@@ -71,6 +76,14 @@ public class EstacaoTrabalhoController {
     public ResponseEntity<List<DiscoDTO>> findAllDiscs(@PathVariable Long idActive) {
         List<DiscoDTO> discos = findDiscsWorkstationService.findAllDiscs(idActive);
         return ResponseEntity.ok(discos);
+    }
+
+
+    //lista de movimentos da estação
+    @GetMapping(value = "/{idActive}/moves")
+    public ResponseEntity<List<MovimentoDTO>> findAllMoves(@PathVariable Long idActive) {
+        List<MovimentoDTO> movimentos = findMovesWorkstationService.findAllMoves(idActive);
+        return ResponseEntity.ok(movimentos);
     }
 
 
