@@ -21,6 +21,8 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String processador;
     private String arquiteturaSo;
     private String memoriaRam;
+
+    private String tempoLigado;
     private String nomeHost;
     private String ultimoUsuarioLogado;
     private String dominio;
@@ -54,6 +56,7 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
         this.processador = dto.getProcessador();
         this.arquiteturaSo = dto.getArquiteturaSo();
         this.memoriaRam = dto.getMemoriaRam();
+        this.tempoLigado = dto.getTempoLigado();
         this.nomeHost = dto.getNomeHost();
         this.ultimoUsuarioLogado = dto.getUltimoUsuarioLogado();
         this.dominio = dto.getDominio();

@@ -12,6 +12,8 @@ public class EstacaoTrabalhoBasicDTO extends AtivoDTO {
     private String processador;
     private String arquiteturaSo;
     private String memoriaRam;
+
+    private String tempoLigado;
     private String nomeHost;
     private String ultimoUsuarioLogado;
     private String dominio;
@@ -38,6 +40,7 @@ public class EstacaoTrabalhoBasicDTO extends AtivoDTO {
         this.processador = entity.getProcessador();
         this.arquiteturaSo = entity.getArquiteturaSo();
         this.memoriaRam = entity.getMemoriaRam();
+        this.tempoLigado = entity.getTempoLigado();
         this.nomeHost = entity.getNomeHost();
         this.ultimoUsuarioLogado = entity.getUltimoUsuarioLogado();
         this.dominio = entity.getDominio();

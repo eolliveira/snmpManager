@@ -33,6 +33,7 @@ public class GetDataFromWorkstationService {
         String numeroSerie = snmpRequestClient.getAsString(new OID(mib.getNUMERO_SERIE_OID()));
         String processador = snmpRequestClient.getAsString(new OID(mib.getPROCESSADOR_OID()));
         String memoriaRam = snmpRequestClient.getAsString(new OID(mib.getMEMORIA_RAM_OID()));
+        String tempoLigado = snmpRequestClient.getAsString(new OID(mib.getTEMPO_LIGADO_OID()));
         String nomeMaquina = snmpRequestClient.getAsString(new OID(mib.getNOME_OID()));
         String dominio = snmpRequestClient.getAsString(new OID(mib.getDOMINIO_OID()));
         String usuarioLogado = snmpRequestClient.getAsString(new OID(mib.getUSUARIO_LOGADO_OID()));
@@ -51,6 +52,7 @@ public class GetDataFromWorkstationService {
         windowsObject.setNumeroSerie(numeroSerie);
         windowsObject.setProcessador(processador);
         windowsObject.setMemoriaRam(memoriaRam);
+        windowsObject.setTempoLigado(tempoLigado);
         windowsObject.setNomeHost(nomeMaquina);
         windowsObject.setDominio(dominio);
         windowsObject.setUltimoUsuarioLogado(usuarioLogado);

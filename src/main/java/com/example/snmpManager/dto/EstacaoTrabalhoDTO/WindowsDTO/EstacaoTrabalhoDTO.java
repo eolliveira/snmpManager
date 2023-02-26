@@ -16,6 +16,8 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private String processador;
     private String arquiteturaSo;
     private String memoriaRam;
+
+    private String tempoLigado;
     private String nomeHost;
     private String ultimoUsuarioLogado;
     private String dominio;
@@ -49,14 +51,13 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
         this.processador = entity.getProcessador();
         this.arquiteturaSo = entity.getArquiteturaSo();
         this.memoriaRam = entity.getMemoriaRam();
+        this.tempoLigado = entity.getTempoLigado();
         this.nomeHost = entity.getNomeHost();
         this.ultimoUsuarioLogado = entity.getUltimoUsuarioLogado();
         this.dominio = entity.getDominio();
         this.dnsList = entity.getDnsList();
         this.gateway = entity.getGateway();
 
-        //entity.getInterfaces().stream().map(i -> this.interfaces.add(new InterfaceAtivoDTO(i))).collect(Collectors.toList());
-        //entity.getDiscos().stream().map(disco -> this.discos.add(new DiscoDTO(disco))).collect(Collectors.toList());
     }
 
 

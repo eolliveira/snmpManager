@@ -19,6 +19,7 @@ public class WorkstationObject extends DeviceObjectAbstract implements Serializa
     private String arquiteturaSo;
     private String processador;
     private String memoriaRam;
+    private String tempoLigado;
     private String nomeHost;
     private String dominio;
     private String ultimoUsuarioLogado;

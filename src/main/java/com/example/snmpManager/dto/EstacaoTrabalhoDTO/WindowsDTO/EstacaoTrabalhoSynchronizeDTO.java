@@ -19,6 +19,8 @@ public class EstacaoTrabalhoSynchronizeDTO {
     private String processador;
     private String arquiteturaSo;
     private String memoriaRam;
+
+    private String tempoLigado;
     private String nomeHost;
     private String ultimoUsuarioLogado;
     private String dominio;
@@ -40,6 +42,7 @@ public class EstacaoTrabalhoSynchronizeDTO {
         this.processador = entity.getProcessador();
         this.arquiteturaSo = entity.getArquiteturaSo();
         this.memoriaRam = entity.getMemoriaRam();
+        this.tempoLigado = entity.getTempoLigado();
         this.nomeHost = entity.getNomeHost();
         this.ultimoUsuarioLogado = entity.getUltimoUsuarioLogado();
         this.dominio = entity.getDominio();
@@ -55,6 +58,7 @@ public class EstacaoTrabalhoSynchronizeDTO {
         this.processador = obj.getProcessador();
         this.arquiteturaSo = obj.getArquiteturaSo();
         this.memoriaRam = obj.getMemoriaRam();
+        this.tempoLigado = obj.getTempoLigado();
         this.nomeHost = obj.getNomeHost();
         this.ultimoUsuarioLogado = obj.getUltimoUsuarioLogado();
         this.dominio = obj.getDominio();
