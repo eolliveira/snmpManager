@@ -1,4 +1,4 @@
-package com.example.snmpManager.services.EstacaoTrabalhoService;
+package com.example.snmpManager.services.DiscoService;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;

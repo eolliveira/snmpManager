@@ -6,7 +6,9 @@ import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalho
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
+import com.example.snmpManager.services.DiscoService.FindDiscsWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
+import com.example.snmpManager.services.InterfaceService.FindInterfacesWorkstationService;
 import com.example.snmpManager.services.MovimentoService.FindMovesWorkstationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
