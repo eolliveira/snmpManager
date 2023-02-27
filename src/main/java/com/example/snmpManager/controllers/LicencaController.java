@@ -1,8 +1,11 @@
 package com.example.snmpManager.controllers;
 
 import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
+import com.example.snmpManager.dto.LicencaDTO.LicencaLinkDTO;
 import com.example.snmpManager.services.LicencaService.FindAllLicenseService;
+import com.example.snmpManager.services.LicencaService.LinkLicenseService;
 import com.example.snmpManager.services.LicencaService.NewLicenseService;
+import com.example.snmpManager.services.LicencaService.UnlinkLicenseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +22,12 @@ public class LicencaController {
     @Autowired
     private FindAllLicenseService findAllLicenseService;
 
+    @Autowired
+    private LinkLicenseService linkLicenseService;
+
+    @Autowired
+    private UnlinkLicenseService unlinkLicenseService;
+
     @GetMapping()
     public ResponseEntity<List<LicencaInsertDTO>> findAllLicenses() {
         List<LicencaInsertDTO> licencas = findAllLicenseService.findAllLicense();
@@ -30,5 +39,16 @@ public class LicencaController {
         LicencaInsertDTO licenca = newLicenseService.insertNewLicense(dto);
         return ResponseEntity.ok(licenca);
     }
+
+    @PutMapping(value = "/linkActive")
+    public void linkActive(@RequestBody LicencaLinkDTO dto) {
+        linkLicenseService.linkLicense(dto);
+    }
+
+    @PutMapping(value = "/unlinkActive")
+    public void unlinkActive(@RequestBody LicencaLinkDTO dto) {
+        unlinkLicenseService.unlinkLicense(dto);
+    }
+
 
 }
