@@ -23,6 +23,7 @@ public class LicencaEntity extends AtivoEntity {
 
     @ManyToMany(mappedBy = "licencas")
     private final Set<AtivoEntity> products = new HashSet<>();
+    //TODO(produstos ?)
 
 
     public LicencaEntity() {}

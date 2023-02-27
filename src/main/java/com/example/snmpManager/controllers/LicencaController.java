@@ -2,10 +2,8 @@ package com.example.snmpManager.controllers;
 
 import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaLinkDTO;
-import com.example.snmpManager.services.LicencaService.FindAllLicenseService;
-import com.example.snmpManager.services.LicencaService.LinkLicenseService;
-import com.example.snmpManager.services.LicencaService.NewLicenseService;
-import com.example.snmpManager.services.LicencaService.UnlinkLicenseService;
+import com.example.snmpManager.dto.LicencaDTO.LicencaUpdateDTO;
+import com.example.snmpManager.services.LicencaService.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,6 +21,9 @@ public class LicencaController {
     private FindAllLicenseService findAllLicenseService;
 
     @Autowired
+    private UpdateLicenseService updateLicenseService;
+
+    @Autowired
     private LinkLicenseService linkLicenseService;
 
     @Autowired
@@ -38,6 +39,12 @@ public class LicencaController {
     public ResponseEntity<LicencaInsertDTO> insertNewLicense(@RequestBody LicencaInsertDTO dto) {
         LicencaInsertDTO licenca = newLicenseService.insertNewLicense(dto);
         return ResponseEntity.ok(licenca);
+    }
+
+    @PutMapping(value = "/{licenseId}")
+    public ResponseEntity<LicencaUpdateDTO> updateLicense(@PathVariable Long licenseId, @RequestBody LicencaUpdateDTO dto) {
+        dto = updateLicenseService.updateLicense(licenseId, dto);
+        return ResponseEntity.ok(dto);
     }
 
     @PutMapping(value = "/linkActive")
