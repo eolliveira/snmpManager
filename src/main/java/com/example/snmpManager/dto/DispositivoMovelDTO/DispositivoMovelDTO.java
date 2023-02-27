@@ -7,8 +7,4 @@ import java.io.Serializable;
 
 public class DispositivoMovelDTO extends AtivoDTO implements Serializable {
     private String versaoAndroid;
-
-    public DispositivoMovelDTO(AtivoEntity entity) {
-        super(entity);
-    }
 }

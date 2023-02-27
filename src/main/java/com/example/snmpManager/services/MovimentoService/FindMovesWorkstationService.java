@@ -15,9 +15,7 @@ public class FindMovesWorkstationService {
     @Autowired
     MovimentoRepository movimentoRepository;
 
-
     public List<MovimentoDTO> findAllMoves(Long idActive) {
-        //TODO(Tratar exception)
         List<MovimentoEntity> movimentos = movimentoRepository.findAllByAtivo_Id(idActive);
         return movimentos.stream().map(MovimentoDTO::new).collect(Collectors.toList());
     }

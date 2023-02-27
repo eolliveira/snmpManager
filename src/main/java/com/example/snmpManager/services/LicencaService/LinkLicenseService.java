@@ -33,7 +33,7 @@ public class LinkLicenseService {
             }
         } catch (ClassCastException e) {
             //TODO(Tratar erro na camada de rede)
-            throw new ClassCastException("Falha ao realizar o Cast das subclasses de Ativo: " + e.getMessage());
+            throw new ClassCastException("Falha ao realizar o Cast das subclasses de ativo. Verifique o corpo da requisição");
         }
 
 

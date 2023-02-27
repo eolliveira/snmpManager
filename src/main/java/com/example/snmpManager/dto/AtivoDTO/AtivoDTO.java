@@ -3,7 +3,6 @@ package com.example.snmpManager.dto.AtivoDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
-import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
 
@@ -38,28 +37,6 @@ public class AtivoDTO implements Serializable {
     private List<MovimentoDTO> movimentos = new ArrayList<>();
     private List<LicencaInsertDTO> licencas = new ArrayList<>();
 
-    public AtivoDTO(){}
-
-    public AtivoDTO(AtivoEntity entity) {
-        //TODO(VERIFICAR SE É NECESSARIO ESSE CONSTRUTOR)
-        this.id = entity.getId();
-        this.nome = entity.getNome();
-        this.fabricante = entity.getFabricante();
-        this.modelo = entity.getModelo();
-        this.descricao = entity.getDescricao();
-        this.numeroSerie = entity.getNumeroSerie();
-        this.inativo = entity.getInativo();
-        this.status = entity.getStatus();
-        this.dtAquisicao = entity.getDtAquisicao();
-        this.dtVencimentoGarantia = entity.getDtVencimentoGarantia();
-        this.dtExpiracao = entity.getDtExpiracao();
-        this.ultimoSincronismo = entity.getUltimoSincronismo();
-        this.valorCompra = entity.getValorCompra();
-        this.fornecedor = entity.getFornecedor();
-        this.observacao = entity.getObservacao();
-        //this.usuario = new UsuarioDTO(entity.getUsuario());
-
-        //entity.getMovimentos().stream().map(m -> this.movimentos.add(new MovimentoAtivoDTO(m))).collect(Collectors.toList());
-        //entity.getLicencas().stream().map(l -> this.licencas.add(new LicencaDTO(l))).collect(Collectors.toList());
+    public AtivoDTO() {
     }
 }

@@ -15,9 +15,7 @@ public class FindInterfacesWorkstationService {
     @Autowired
     InterfaceRepository interfaceRepository;
 
-
     public List<InterfaceDTO> findAllInterfaces(Long idActive) {
-        //TODO(Tratar exception)
         List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(idActive);
         return interfaces.stream().map(InterfaceDTO::new).collect(Collectors.toList());
     }
