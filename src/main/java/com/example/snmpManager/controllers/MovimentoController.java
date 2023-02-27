@@ -1,6 +1,6 @@
 package com.example.snmpManager.controllers;
 
-import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
+import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoInsertDTO;
 import com.example.snmpManager.services.MovimentoService.NewMovimentService;
@@ -20,7 +20,7 @@ public class MovimentoController {
     private NewMovimentService newMovimentService;
 
     @GetMapping(value = "/{idAtivo}")
-    public ResponseEntity<List<LicencaDTO>> findByActive(@PathVariable Long idAtivo) {
+    public ResponseEntity<List<LicencaInsertDTO>> findByActive(@PathVariable Long idAtivo) {
 
         return null;
     }

@@ -1,6 +1,6 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.LicencaDTO.LicencaDTO;
+import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import com.example.snmpManager.entities.enums.TipoLicenca;
 import lombok.Data;
@@ -27,7 +27,7 @@ public class LicencaEntity extends AtivoEntity {
 
     public LicencaEntity() {}
 
-    public LicencaEntity(LicencaDTO dto) {
+    public LicencaEntity(LicencaInsertDTO dto) {
         this.setId(dto.getId());
         this.setNome(dto.getNome());
         this.setDescricao(dto.getDescricao());
@@ -37,10 +37,9 @@ public class LicencaEntity extends AtivoEntity {
         this.setDtAquisicao(dto.getDtAquisicao());
         this.setDtVencimentoGarantia(dto.getDtVencimentoGarantia());
         this.setDtExpiracao(dto.getDtExpiracao());
-        this.setUltimoSincronismo(dto.getUltimoSincronismo());
         this.setValorCompra(dto.getValorCompra());
         this.setFornecedor(dto.getFornecedor());
-        this.setObservacao(getObservacao());
+        this.setObservacao(dto.getObservacao());
         this.setStatus(StatusAtivo.DISPONIVEL);
         this.setInativo(false);
         this.software = dto.getSoftware();
