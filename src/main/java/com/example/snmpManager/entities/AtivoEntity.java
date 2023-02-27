@@ -47,6 +47,9 @@ public abstract class AtivoEntity {
     @OneToMany(mappedBy = "ativo")
     private List<MovimentoEntity> movimentos = new ArrayList<>();
 
+    @OneToMany(mappedBy = "ativo")
+    private List<AnexoEntity> anexos = new ArrayList<>();
+
     @ManyToMany
     @JoinTable(name = "ATIVOLICENCA",
             joinColumns = @JoinColumn(name = "ID_ATIVO"),
