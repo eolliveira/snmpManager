@@ -6,6 +6,7 @@ import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.MovimentoEntity;
 import com.example.snmpManager.entities.UsuarioEntity;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
+import com.example.snmpManager.exceptions.UnprocesableEntityExecption;
 import com.example.snmpManager.repositories.AtivoRepository;
 import com.example.snmpManager.repositories.MovimentoRepository;
 import com.example.snmpManager.repositories.UsuarioRepository;
@@ -34,7 +35,7 @@ public class NewMovimentService {
         AtivoEntity ativo = optAtivo.orElseThrow(() -> new ResourceNotFoundException("Ativo id: " + dto.getAtivo().getId() + " não encontrado."));
 
         if(ativo.getStatus() == dto.getStatusAtivo()){
-            throw new ResourceNotFoundException("Status [" + dto.getStatusAtivo() + "] ja esta definido para o Ativo id: " + ativo.getId());
+            throw new UnprocesableEntityExecption("Status [" + dto.getStatusAtivo() + "] ja esta definido para o Ativo id: " + ativo.getId());
         }
 
         //TODO(Deve ser informado o id do usuário logado - implementar )

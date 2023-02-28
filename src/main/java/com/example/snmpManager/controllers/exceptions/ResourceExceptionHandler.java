@@ -1,9 +1,6 @@
 package com.example.snmpManager.controllers.exceptions;
 
-import com.example.snmpManager.exceptions.FailureInitializeUdpTransport;
-import com.example.snmpManager.exceptions.InvalidAddressExecption;
-import com.example.snmpManager.exceptions.ResourceNotFoundException;
-import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
+import com.example.snmpManager.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -64,6 +61,19 @@ public class ResourceExceptionHandler {
         error.setPath(request.getRequestURI());
         return ResponseEntity.status(httpStatus).body(error);
     }
+
+    @ExceptionHandler(UnprocesableEntityExecption.class)
+    public ResponseEntity<StandardError> entityNotFound(UnprocesableEntityExecption e, HttpServletRequest request) {
+        int httpStatus = HttpStatus.UNPROCESSABLE_ENTITY.value();
+        StandardError error = new StandardError();
+        error.setTimestamp(Instant.now());
+        error.setStatus(httpStatus);
+        error.setError("UnprocessableEntity");
+        error.setMessage(e.getMessage());
+        error.setPath(request.getRequestURI());
+        return ResponseEntity.status(httpStatus).body(error);
+    }
+
 
 
 }
