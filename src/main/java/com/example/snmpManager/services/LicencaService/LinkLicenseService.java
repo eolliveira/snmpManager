@@ -21,23 +21,26 @@ public class LinkLicenseService {
     @Transactional
     public void linkLicense(LicencaLinkDTO dto) {
 
-        Optional<AtivoEntity> ativoOpt = ativoRepository.findById(dto.getAtivoId());
-        AtivoEntity ativo = ativoOpt.orElseThrow(() -> new ResourceNotFoundException("Ativo id: " + dto.getAtivoId() + " não encontrado."));
-
-        Optional<AtivoEntity> licencaOpt = ativoRepository.findById(dto.getLicencaId());
-        AtivoEntity licenca = licencaOpt.orElseThrow(() -> new ResourceNotFoundException("Licença id: " + dto.getLicencaId() + " não encontrada."));
-
         try {
+            Optional<AtivoEntity> ativoOpt = ativoRepository.findById(dto.getAtivoId());
+            AtivoEntity ativo = ativoOpt.orElseThrow(() -> new ResourceNotFoundException("Ativo id: " + dto.getAtivoId() + " não encontrado."));
+
+            Optional<AtivoEntity> licencaOpt = ativoRepository.findById(dto.getLicencaId());
+            LicencaEntity licenca = (LicencaEntity) licencaOpt.orElseThrow(() -> new ResourceNotFoundException("Licença id: " + dto.getLicencaId() + " não encontrada."));
+
             if (!ativo.getLicencas().contains(licenca)) {
-                ativo.getLicencas().add((LicencaEntity) licenca);
-                ativoRepository.save(ativo);
+                Long qtdAtivosPorLicenca = ativoRepository.countCurrentLicensesPerAsset(licenca.getId());
+                if (licenca.getQtdLicencas() > qtdAtivosPorLicenca) {
+                    ativo.getLicencas().add(licenca);
+                    ativoRepository.save(ativo);
+                } else {
+                    throw new UnprocesableEntityExecption("Licença id: " + licenca.getId() + ", quantidade máxima de ativos: " + licenca.getQtdLicencas());
+                }
             } else {
-                throw new UnprocesableEntityExecption("Licença id: " + licenca.getId() + " ja esta vinculada ao ativo id: " + ativo.getId());
+                throw new UnprocesableEntityExecption("Licença id: " + licenca.getId() + ", ja esta vinculada ao ativo id: " + ativo.getId());
             }
         } catch (ClassCastException e) {
-            throw new UnprocesableEntityExecption("Falha ao realizar o Cast das subclasses de ativo. Verifique o corpo da requisição.");
+            throw new UnprocesableEntityExecption("Falha ao realizar o Cast das subclasses de ativo, verifique o corpo da requisição.");
         }
-
-
     }
 }
