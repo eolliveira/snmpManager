@@ -33,13 +33,14 @@ public class NewMovimentService {
         Optional<AtivoEntity> optAtivo = ativoRepository.findById(dto.getAtivo().getId());
         AtivoEntity ativo = optAtivo.orElseThrow(() -> new ResourceNotFoundException("Ativo id: " + dto.getAtivo().getId() + " não encontrado."));
 
+        if(ativo.getStatus() == dto.getStatusAtivo()){
+            throw new ResourceNotFoundException("Status [" + dto.getStatusAtivo() + "] ja esta definido para o Ativo id: " + ativo.getId());
+        }
+
         //TODO(Deve ser informado o id do usuário logado - implementar )
         Optional<UsuarioEntity> optUser = usuarioRepository.findById(dto.getUsuario().getId());
         UsuarioEntity usuario = optUser.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + " não encontrado."));
 
-        if(ativo.getStatus() == dto.getStatusAtivo()){
-            System.out.println("testar se o status");
-        }
 
         MovimentoEntity movimento = new MovimentoEntity(dto, ativo, usuario);
         movimentoRepository.save(movimento);
@@ -49,5 +50,6 @@ public class NewMovimentService {
         ativoRepository.save(ativo);
 
         return new MovimentoDTO(movimento);
+
     }
 }

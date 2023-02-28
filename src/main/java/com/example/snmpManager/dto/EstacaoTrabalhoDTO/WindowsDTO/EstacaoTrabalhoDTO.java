@@ -16,7 +16,6 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private String processador;
     private String arquiteturaSo;
     private String memoriaRam;
-
     private String tempoLigado;
     private String nomeHost;
     private String ultimoUsuarioLogado;

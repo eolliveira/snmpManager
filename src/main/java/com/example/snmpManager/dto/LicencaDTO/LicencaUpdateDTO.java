@@ -28,8 +28,10 @@ public class LicencaUpdateDTO implements Serializable {
     private String software;
     private Integer qtdLicencas;
     private String chaveLicenca;
-
     private TipoLicenca tipo;
+
+    public LicencaUpdateDTO() {
+    }
 
     public LicencaUpdateDTO(LicencaEntity entity) {
         this.id = entity.getId();
