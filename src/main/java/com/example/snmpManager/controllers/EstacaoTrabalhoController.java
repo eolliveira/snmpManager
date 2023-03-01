@@ -10,7 +10,7 @@ import com.example.snmpManager.services.DiscoService.FindDiscsWorkstationService
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
 import com.example.snmpManager.services.InterfaceService.FindInterfacesWorkstationService;
 import com.example.snmpManager.services.MovimentoService.FindMovesWorkstationService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -19,34 +19,19 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/workstation")
 public class EstacaoTrabalhoController {
-    @Autowired
-    private GetDataFromWorkstationService getDataFromWorkstationService;
 
-    @Autowired
-    private FindWorkstationService findWorkstationService;
-
-    @Autowired
-    private RemoveWorkstationService removeWorkstationService;
-
-    @Autowired
-    private UpdateWorkstationService updateWorkstationService;
-
-    @Autowired
-    private NewWorkstationService newWorkstationService;
-
-    @Autowired
-    private SyncWorkstationByAssetIdService syncWorkstationByAssetIdService;
-
-    @Autowired
-    private FindInterfacesWorkstationService findInterfacesWorkstationService;
-
-    @Autowired
-    private FindDiscsWorkstationService findDiscsWorkstationService;
-
-    @Autowired
-    private FindMovesWorkstationService findMovesWorkstationService;
+    private final GetDataFromWorkstationService getDataFromWorkstationService;
+    private final FindWorkstationService findWorkstationService;
+    private final RemoveWorkstationService removeWorkstationService;
+    private final UpdateWorkstationService updateWorkstationService;
+    private final NewWorkstationService newWorkstationService;
+    private final SyncWorkstationByAssetIdService syncWorkstationByAssetIdService;
+    private final FindInterfacesWorkstationService findInterfacesWorkstationService;
+    private final FindDiscsWorkstationService findDiscsWorkstationService;
+    private final FindMovesWorkstationService findMovesWorkstationService;
 
 
     //obtem dados da estação de trabalho

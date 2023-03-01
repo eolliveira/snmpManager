@@ -13,6 +13,7 @@ import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.InterfaceRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,19 +21,13 @@ import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class UpdateWorkstationService {
 
-    @Autowired
-    EstacaoTrabalhoRepository estacaoTrabalhoRepository;
-
-    @Autowired
-    InterfaceRepository interfaceRepository;
-
-    @Autowired
-    DiscoRepository discoRepository;
-
-    @Autowired
-    DiscoParticaoRepository discoParticaoRepository;
+    private final EstacaoTrabalhoRepository estacaoTrabalhoRepository;
+    private final InterfaceRepository interfaceRepository;
+    private final DiscoRepository discoRepository;
+    private final DiscoParticaoRepository discoParticaoRepository;
 
 
     @Transactional

@@ -12,26 +12,19 @@ import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.InterfaceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 
 @Component
+@RequiredArgsConstructor
 public class NewWorkstationService {
 
-    @Autowired
-    private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
-
-    @Autowired
-    private InterfaceRepository interfaceRepository;
-
-    @Autowired
-    private DiscoRepository discoRepository;
-
-    @Autowired
-    private DiscoParticaoRepository discoParticaoRepository;
-
+    private final EstacaoTrabalhoRepository estacaoTrabalhoRepository;
+    private final InterfaceRepository interfaceRepository;
+    private final DiscoRepository discoRepository;
+    private final DiscoParticaoRepository discoParticaoRepository;
 
     @Transactional
     public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {

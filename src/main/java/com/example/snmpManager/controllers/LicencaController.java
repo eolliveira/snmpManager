@@ -4,30 +4,22 @@ import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaLinkDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaUpdateDTO;
 import com.example.snmpManager.services.LicencaService.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/license")
 public class LicencaController {
 
-    @Autowired
-    private NewLicenseService newLicenseService;
-
-    @Autowired
-    private FindAllLicenseService findAllLicenseService;
-
-    @Autowired
-    private UpdateLicenseService updateLicenseService;
-
-    @Autowired
-    private LinkLicenseService linkLicenseService;
-
-    @Autowired
-    private UnlinkLicenseService unlinkLicenseService;
+    private final NewLicenseService newLicenseService;
+    private final FindAllLicenseService findAllLicenseService;
+    private final UpdateLicenseService updateLicenseService;
+    private final LinkLicenseService linkLicenseService;
+    private final UnlinkLicenseService unlinkLicenseService;
 
     @GetMapping()
     public ResponseEntity<List<LicencaInsertDTO>> findAllLicenses() {

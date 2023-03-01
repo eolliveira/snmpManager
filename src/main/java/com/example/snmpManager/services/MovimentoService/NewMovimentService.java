@@ -10,23 +10,21 @@ import com.example.snmpManager.exceptions.UnprocesableEntityExecption;
 import com.example.snmpManager.repositories.AtivoRepository;
 import com.example.snmpManager.repositories.MovimentoRepository;
 import com.example.snmpManager.repositories.UsuarioRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Service
+@RequiredArgsConstructor
 public class NewMovimentService {
 
-    @Autowired
-    private MovimentoRepository movimentoRepository;
+    private final MovimentoRepository movimentoRepository;
 
-    @Autowired
-    private AtivoRepository ativoRepository;
+    private final AtivoRepository ativoRepository;
 
-    @Autowired
-    private UsuarioRepository usuarioRepository;
+    private final UsuarioRepository usuarioRepository;
 
 
     @Transactional
@@ -41,7 +39,6 @@ public class NewMovimentService {
         //TODO(Deve ser informado o id do usuário logado - implementar )
         Optional<UsuarioEntity> optUser = usuarioRepository.findById(dto.getUsuario().getId());
         UsuarioEntity usuario = optUser.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + " não encontrado."));
-
 
         MovimentoEntity movimento = new MovimentoEntity(dto, ativo, usuario);
         movimentoRepository.save(movimento);

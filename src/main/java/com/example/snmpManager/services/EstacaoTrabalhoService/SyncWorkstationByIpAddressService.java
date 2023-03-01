@@ -14,6 +14,7 @@ import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.InterfaceRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -23,23 +24,14 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Component
+@RequiredArgsConstructor
 public class SyncWorkstationByIpAddressService {
 
-
-    @Autowired
-    private EstacaoTrabalhoRepository estacaoTrabalhoRepository;
-
-    @Autowired
-    private InterfaceRepository interfaceRepository;
-
-    @Autowired
-    private DiscoRepository discoRepository;
-
-    @Autowired
-    private GetDataFromWorkstationService getDataFromWorkstationService;
-
-    @Autowired
-    private DiscoParticaoRepository discoParticaoRepository;
+    private final EstacaoTrabalhoRepository estacaoTrabalhoRepository;
+    private final InterfaceRepository interfaceRepository;
+    private final DiscoRepository discoRepository;
+    private final GetDataFromWorkstationService getDataFromWorkstationService;
+    private final DiscoParticaoRepository discoParticaoRepository;
 
     @Transactional
     public void synchronizeWorstation(String ipAdrress) {

@@ -16,7 +16,6 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-
     @PostMapping()
     public ResponseEntity<UsuarioDTO> newUser(@RequestBody UsuarioDTO dto) {
         UsuarioDTO usuario = usuarioService.insertNewUser(dto);
