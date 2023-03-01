@@ -22,7 +22,11 @@ public class UsuarioEntity {
     @OneToMany(mappedBy = "usuario")
     private List<MovimentoEntity> movimentosAtivo = new ArrayList<>();
 
-    public UsuarioEntity() {}
+    @OneToMany(mappedBy = "usuario")
+    private List<FinanceiroEntity> financas = new ArrayList<>();
+
+    public UsuarioEntity() {
+    }
 
     public UsuarioEntity(UsuarioDTO dto) {
         this.id = dto.getId();
