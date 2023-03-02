@@ -21,6 +21,8 @@ public class FinanceiroEntity {
     private String descricao;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dtFinanceiro;
+
+    private Double valor;
     @ManyToOne()
     @JoinColumn(name = "ID_ATIVO")
     private AtivoEntity ativo;
@@ -37,6 +39,7 @@ public class FinanceiroEntity {
     public FinanceiroEntity(AtivoEntity ativo, UsuarioEntity usuario, FinanceiroDTO dto) {
         this.id = dto.getId();
         this.descricao = dto.getDescricao();
+        this.valor = dto.getValor();
         this.dtFinanceiro = Instant.now();
         this.ativo = ativo;
         this.usuario = usuario;
