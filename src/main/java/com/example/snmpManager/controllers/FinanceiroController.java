@@ -1,6 +1,7 @@
 package com.example.snmpManager.controllers;
 
 import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
+import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroInsertDTO;
 import com.example.snmpManager.services.FinanceiroService.NewFinancialService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +20,7 @@ public class FinanceiroController {
     private final NewFinancialService newFinancialService;
 
     @PostMapping()
-    public ResponseEntity<FinanceiroDTO> insertNewFinancial(@RequestBody FinanceiroDTO dto) {
+    public ResponseEntity<FinanceiroDTO> insertNewFinancial(@RequestBody FinanceiroInsertDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         FinanceiroDTO financeiroAtivo = newFinancialService.insertNewFinancial(dto);
         return ResponseEntity.created(uri).body(financeiroAtivo);

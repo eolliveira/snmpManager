@@ -3,11 +3,13 @@ package com.example.snmpManager.controllers;
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.DiscoService.FindDiscsWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
+import com.example.snmpManager.services.FinanceiroService.FindFinancesWorkstationService;
 import com.example.snmpManager.services.InterfaceService.FindInterfacesWorkstationService;
 import com.example.snmpManager.services.MovimentoService.FindMovesWorkstationService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +34,7 @@ public class EstacaoTrabalhoController {
     private final FindInterfacesWorkstationService findInterfacesWorkstationService;
     private final FindDiscsWorkstationService findDiscsWorkstationService;
     private final FindMovesWorkstationService findMovesWorkstationService;
+    private final FindFinancesWorkstationService findFinancesWorkstationService;
 
 
     //obtem dados da estação de trabalho
@@ -71,6 +74,14 @@ public class EstacaoTrabalhoController {
     public ResponseEntity<List<MovimentoDTO>> findAllMoves(@PathVariable Long idActive) {
         List<MovimentoDTO> movimentos = findMovesWorkstationService.findAllMoves(idActive);
         return ResponseEntity.ok(movimentos);
+    }
+
+
+    //lista de financas da estação
+    @GetMapping(value = "/{idActive}/finances")
+    public ResponseEntity<List<FinanceiroDTO>> findAllFinances(@PathVariable Long idActive) {
+        List<FinanceiroDTO> financas = findFinancesWorkstationService.findAllFinaces(idActive);
+        return ResponseEntity.ok(financas);
     }
 
 

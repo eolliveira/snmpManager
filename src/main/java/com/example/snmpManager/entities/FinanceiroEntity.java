@@ -1,6 +1,7 @@
 package com.example.snmpManager.entities;
 
 import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
+import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroInsertDTO;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -36,7 +37,7 @@ public class FinanceiroEntity {
     public FinanceiroEntity() {
     }
 
-    public FinanceiroEntity(AtivoEntity ativo, UsuarioEntity usuario, FinanceiroDTO dto) {
+    public FinanceiroEntity(AtivoEntity ativo, UsuarioEntity usuario, FinanceiroInsertDTO dto) {
         this.id = dto.getId();
         this.descricao = dto.getDescricao();
         this.valor = dto.getValor();

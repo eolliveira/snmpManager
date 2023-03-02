@@ -1,6 +1,7 @@
 package com.example.snmpManager.services.FinanceiroService;
 
 import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
+import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroInsertDTO;
 import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.FinanceiroEntity;
 import com.example.snmpManager.entities.MovimentoEntity;
@@ -25,7 +26,7 @@ public class NewFinancialService {
     private final UsuarioRepository usuarioRepository;
 
     @Transactional
-    public FinanceiroDTO insertNewFinancial(FinanceiroDTO dto) {
+    public FinanceiroDTO insertNewFinancial(FinanceiroInsertDTO dto) {
 
         Optional<AtivoEntity> optAtivo = ativoRepository.findById(dto.getAtivo().getId());
         AtivoEntity ativo = optAtivo.orElseThrow(() -> new ResourceNotFoundException("Ativo id: " + dto.getAtivo().getId() + " não encontrado."));
