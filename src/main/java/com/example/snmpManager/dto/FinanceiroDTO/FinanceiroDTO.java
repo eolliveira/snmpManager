@@ -1,7 +1,5 @@
 package com.example.snmpManager.dto.FinanceiroDTO;
 
-import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
-import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.FinanceiroEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
