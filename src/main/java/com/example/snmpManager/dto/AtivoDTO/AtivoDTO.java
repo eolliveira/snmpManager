@@ -3,6 +3,7 @@ package com.example.snmpManager.dto.AtivoDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
 import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
+import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
 
@@ -31,12 +32,28 @@ public class AtivoDTO implements Serializable {
     private BigDecimal valorCompra;
     private String fornecedor;
     private String observacao;
-
     private UsuarioDTO usuario;
-
     private List<MovimentoDTO> movimentos = new ArrayList<>();
     private List<LicencaInsertDTO> licencas = new ArrayList<>();
 
     public AtivoDTO() {
+    }
+
+    public AtivoDTO(AtivoEntity entity) {
+        this.id = entity.getId();
+        this.nome = entity.getNome();
+        this.fabricante = entity.getFabricante();
+        this.modelo = entity.getModelo();
+        this.descricao = entity.getDescricao();
+        this.numeroSerie = entity.getNumeroSerie();
+        this.inativo = entity.getInativo();
+        this.status = entity.getStatus();
+        this.dtAquisicao = entity.getDtAquisicao();
+        this.dtVencimentoGarantia = entity.getDtAquisicao();
+        this.dtExpiracao = entity.getDtExpiracao();
+        this.ultimoSincronismo = entity.getUltimoSincronismo();
+        this.valorCompra = entity.getValorCompra();
+        this.fornecedor = entity.getFornecedor();
+        this.observacao = entity.getObservacao();
     }
 }

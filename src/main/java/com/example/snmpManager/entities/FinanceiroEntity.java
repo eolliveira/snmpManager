@@ -2,7 +2,6 @@ package com.example.snmpManager.entities;
 
 import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -11,7 +10,6 @@ import java.util.List;
 @Table(name = "ATIVOFINANCEIRO")
 @Entity
 @Data
-@NoArgsConstructor
 public class FinanceiroEntity {
 
     //TODO(id do usuário e id do ativo devem ser obrigatórios ao inserir)
@@ -33,9 +31,14 @@ public class FinanceiroEntity {
     @OneToMany(mappedBy = "financeiro")
     private List<AnexoEntity> anexos;
 
-    public FinanceiroEntity(FinanceiroDTO dto) {
+    public FinanceiroEntity() {
+    }
+
+    public FinanceiroEntity(AtivoEntity ativo, UsuarioEntity usuario, FinanceiroDTO dto) {
         this.id = dto.getId();
         this.descricao = dto.getDescricao();
         this.dtFinanceiro = Instant.now();
+        this.ativo = ativo;
+        this.usuario = usuario;
     }
 }
