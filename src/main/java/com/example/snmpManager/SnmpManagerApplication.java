@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import java.io.IOException;
 
 @SpringBootApplication
-public class SnmpManagerApplication implements CommandLineRunner {
+public class SnmpManagerApplication implements CommandLineRunner  {
 
   @Autowired
   private SNMPTrapReciever trapReciever;
@@ -23,7 +23,7 @@ public class SnmpManagerApplication implements CommandLineRunner {
   public void run(String... args) {
     try {
       trapReciever.listen(new UdpAddress("localhost/162"));
-    } catch (IOException e) {
+    } catch (IOException | InterruptedException e) {
       throw new RuntimeException(e);
     }
   }
