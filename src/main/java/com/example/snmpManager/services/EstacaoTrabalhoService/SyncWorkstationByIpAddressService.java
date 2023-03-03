@@ -19,7 +19,6 @@ import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
-import java.util.Objects;
 import java.util.Optional;
 
 @Component
@@ -29,11 +28,10 @@ public class SyncWorkstationByIpAddressService {
     private final EstacaoTrabalhoRepository estacaoTrabalhoRepository;
     private final InterfaceRepository interfaceRepository;
     private final DiscoRepository discoRepository;
-    private final GetDataFromWorkstationService getDataFromWorkstationService;
     private final DiscoParticaoRepository discoParticaoRepository;
 
     @Transactional
-    public void synchronizeWorstation(String ipAdrress) {
+    public void synchronizeWorstation(String ipAdrress, WorkstationObject object) {
 
         InterfaceEntity interfaceEntitiy = interfaceRepository.findByEnderecoIp(ipAdrress);
         Long idAtivo = interfaceEntitiy.getEstacaoTrabalho().getId();
@@ -41,20 +39,8 @@ public class SyncWorkstationByIpAddressService {
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
 
-        WorkstationObject objAgent = new WorkstationObject();
 
-        for (InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
-            if (!Objects.equals(i.getEnderecoIp(), "") && i.getEnderecoIp() != null) {
-                //busca informações do ativo pelo ip
-                WorkstationObject obj = getDataFromWorkstationService.getWorkstationData(i.getEnderecoIp());
-                if (obj.getNomeHost() != null) {
-                    objAgent = obj;
-                    break;
-                }
-            }
-        }
-
-        EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
+        EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(object);
 
         estacaoTrabalho.setFabricante(dto.getFabricante());
         estacaoTrabalho.setNumeroSerie(dto.getNumeroSerie());
