@@ -42,7 +42,7 @@ public class SNMPTrapReciever implements CommandResponder {
         // Add the trap receiver
         snmp.addCommandResponder(this);
 
-        System.out.println("Trap receiver started");
+        System.out.println("Ouvindo armadilhas na porta 162...");
 
         // Wait for traps to arrive
         Thread.sleep(Long.MAX_VALUE);
@@ -55,7 +55,7 @@ public class SNMPTrapReciever implements CommandResponder {
         if (pdu != null && pdu.getType() == PDU.NOTIFICATION) {
             // Get the remote address of the trap sender
             Address address = event.getPeerAddress();
-            System.out.println("Trap received from " + address + " - Thread: " + Thread.currentThread().getName());
+            System.out.println("Armadilha recebida de " + address + " - Thread: " + Thread.currentThread().getName());
 
             // Get the community string used by the trap sender
             String community = new String(event.getSecurityName());
