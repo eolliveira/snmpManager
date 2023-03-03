@@ -21,11 +21,8 @@ import java.util.Optional;
 public class NewMovimentService {
 
     private final MovimentoRepository movimentoRepository;
-
     private final AtivoRepository ativoRepository;
-
     private final UsuarioRepository usuarioRepository;
-
 
     @Transactional
     public MovimentoDTO insertNewMoviment(MovimentoInsertDTO dto) {

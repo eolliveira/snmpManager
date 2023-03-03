@@ -1,8 +1,6 @@
 package com.example.snmpManager.services;
 
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
-import com.example.snmpManager.services.EstacaoTrabalhoService.FindWorkstationService;
-import com.example.snmpManager.services.EstacaoTrabalhoService.GetDataFromWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.SyncWorkstationByIpAddressService;
 import lombok.RequiredArgsConstructor;
 import org.snmp4j.*;
@@ -11,7 +9,6 @@ import org.snmp4j.smi.TransportIpAddress;
 import org.snmp4j.smi.UdpAddress;
 import org.snmp4j.smi.VariableBinding;
 import org.snmp4j.transport.DefaultUdpTransportMapping;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -20,14 +17,7 @@ import java.util.Objects;
 @Component
 @RequiredArgsConstructor
 public class SNMPTrapReciever implements CommandResponder {
-    @Autowired
-    FindWorkstationService findWorkstationService;
-
-    @Autowired
-    GetDataFromWorkstationService getDataFromWorkstationService;
-
-    @Autowired
-    SyncWorkstationByIpAddressService syncWorkstationByIpAddressService;
+    private final SyncWorkstationByIpAddressService syncWorkstationByIpAddressService;
 
     public void listen(TransportIpAddress address) throws IOException, InterruptedException {
         // Create a UDP transport mapping
@@ -59,6 +49,7 @@ public class SNMPTrapReciever implements CommandResponder {
 
             // Get the community string used by the trap sender
             String community = new String(event.getSecurityName());
+            //TODO(configurar nome da communidade)
 
             // Get the variable bindings from the trap
             VariableBinding[] varBinds = pdu.toArray();
@@ -113,7 +104,6 @@ public class SNMPTrapReciever implements CommandResponder {
                 //workstationObject.addImpressoras(interfaces);
                 workstationObject.addVideoCards(placasVideo);
                 workstationObject.addSoftware(programas);
-
 
                 syncWorkstationByIpAddressService.synchronizeWorstation(ipAddress, workstationObject);
             }
