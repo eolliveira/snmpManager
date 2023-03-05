@@ -16,7 +16,6 @@ public class GetDataFromPrinterService {
     private final SNMPRequestClient snmpRequestClient;
 
     public PrinterObject getPrinterData(String address) {
-        //TODO(Extrair este metodo)
         if (!AddressValidation.isValidIpv4(address))
             throw new InvalidAddressExecption("Endereço ip [" + address + "] inválido!");
 
