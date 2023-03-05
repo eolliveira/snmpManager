@@ -17,10 +17,8 @@ public class MovimentoEntity {
     @Column(name = "ID_ATIVOMOVIMENTO")
     private Long id;
     private String descricao;
-
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dtMovimento;
-
     @Enumerated(EnumType.STRING)
     private StatusAtivo statusAtivo;
     @Enumerated(EnumType.STRING)
@@ -29,7 +27,6 @@ public class MovimentoEntity {
     @ManyToOne
     @JoinColumn(name = "ID_ATIVO")
     private AtivoEntity ativo;
-
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO")
     private UsuarioEntity usuario;

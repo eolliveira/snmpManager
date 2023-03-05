@@ -1,6 +1,5 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
 import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroInsertDTO;
 import lombok.Data;
 
@@ -22,15 +21,16 @@ public class FinanceiroEntity {
     private String descricao;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dtFinanceiro;
-
     private Double valor;
+
     @ManyToOne()
     @JoinColumn(name = "ID_ATIVO")
     private AtivoEntity ativo;
     @ManyToOne()
     @JoinColumn(name = "ID_USUARIO")
-    private UsuarioEntity usuario;
     //TODO(Usuario deve ser o mesmo que estiver logado)
+    private UsuarioEntity usuario;
+
     @OneToMany(mappedBy = "financeiro")
     private List<AnexoEntity> anexos;
 
