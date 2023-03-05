@@ -20,6 +20,7 @@ public class LicencaEntity extends AtivoEntity {
     private String chaveLicenca;
     @Enumerated(EnumType.STRING)
     private TipoLicenca tipo;
+
     @ManyToMany(mappedBy = "licencas")
     private final Set<AtivoEntity> ativos = new HashSet<>();
 

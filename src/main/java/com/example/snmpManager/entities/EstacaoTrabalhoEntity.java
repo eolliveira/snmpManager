@@ -21,7 +21,6 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String processador;
     private String arquiteturaSo;
     private String memoriaRam;
-
     private String tempoLigado;
     private String nomeHost;
     private String ultimoUsuarioLogado;

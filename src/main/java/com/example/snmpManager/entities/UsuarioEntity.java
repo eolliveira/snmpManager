@@ -20,7 +20,7 @@ public class UsuarioEntity {
     private List<AtivoEntity> ativos = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario")
-    private List<MovimentoEntity> movimentosAtivo = new ArrayList<>();
+    private List<MovimentoEntity> movimentos = new ArrayList<>();
 
     @OneToMany(mappedBy = "usuario")
     private List<FinanceiroEntity> financas = new ArrayList<>();

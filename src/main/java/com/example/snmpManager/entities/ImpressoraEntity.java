@@ -10,4 +10,6 @@ import javax.persistence.Entity;
 @DiscriminatorValue(value = "IMPRESSORA")
 public class ImpressoraEntity extends AtivoEntity {
 
+    //TODO(Impressor deve ter um interface de rede ?)
+
 }
