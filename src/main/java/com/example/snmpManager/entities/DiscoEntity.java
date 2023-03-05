@@ -1,13 +1,12 @@
 package com.example.snmpManager.entities;
 
+import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Table(name = "ATIVODISCO")
 @Entity
@@ -32,5 +31,26 @@ public class DiscoEntity {
     private Set<DiscoParticaoEntity> particoes = new HashSet<>();
 
     public DiscoEntity() {
+    }
+
+    public DiscoEntity(DiscoDTO discoDto, EstacaoTrabalhoEntity estacaoTrabalho) {
+        this.nome = discoDto.getNome();
+        this.modelo = discoDto.getModelo();
+        this.numeroSerie = discoDto.getNumeroSerie();
+        this.capacidade = discoDto.getCapacidade();
+        this.estacaoTrabalho = estacaoTrabalho;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof DiscoEntity)) return false;
+        DiscoEntity that = (DiscoEntity) o;
+        return Objects.equals(numeroSerie, that.numeroSerie);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(numeroSerie);
     }
 }
