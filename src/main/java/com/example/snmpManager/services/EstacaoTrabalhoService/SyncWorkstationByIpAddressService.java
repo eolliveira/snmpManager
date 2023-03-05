@@ -71,14 +71,13 @@ public class SyncWorkstationByIpAddressService {
         List<String> discos2 = listaAtualizadaDiscos.stream().map(DiscoEntity::getNumeroSerie).collect(Collectors.toList());
 
 
-        //compara as listas pelo fabricante
+        //atulizaa interfces
         if (!fabricantes1.equals(fabricantes2)) {
             estacaoTrabalho.getInterfaces().clear();
             estacaoTrabalho.getInterfaces().addAll(listaAtualizadaInterfaces);
-            //TODO(TIRA LINHA ABAIXO?)
-            estacaoTrabalhoRepository.save(estacaoTrabalho);
         }
 
+        //atualiza discos
         if (!discos1.equals(discos2)) {
             estacaoTrabalho.getDiscos().clear();
 
