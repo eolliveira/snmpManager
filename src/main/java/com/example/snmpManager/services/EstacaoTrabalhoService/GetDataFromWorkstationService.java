@@ -20,9 +20,7 @@ public class GetDataFromWorkstationService {
         if (!AddressValidation.isValidIpv4(address))
             throw new InvalidAddressExecption("Endereço ip [" + address + "] inválido!");
 
-        //SNMPRequestClient client = new SNMPRequestClient();
-
-        snmpRequestClient.start("udp:" + address + "/161", "public");
+        snmpRequestClient.start(address,"public");
 
         EstacaoTrabalhoMIB mib = new EstacaoTrabalhoMIB();
         WorkstationObject windowsObject = new WorkstationObject();

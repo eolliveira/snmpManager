@@ -20,8 +20,7 @@ public class GetDataFromPrinterService {
         if (!AddressValidation.isValidIpv4(address))
             throw new InvalidAddressExecption("Endereço ip [" + address + "] inválido!");
 
-
-        snmpRequestClient.start("udp:" + address + "/161", "public");
+        snmpRequestClient.start(address,"public");
 
         ImpressoraMIB mib = new ImpressoraMIB();
         PrinterObject printerObj = new PrinterObject();

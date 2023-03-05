@@ -23,7 +23,7 @@ public class SNMPRequestClient {
         try {
             transport = new DefaultUdpTransportMapping();
             snmp = new Snmp(transport);
-            this.address = address;
+            this.address = "udp:" + address + "/161";
             this.community = commmunity;
 
             transport.listen();
