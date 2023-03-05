@@ -17,11 +17,6 @@ public class AnexoEntity {
     @JoinColumn(name = "ID_ATIVO")
     private AtivoEntity ativo;
 
-    //TODO(VERIFICAR SE CHAVE É NECESSÁRIA)
-    @ManyToOne
-    @JoinColumn(name = "ID_MOVIMENTO")
-    private UsuarioEntity movimento;
-
     @ManyToOne
     @JoinColumn(name = "ID_FINANCEIRO")
     private FinanceiroEntity financeiro;
