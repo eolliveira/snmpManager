@@ -76,6 +76,18 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(httpStatus).body(error);
     }
 
+    @ExceptionHandler(DataBaseException.class)
+    public ResponseEntity<StandardError> failedToProcessEntity(DataBaseException e, HttpServletRequest request) {
+        int httpStatus = HttpStatus.CONFLICT.value();
+        StandardError error = new StandardError();
+        error.setTimestamp(Instant.now());
+        error.setStatus(httpStatus);
+        error.setError("Database Exception");
+        error.setMessage(e.getMessage());
+        error.setPath(request.getRequestURI());
+        return ResponseEntity.status(httpStatus).body(error);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ValidationError> validation(MethodArgumentNotValidException e, HttpServletRequest request) {
         int httpStatus = HttpStatus.UNPROCESSABLE_ENTITY.value();
