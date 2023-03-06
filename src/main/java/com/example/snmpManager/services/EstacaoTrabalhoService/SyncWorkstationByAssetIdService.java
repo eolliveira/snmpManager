@@ -56,7 +56,6 @@ public class SyncWorkstationByAssetIdService {
         if (objAgent.getFabricante() == null && objAgent.getNomeHost() == null)
             throw new UnableToGetDeviceDataException("Não foi possivel sincronizar dados do agente");
 
-
         EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
         estacaoTrabalho.setFabricante(dto.getFabricante());
         estacaoTrabalho.setNumeroSerie(dto.getNumeroSerie());

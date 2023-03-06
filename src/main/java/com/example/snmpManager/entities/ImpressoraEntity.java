@@ -1,10 +1,10 @@
 package com.example.snmpManager.entities;
 
+import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraInsertDTO;
 import lombok.Data;
 
-import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
 @Entity
 @Data
@@ -13,8 +13,9 @@ public class ImpressoraEntity extends AtivoEntity {
     private String tempoLigado;
     private String totalImpressoes;
 
-    ///TODO(VERIFICAR MAPEAMENTO)
-    @OneToMany(mappedBy = "estacaoTrabalho", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<InterfaceEntity> interfaces = new ArrayList<>();
+    public ImpressoraEntity() {}
+
+    public ImpressoraEntity(ImpressoraInsertDTO dto) {
+    }
 
 }
