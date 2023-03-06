@@ -9,6 +9,7 @@ import com.example.snmpManager.entities.DiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.DataBaseException;
+import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
@@ -18,6 +19,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.Objects;
 
 @Component
 @RequiredArgsConstructor
@@ -31,23 +33,30 @@ public class NewWorkstationService {
     @Transactional
     public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
 
+        for (InterfaceDTO i : dto.getInterfaces()) {
+            if (!Objects.equals(i.getEnderecoIp(), "") && i.getEnderecoIp() != null) {
+                InterfaceEntity interfaceEntity = interfaceRepository.findByEnderecoIp(i.getEnderecoIp());
+                if (!(interfaceEntity == null)) {
+                    throw new DataBaseException("Ativo id: " + interfaceEntity.getEstacaoTrabalho().getId()
+                            + ", ja possui o ip [" + i.getEnderecoIp() + "] cadastrado");
+                }
+            }
+        }
+
+
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
 
         estacao = estacaoTrabalhoRepository.save(estacao);
 
         for (InterfaceDTO i : dto.getInterfaces()) {
-            try{
-                InterfaceEntity inter = new InterfaceEntity();
-                inter.setNomeLocal(i.getNomeLocal());
-                inter.setFabricante(i.getFabricante());
-                inter.setEnderecoMac(i.getEnderecoMac());
-                inter.setEnderecoIp(i.getEnderecoIp());
-                inter.setMascaraSubRede(i.getMascaraSubRede());
-                inter.setEstacaoTrabalho(estacao);
-                interfaceRepository.save(inter);
-            } catch(DataIntegrityViolationException e) {
-                throw new DataBaseException("Ja existe um ativo como o ip [" + i.getEnderecoIp() + "] cadastrado.");
-            }
+            InterfaceEntity inter = new InterfaceEntity();
+            inter.setNomeLocal(i.getNomeLocal());
+            inter.setFabricante(i.getFabricante());
+            inter.setEnderecoMac(i.getEnderecoMac());
+            inter.setEnderecoIp(i.getEnderecoIp());
+            inter.setMascaraSubRede(i.getMascaraSubRede());
+            inter.setEstacaoTrabalho(estacao);
+            interfaceRepository.save(inter);
         }
 
         for (DiscoDTO d : dto.getDiscos()) {
