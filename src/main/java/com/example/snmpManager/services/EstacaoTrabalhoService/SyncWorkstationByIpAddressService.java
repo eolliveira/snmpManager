@@ -51,6 +51,7 @@ public class SyncWorkstationByIpAddressService {
         estacaoTrabalho.setSistemaOperacional(dto.getSistemaOperacional());
         estacaoTrabalho.setArquiteturaSo(dto.getArquiteturaSo());
         estacaoTrabalho.setProcessador(dto.getProcessador());
+        estacaoTrabalho.setTempoLigado(dto.getTempoLigado());
         estacaoTrabalho.setMemoriaRam(dto.getMemoriaRam());
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
         estacaoTrabalho.setDominio(dto.getDominio());

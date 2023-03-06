@@ -41,7 +41,6 @@ public class UpdateWorkstationService {
         estacaoTrabalho.setDtAquisicao(dto.getDtAquisicao());
         estacaoTrabalho.setDtVencimentoGarantia(dto.getDtVencimentoGarantia());
         estacaoTrabalho.setDtExpiracao(dto.getDtExpiracao());
-        estacaoTrabalho.setUltimoSincronismo(dto.getUltimoSincronismo());
         estacaoTrabalho.setValorCompra(dto.getValorCompra());
         estacaoTrabalho.setFornecedor(dto.getFornecedor());
         estacaoTrabalho.setObservacao(dto.getObservacao());

@@ -12,8 +12,6 @@ import java.util.List;
 @Data
 public class FinanceiroEntity {
 
-    //TODO(id do usuário e id do ativo devem ser obrigatórios ao inserir)
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID_FINANCEIRO")

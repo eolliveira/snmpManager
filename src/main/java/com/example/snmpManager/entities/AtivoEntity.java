@@ -35,6 +35,7 @@ public abstract class AtivoEntity {
     private Date dtAquisicao;
     private Date dtVencimentoGarantia;
     private Date dtExpiracao;
+    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant ultimoSincronismo;
     private BigDecimal valorCompra;
     private String fornecedor;
