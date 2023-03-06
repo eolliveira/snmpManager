@@ -8,8 +8,12 @@ public class PrinterObject {
     private String nome;
     private String modelo;
     private String numeroSerie;
+    private String enderecoIp;
+    private String mascaraSubRede;
     private String enderecoMac;
+    private String gateway;
     private String tempoLigado;
     private String totalImpressoes;
+    private String status;
 
 }
