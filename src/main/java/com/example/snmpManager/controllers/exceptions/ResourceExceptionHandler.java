@@ -78,7 +78,7 @@ public class ResourceExceptionHandler {
 
     @ExceptionHandler(DataBaseException.class)
     public ResponseEntity<StandardError> failedToProcessEntity(DataBaseException e, HttpServletRequest request) {
-        int httpStatus = HttpStatus.CONFLICT.value();
+        int httpStatus = HttpStatus.BAD_REQUEST.value();
         StandardError error = new StandardError();
         error.setTimestamp(Instant.now());
         error.setStatus(httpStatus);

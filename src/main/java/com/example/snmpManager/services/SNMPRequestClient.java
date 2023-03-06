@@ -1,7 +1,7 @@
 package com.example.snmpManager.services;
 
+import com.example.snmpManager.exceptions.ClientConnectionFailedExecption;
 import com.example.snmpManager.exceptions.FailureInitializeUdpTransport;
-import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
 import org.snmp4j.*;
 import org.snmp4j.event.ResponseEvent;
 import org.snmp4j.mp.SnmpConstants;
@@ -47,7 +47,7 @@ public class SNMPRequestClient {
             ResponseEvent event = get(new OID[]{oid});
             return event.getResponse().get(0).getVariable().toString();
         } catch (NullPointerException e) {
-            throw new UnableToGetDeviceDataException("Não foi possivel obter informações do OID: " + oid);
+            throw new ClientConnectionFailedExecption("Não foi possivel obter informações do OID: " + oid);
         }
     }
 
