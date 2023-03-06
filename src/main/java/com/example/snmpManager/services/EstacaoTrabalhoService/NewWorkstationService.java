@@ -14,6 +14,7 @@ import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.InterfaceRepository;
+import com.example.snmpManager.util.AddressValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
@@ -25,6 +26,7 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class NewWorkstationService {
 
+    private final AddressValidation addressValidation;
     private final EstacaoTrabalhoRepository estacaoTrabalhoRepository;
     private final InterfaceRepository interfaceRepository;
     private final DiscoRepository discoRepository;
@@ -33,16 +35,7 @@ public class NewWorkstationService {
     @Transactional
     public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
 
-        for (InterfaceDTO i : dto.getInterfaces()) {
-            if (!Objects.equals(i.getEnderecoIp(), "") && i.getEnderecoIp() != null) {
-                InterfaceEntity interfaceEntity = interfaceRepository.findByEnderecoIp(i.getEnderecoIp());
-                if (!(interfaceEntity == null)) {
-                    throw new DataBaseException("Ativo id: " + interfaceEntity.getEstacaoTrabalho().getId()
-                            + ", ja possui o ip [" + i.getEnderecoIp() + "] cadastrado");
-                }
-            }
-        }
-
+        addressValidation.addressAlreadyExists(dto);
 
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
 
