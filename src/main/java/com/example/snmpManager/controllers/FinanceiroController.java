@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 
 @RestController
@@ -20,7 +21,7 @@ public class FinanceiroController {
     private final NewFinancialService newFinancialService;
 
     @PostMapping()
-    public ResponseEntity<FinanceiroDTO> insertNewFinancial(@RequestBody FinanceiroInsertDTO dto) {
+    public ResponseEntity<FinanceiroDTO> insertNewFinancial(@Valid @RequestBody FinanceiroInsertDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         FinanceiroDTO financeiroAtivo = newFinancialService.insertNewFinancial(dto);
         return ResponseEntity.created(uri).body(financeiroAtivo);

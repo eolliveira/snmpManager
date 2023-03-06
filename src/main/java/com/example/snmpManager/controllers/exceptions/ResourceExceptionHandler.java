@@ -3,6 +3,8 @@ package com.example.snmpManager.controllers.exceptions;
 import com.example.snmpManager.exceptions.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -62,6 +64,8 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(httpStatus).body(error);
     }
 
+    //TODO(Corrigir nomes dos metodos)
+
     @ExceptionHandler(UnprocesableEntityExecption.class)
     public ResponseEntity<StandardError> entityNotFound(UnprocesableEntityExecption e, HttpServletRequest request) {
         int httpStatus = HttpStatus.UNPROCESSABLE_ENTITY.value();
@@ -74,6 +78,23 @@ public class ResourceExceptionHandler {
         return ResponseEntity.status(httpStatus).body(error);
     }
 
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public ResponseEntity<ValidationError> validation(MethodArgumentNotValidException e, HttpServletRequest request) {
+        int httpStatus = HttpStatus.UNPROCESSABLE_ENTITY.value();
+        ValidationError error = new ValidationError();
+        error.setTimestamp(Instant.now());
+        error.setStatus(httpStatus);
+        error.setError("Validation Exception");
+        error.setMessage(e.getMessage());
+        error.setPath(request.getRequestURI());
+
+        //pega campo e mensagem de erro do obj interno da exception, e add no no obj FildMessage
+        for (FieldError f : e.getBindingResult().getFieldErrors()) {
+            error.addError(f.getField(), f.getDefaultMessage());
+        }
+
+        return ResponseEntity.status(httpStatus).body(error);
+    }
 
 
 }

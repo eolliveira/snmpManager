@@ -5,7 +5,11 @@ import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.FinanceiroEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.Instant;
 
@@ -14,10 +18,16 @@ import java.time.Instant;
 public class FinanceiroInsertDTO implements Serializable {
 
     private Long id;
+    @NotBlank(message = "Campo Requerido")
     private String descricao;
+    @Positive(message = "Valor deve ser positivo")
     private Double valor;
     private Instant dtFinanceiro;
+
+    @NonNull
     private AtivoDTO ativo;
+
+    @NotNull
     private UsuarioDTO usuario;
 
     //TODO(ANEXO)
