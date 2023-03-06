@@ -58,7 +58,7 @@ public class UpdateWorkstationService {
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
         estacaoTrabalhoRepository.save(estacaoTrabalho);
 
-        interfaceRepository.deleteAllByEstacaoTrabalhoId(estacaoTrabalho.getId());
+        interfaceRepository.deleteAllByAtivoId(estacaoTrabalho.getId());
         discoRepository.deleteAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
         //adiciona interfaces atualizadas
@@ -69,7 +69,7 @@ public class UpdateWorkstationService {
             inter.setEnderecoMac(i.getEnderecoMac());
             inter.setEnderecoIp(i.getEnderecoIp());
             inter.setMascaraSubRede(i.getMascaraSubRede());
-            inter.setEstacaoTrabalho(estacaoTrabalho);
+            inter.setAtivo(estacaoTrabalho);
             interfaceRepository.save(inter);
         }
 

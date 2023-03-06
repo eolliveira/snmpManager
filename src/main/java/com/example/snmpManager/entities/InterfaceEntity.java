@@ -1,13 +1,14 @@
 package com.example.snmpManager.entities;
 
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Table(name = "ATIVOINTERFACE")
 @Entity
@@ -28,8 +29,8 @@ public class InterfaceEntity implements Serializable {
     private String enderecoIp;
     private String mascaraSubRede;
     @ManyToOne
-    @JoinColumn(name = "ID_ESTACAO_TRABALHO")
-    private EstacaoTrabalhoEntity estacaoTrabalho;
+    @JoinColumn(name = "ID_ATIVO")
+    private AtivoEntity ativo;
 
     public InterfaceEntity() {
     }
@@ -43,13 +44,13 @@ public class InterfaceEntity implements Serializable {
 
     }
 
-    public InterfaceEntity(InterfaceDTO dto, EstacaoTrabalhoEntity estacaoTrabalho) {
+    public InterfaceEntity(InterfaceDTO dto, AtivoEntity ativo) {
         this.nomeLocal = dto.getNomeLocal();
         this.fabricante = dto.getFabricante();
         this.enderecoMac = dto.getEnderecoMac();
         this.enderecoIp = dto.getEnderecoIp();
         this.mascaraSubRede = dto.getMascaraSubRede();
-        this.estacaoTrabalho = estacaoTrabalho;
+        this.ativo = ativo;
     }
 
     @Override

@@ -27,10 +27,6 @@ public class EstacaoTrabalhoEntity extends AtivoEntity implements Serializable {
     private String dominio;
     private String dnsList;
     private String gateway;
-
-    @OneToMany(mappedBy = "estacaoTrabalho", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<InterfaceEntity> interfaces = new ArrayList<>();
-
     @OneToMany(mappedBy = "estacaoTrabalho", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<DiscoEntity> discos = new HashSet<>();
 

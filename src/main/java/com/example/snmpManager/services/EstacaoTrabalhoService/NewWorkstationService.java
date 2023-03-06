@@ -48,7 +48,7 @@ public class NewWorkstationService {
             inter.setEnderecoMac(i.getEnderecoMac());
             inter.setEnderecoIp(i.getEnderecoIp());
             inter.setMascaraSubRede(i.getMascaraSubRede());
-            inter.setEstacaoTrabalho(estacao);
+            inter.setAtivo(estacao);
             interfaceRepository.save(inter);
         }
 

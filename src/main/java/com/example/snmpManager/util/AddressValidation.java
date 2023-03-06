@@ -30,7 +30,7 @@ public class AddressValidation {
             if (!Objects.equals(i.getEnderecoIp(), "") && i.getEnderecoIp() != null) {
                 InterfaceEntity interfaceEntity = interfaceRepository.findByEnderecoIp(i.getEnderecoIp());
                 if (!(interfaceEntity == null)) {
-                    throw new DataBaseException("Ativo [ " + interfaceEntity.getEstacaoTrabalho().getId() + " - " + interfaceEntity.getEstacaoTrabalho().getNomeHost()
+                    throw new DataBaseException("Ativo [ " + interfaceEntity.getAtivo().getId() + " - " + interfaceEntity.getAtivo().getNome()
                             + " ], ja possui o ip [ " + i.getEnderecoIp() + " ] cadastrado");
                 }
             }

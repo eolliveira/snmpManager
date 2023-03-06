@@ -9,9 +9,9 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface InterfaceRepository extends JpaRepository<InterfaceEntity, Long> {
-    List<InterfaceEntity> findAllByEstacaoTrabalho_Id(Long id);
+    List<InterfaceEntity> findAllByAtivo_Id(Long id);
     InterfaceEntity findByEnderecoIp(String ip);
     @Modifying
-    @Query("DELETE FROM InterfaceEntity i WHERE i.estacaoTrabalho.id = :estacaoTrabalhoId")
-    void deleteAllByEstacaoTrabalhoId(@Param("estacaoTrabalhoId") Long estacaoTrabalhoId);
+    @Query("DELETE FROM InterfaceEntity i WHERE i.ativo.id = :ativoId")
+    void deleteAllByAtivoId(@Param("ativoId") Long ativoId);
 }

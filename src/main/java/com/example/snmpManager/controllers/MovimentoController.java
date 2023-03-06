@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class MovimentoController {
     }
 
     @PostMapping()
-    public ResponseEntity<MovimentoDTO> newMovement(@RequestBody MovimentoInsertDTO dto) {
+    public ResponseEntity<MovimentoDTO> newMovement(@Valid @RequestBody MovimentoInsertDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
         MovimentoDTO movimentoDTO = newMovimentService.insertNewMoviment(dto);
         return ResponseEntity.created(uri).body(movimentoDTO);

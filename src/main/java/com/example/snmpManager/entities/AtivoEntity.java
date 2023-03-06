@@ -41,6 +41,9 @@ public abstract class AtivoEntity {
     private String fornecedor;
     private String observacao;
 
+    @OneToMany(mappedBy = "ativo", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<InterfaceEntity> interfaces = new ArrayList<>();
+
     @ManyToOne
     @JoinColumn(name = "ID_USUARIO")
     private UsuarioEntity usuario;

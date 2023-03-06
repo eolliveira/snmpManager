@@ -8,6 +8,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -40,12 +41,12 @@ public class LicencaController {
     }
 
     @PutMapping(value = "/linkActive")
-    public void linkActive(@RequestBody LicencaLinkDTO dto) {
+    public void linkActive(@Valid @RequestBody LicencaLinkDTO dto) {
         linkLicenseService.linkLicense(dto);
     }
 
     @PutMapping(value = "/unlinkActive")
-    public void unlinkActive(@RequestBody LicencaLinkDTO dto) {
+    public void unlinkActive(@Valid @RequestBody LicencaLinkDTO dto) {
         unlinkLicenseService.unlinkLicense(dto);
     }
 

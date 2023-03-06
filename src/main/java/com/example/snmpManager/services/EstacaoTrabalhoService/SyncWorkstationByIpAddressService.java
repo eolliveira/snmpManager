@@ -36,7 +36,7 @@ public class SyncWorkstationByIpAddressService {
     public void synchronizeWorstation(String ipAdrress, WorkstationObject object) {
 
         InterfaceEntity interfaceEntitiy = interfaceRepository.findByEnderecoIp(ipAdrress);
-        Long idAtivo = interfaceEntitiy.getEstacaoTrabalho().getId();
+        Long idAtivo = interfaceEntitiy.getAtivo().getId();
 
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));

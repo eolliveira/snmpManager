@@ -16,7 +16,7 @@ public class FindInterfacesWorkstationService {
     InterfaceRepository interfaceRepository;
 
     public List<InterfaceDTO> findAllInterfaces(Long idActive) {
-        List<InterfaceEntity> interfaces = interfaceRepository.findAllByEstacaoTrabalho_Id(idActive);
+        List<InterfaceEntity> interfaces = interfaceRepository.findAllByAtivo_Id(idActive);
         return interfaces.stream().map(InterfaceDTO::new).collect(Collectors.toList());
     }
 }

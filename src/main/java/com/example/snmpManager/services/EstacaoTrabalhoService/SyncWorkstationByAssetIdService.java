@@ -39,12 +39,14 @@ public class SyncWorkstationByAssetIdService {
 
         WorkstationObject objAgent = new WorkstationObject();
 
+        //TODO(VERIFICAR POIS SE TENTAR CONSULTAR POR UM IP SEM RESPOSTA LANÇA EXCEÇÃO, ALTERAR PARA PERCORRER E CONSULTAR TODOS OS IPS )
         for (InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
             if (i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
                 //busca informações do ativo pelo ip
                 WorkstationObject obj = getDataFromWorkstationService.getWorkstationData(i.getEnderecoIp());
                 if (obj.getFabricante() != null) {
                     objAgent = obj;
+                    break;
                 }
             }
         }
