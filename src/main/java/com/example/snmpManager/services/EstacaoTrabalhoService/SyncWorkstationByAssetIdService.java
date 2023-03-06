@@ -85,7 +85,6 @@ public class SyncWorkstationByAssetIdService {
         if (!fabricantes1.equals(fabricantes2)) {
             estacaoTrabalho.getInterfaces().clear();
             estacaoTrabalho.getInterfaces().addAll(listaAtualizadaInterfaces);
-            estacaoTrabalhoRepository.save(estacaoTrabalho);
         }
 
         //atualiza discos
