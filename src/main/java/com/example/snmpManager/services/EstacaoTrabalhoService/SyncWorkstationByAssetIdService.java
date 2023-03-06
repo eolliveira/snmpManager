@@ -8,6 +8,7 @@ import com.example.snmpManager.entities.DiscoParticaoEntity;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
+import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
@@ -19,6 +20,7 @@ import javax.transaction.Transactional;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -39,21 +41,21 @@ public class SyncWorkstationByAssetIdService {
 
         WorkstationObject objAgent = new WorkstationObject();
 
-        //TODO(VERIFICAR POIS SE TENTAR CONSULTAR POR UM IP SEM RESPOSTA LANÇA EXCEÇÃO, ALTERAR PARA PERCORRER E CONSULTAR TODOS OS IPS )
         for (InterfaceEntity i : estacaoTrabalho.getInterfaces()) {
-            if (i.getEnderecoIp() != "" && i.getEnderecoIp() != null) {
-                //busca informações do ativo pelo ip
-                WorkstationObject obj = getDataFromWorkstationService.getWorkstationData(i.getEnderecoIp());
-                if (obj.getFabricante() != null) {
-                    objAgent = obj;
-                    break;
-                }
+            if (!Objects.equals(i.getEnderecoIp(), "") && i.getEnderecoIp() != null) {
+                try {
+                    WorkstationObject obj = getDataFromWorkstationService.getWorkstationData(i.getEnderecoIp());
+                    if (obj.getFabricante() != null) {
+                        objAgent = obj;
+                        break;
+                    }
+                } catch (Exception ignored){}
             }
         }
 
-        if (objAgent.getFabricante() == null) {
-            throw new ResourceNotFoundException("Nenhum endereco IPV4 definido para estação Id: " + idAtivo);
-        }
+        if (objAgent.getFabricante() == null && objAgent.getNomeHost() == null)
+            throw new UnableToGetDeviceDataException("Não foi possivel sincronizar dados do agente");
+
 
         EstacaoTrabalhoSynchronizeDTO dto = new EstacaoTrabalhoSynchronizeDTO(objAgent);
         estacaoTrabalho.setFabricante(dto.getFabricante());
