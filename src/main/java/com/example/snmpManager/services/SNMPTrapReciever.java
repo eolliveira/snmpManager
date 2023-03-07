@@ -21,7 +21,7 @@ public class SNMPTrapReciever implements CommandResponder {
 
     public void listen(TransportIpAddress address) throws IOException, InterruptedException {
         // Create a UDP transport mapping
-        TransportMapping transport = new DefaultUdpTransportMapping(new UdpAddress(address + "/162"));
+        TransportMapping transport = new DefaultUdpTransportMapping(new UdpAddress(address + "/1062"));
 
         // Create a SNMP object
         Snmp snmp = new Snmp(transport);
@@ -32,7 +32,7 @@ public class SNMPTrapReciever implements CommandResponder {
         // Add the trap receiver
         snmp.addCommandResponder(this);
 
-        System.out.println("Ouvindo armadilhas na porta 162...");
+        System.out.println("Ouvindo armadilhas na porta 1062...");
 
         // Wait for traps to arrive
         Thread.sleep(Long.MAX_VALUE);
