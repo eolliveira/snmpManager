@@ -22,7 +22,7 @@ public class SnmpManagerApplication implements CommandLineRunner  {
   @Override
   public void run(String... args) {
     try {
-      trapReciever.listen(new UdpAddress("0.0.0.0/1062"));
+      trapReciever.listen(new UdpAddress("0.0.0.0/162"));
     } catch (IOException | InterruptedException e) {
       throw new RuntimeException(e);
     }
