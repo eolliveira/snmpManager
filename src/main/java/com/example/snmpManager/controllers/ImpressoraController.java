@@ -1,7 +1,9 @@
 package com.example.snmpManager.controllers;
 
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraInsertDTO;
 import com.example.snmpManager.objects.PrinterObject;
+import com.example.snmpManager.services.ImpressoraService.FindPrinterService;
 import com.example.snmpManager.services.ImpressoraService.GetDataFromPrinterService;
 import com.example.snmpManager.services.ImpressoraService.NewPrinterService;
 import com.example.snmpManager.services.ImpressoraService.SyncPrinterByAssetIdService;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
+import java.util.List;
 
 @RestController
 @RequestMapping("/printer")
@@ -22,6 +25,15 @@ public class ImpressoraController {
     private final NewPrinterService newPrinterService;
 
     private final SyncPrinterByAssetIdService synchronizeWorstation;
+
+    private final FindPrinterService findPrinterService;
+
+    //lista basica ,todas as estações
+    @GetMapping
+    public ResponseEntity<List<ImpressoraInsertDTO>> findAll() {
+        List<ImpressoraInsertDTO> impressoras = findPrinterService.findAll();
+        return ResponseEntity.ok(impressoras);
+    }
 
     //obtem dados da impressora
     @GetMapping(value = "/{ipAddress}")

@@ -20,7 +20,6 @@ public class ImpressoraInsertDTO extends AtivoDTO implements Serializable {
     private String enderecoMac;
     private String gateway;
     private String tempoLigado;
-
     private String dominio;
     private String totalImpressoes;
 
