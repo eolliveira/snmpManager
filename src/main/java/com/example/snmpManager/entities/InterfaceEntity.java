@@ -35,15 +35,6 @@ public class InterfaceEntity implements Serializable {
     public InterfaceEntity() {
     }
 
-    public InterfaceEntity(Long id, String nomeLocal, String fabricante, String enderecoMac, String enderecoIp, String mascaraSubRede, AtivoEntity ativo) {
-        this.nomeLocal = nomeLocal;
-        this.fabricante = fabricante;
-        this.enderecoMac = enderecoMac;
-        this.enderecoIp = enderecoIp;
-        this.mascaraSubRede = mascaraSubRede;
-        this.ativo = ativo;
-    }
-
     public InterfaceEntity(InterfaceDTO dto) {
         this.nomeLocal = dto.getNomeLocal();
         this.fabricante = dto.getFabricante();
