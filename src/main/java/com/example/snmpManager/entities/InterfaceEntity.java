@@ -52,6 +52,9 @@ public class InterfaceEntity implements Serializable {
         this.ativo = ativo;
     }
 
+    public InterfaceEntity(Object o, Object o1, String enderecoMac, String enderecoIp, String mascaraSubRede, ImpressoraEntity impressora) {
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

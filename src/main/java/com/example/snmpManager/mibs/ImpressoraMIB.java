@@ -13,6 +13,7 @@ public class ImpressoraMIB {
     private final String MASCARA_SUBREDE_OID = ".1.3.6.1.2.1.4.20.1.3.";
     private final String GATEWAY_OID = ".1.3.6.1.4.1.11.2.4.3.5.13.0";
     private final String TOTAL_IMPRESSOES_OID = ".1.3.6.1.2.1.43.10.2.1.4.1.1";
+    private final String DOMINIO_OID = ".1.3.6.1.4.1.11.2.4.3.5.46.0";
     private final String STATUS_OID = ".1.3.6.1.2.1.25.3.2.1.5.1";
 
 

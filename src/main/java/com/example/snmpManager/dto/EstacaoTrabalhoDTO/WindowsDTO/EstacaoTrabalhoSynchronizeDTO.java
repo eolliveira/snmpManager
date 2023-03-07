@@ -30,6 +30,7 @@ public class EstacaoTrabalhoSynchronizeDTO {
     private List<InterfaceDTO> interfaces = new ArrayList<>();
     private List<DiscoDTO> discos = new ArrayList<>();
 
+    //TODO(VERIFICAR SE CONSTRUTTOR ABAIXO É NECESSÁRIO)
     public EstacaoTrabalhoSynchronizeDTO() {
         super();
     }

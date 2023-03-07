@@ -12,6 +12,7 @@ public class PrinterObject {
     private String mascaraSubRede;
     private String enderecoMac;
     private String gateway;
+    private String dominio;
     private String tempoLigado;
     private String totalImpressoes;
     private String status;

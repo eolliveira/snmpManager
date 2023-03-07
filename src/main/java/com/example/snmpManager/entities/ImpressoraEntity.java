@@ -13,6 +13,9 @@ import javax.persistence.Entity;
 public class ImpressoraEntity extends AtivoEntity {
     private String tempoLigado;
     private String totalImpressoes;
+    private String gateway;
+
+    private String dominio;
 
     public ImpressoraEntity() {}
 
@@ -31,6 +34,8 @@ public class ImpressoraEntity extends AtivoEntity {
         this.setValorCompra(dto.getValorCompra());
         this.setFornecedor(dto.getFornecedor());
         this.setObservacao(dto.getObservacao());
+        this.setDominio(dto.getDominio());
+        this.gateway = dto.getGateway();
         this.totalImpressoes = dto.getTotalImpressoes();
         this.tempoLigado = dto.getTempoLigado();
     }
