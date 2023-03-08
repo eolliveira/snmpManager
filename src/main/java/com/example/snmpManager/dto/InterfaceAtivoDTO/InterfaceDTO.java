@@ -26,7 +26,6 @@ public class InterfaceDTO implements Serializable {
         this.enderecoMac = entity.getEnderecoMac();
         this.enderecoIp = entity.getEnderecoIp();
         this.mascaraSubRede = entity.getMascaraSubRede();
-        //this.estacaoTrabalho = new EstacaoTrabalhoDTO(entity.getEstacaoTrabalho());
     }
 
     public InterfaceDTO(InterfaceObject obj) {

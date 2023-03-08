@@ -25,7 +25,6 @@ public class InterfaceEntity implements Serializable {
     private String nomeLocal;
     private String fabricante;
     private String enderecoMac;
-
     private String enderecoIp;
     private String mascaraSubRede;
     @ManyToOne
