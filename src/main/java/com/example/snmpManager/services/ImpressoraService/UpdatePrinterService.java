@@ -39,6 +39,7 @@ public class UpdatePrinterService {
         impressora.setDescricao(dto.getDescricao());
         impressora.setInativo(dto.getInativo());
         impressora.setStatus(dto.getStatus());
+        impressora.setTempoLigado(dto.getTempoLigado());
         impressora.setDtAquisicao(dto.getDtAquisicao());
         impressora.setDtVencimentoGarantia(dto.getDtVencimentoGarantia());
         impressora.setDtExpiracao(dto.getDtExpiracao());

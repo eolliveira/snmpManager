@@ -13,7 +13,6 @@ import java.io.Serializable;
 public class ImpressoraInsertDTO extends AtivoDTO implements Serializable {
 
     private String nome;
-
     private String nomeHost;
     private String numeroSerie;
     private String enderecoIp;
@@ -25,9 +24,11 @@ public class ImpressoraInsertDTO extends AtivoDTO implements Serializable {
     private String totalImpressoes;
 
     public ImpressoraInsertDTO(ImpressoraEntity impressora) {
+        this.setId(impressora.getId());
         this.setNome(impressora.getNome());
         this.setNomeHost(impressora.getNomeHost());
         this.setDescricao(impressora.getDescricao());
+        this.setDominio(impressora.getDominio());
         this.setInativo(false);
         this.setStatus(StatusAtivo.DISPONIVEL);
         this.setNumeroSerie(impressora.getNumeroSerie());

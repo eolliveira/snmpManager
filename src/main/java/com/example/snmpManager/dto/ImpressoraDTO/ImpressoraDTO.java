@@ -4,10 +4,12 @@ import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.entities.ImpressoraEntity;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Data
+@NoArgsConstructor
 public class ImpressoraDTO extends AtivoDTO implements Serializable {
 
     private String enderecoIp;
@@ -18,6 +20,8 @@ public class ImpressoraDTO extends AtivoDTO implements Serializable {
     private String totalImpressoes;
 
     public ImpressoraDTO(ImpressoraEntity impressora) {
+        this.setId(impressora.getId());
+        this.setDominio(impressora.getDominio());
         this.setNome(impressora.getNome());
         this.setNomeHost(impressora.getNomeHost());
         this.setDescricao(impressora.getDescricao());
