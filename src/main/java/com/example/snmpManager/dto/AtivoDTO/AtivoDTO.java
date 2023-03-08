@@ -1,8 +1,8 @@
 package com.example.snmpManager.dto.AtivoDTO;
 
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
+import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
+import com.example.snmpManager.dto.MovimentoDTO.MovimentoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.enums.StatusAtivo;

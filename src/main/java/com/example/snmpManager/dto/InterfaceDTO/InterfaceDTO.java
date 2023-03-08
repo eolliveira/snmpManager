@@ -1,4 +1,4 @@
-package com.example.snmpManager.dto.InterfaceAtivoDTO;
+package com.example.snmpManager.dto.InterfaceDTO;
 
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.InterfaceObject;

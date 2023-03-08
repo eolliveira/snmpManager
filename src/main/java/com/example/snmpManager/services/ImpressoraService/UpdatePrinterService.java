@@ -1,7 +1,7 @@
 package com.example.snmpManager.services.ImpressoraService;
 
 import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraDTO;
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
+import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
 import com.example.snmpManager.entities.ImpressoraEntity;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;

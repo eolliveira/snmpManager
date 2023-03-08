@@ -1,6 +1,6 @@
 package com.example.snmpManager.services.InterfaceService;
 
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
+import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.repositories.InterfaceRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,6 @@
 package com.example.snmpManager.services.EstacaoTrabalhoService;
 
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import org.springframework.beans.factory.annotation.Autowired;

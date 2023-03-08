@@ -1,4 +1,4 @@
-package com.example.snmpManager.dto.MotivoAtivoDTO;
+package com.example.snmpManager.dto.MovimentoDTO;
 
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;

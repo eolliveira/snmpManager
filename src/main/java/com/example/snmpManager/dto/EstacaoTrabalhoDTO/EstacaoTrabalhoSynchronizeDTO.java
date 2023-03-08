@@ -1,7 +1,7 @@
-package com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO;
+package com.example.snmpManager.dto.EstacaoTrabalhoDTO;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
+import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import lombok.Data;

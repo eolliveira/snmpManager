@@ -1,7 +1,6 @@
 package com.example.snmpManager.dto.DiscoDTO;
 
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.entities.DiscoEntity;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.HardDiskObject;
 import lombok.Data;

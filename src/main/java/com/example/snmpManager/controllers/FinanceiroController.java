@@ -19,7 +19,6 @@ import java.net.URI;
 @RequestMapping("/financial")
 public class FinanceiroController {
     private final NewFinancialService newFinancialService;
-
     @PostMapping()
     public ResponseEntity<FinanceiroDTO> insertNewFinancial(@Valid @RequestBody FinanceiroInsertDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();

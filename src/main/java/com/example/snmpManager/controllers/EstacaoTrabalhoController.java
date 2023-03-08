@@ -1,11 +1,11 @@
 package com.example.snmpManager.controllers;
 
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
+import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
+import com.example.snmpManager.dto.MovimentoDTO.MovimentoDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.DiscoService.FindDiscsWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
@@ -37,55 +37,42 @@ public class EstacaoTrabalhoController {
     private final FindFinancesWorkstationService findFinancesWorkstationService;
 
 
-    //obtem dados da estação de trabalho
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<WorkstationObject> getDataByAddress(@PathVariable String ipAddress) {
         WorkstationObject win = getDataFromWorkstationService.getWorkstationData(ipAddress);
         return ResponseEntity.ok(win);
     }
 
-
-    //lista basica ,todas as estações
     @GetMapping
     public ResponseEntity<List<EstacaoTrabalhoBasicDTO>> findAll() {
         List<EstacaoTrabalhoBasicDTO> estacoes = findWorkstationService.findAll();
         return ResponseEntity.ok(estacoes);
     }
 
-
-    //lista interfaces da estação
     @GetMapping(value = "/{idActive}/interfaces")
     public ResponseEntity<List<InterfaceDTO>> findAllInterfaces(@PathVariable Long idActive) {
         List<InterfaceDTO> interfaces = findInterfacesWorkstationService.findAllInterfaces(idActive);
         return ResponseEntity.ok(interfaces);
     }
 
-
-    //lista discos da estação
     @GetMapping(value = "/{idActive}/hardDrives")
     public ResponseEntity<List<DiscoDTO>> findAllDiscs(@PathVariable Long idActive) {
         List<DiscoDTO> discos = findDiscsWorkstationService.findAllDiscs(idActive);
         return ResponseEntity.ok(discos);
     }
 
-
-    //lista de movimentos da estação
     @GetMapping(value = "/{idActive}/moves")
     public ResponseEntity<List<MovimentoDTO>> findAllMoves(@PathVariable Long idActive) {
         List<MovimentoDTO> movimentos = findMovesWorkstationService.findAllMoves(idActive);
         return ResponseEntity.ok(movimentos);
     }
 
-
-    //lista de financas da estação
     @GetMapping(value = "/{idActive}/finances")
     public ResponseEntity<List<FinanceiroDTO>> findAllFinances(@PathVariable Long idActive) {
         List<FinanceiroDTO> financas = findFinancesWorkstationService.findAllFinaces(idActive);
         return ResponseEntity.ok(financas);
     }
 
-
-    //add nova estação de trabalho
     @PostMapping()
     public ResponseEntity<EstacaoTrabalhoDTO> insertNewWorkStation(@RequestBody EstacaoTrabalhoDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
@@ -93,21 +80,16 @@ public class EstacaoTrabalhoController {
         return ResponseEntity.created(uri).body(estacaoCriada);
     }
 
-
-    //sincroniza dados pelo id da estação de trabalho
     @PutMapping(value = "/{idActive}/synchronize")
     public void synchronize(@PathVariable Long idActive) {
         syncWorkstationByAssetIdService.synchronizeWorstation(idActive);
     }
 
-
-    //atualiza estação passando o id
     @PutMapping(value = "/{idActive}/update")
     public ResponseEntity<EstacaoTrabalhoDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoDTO dto) {
         dto = updateWorkstationService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
     }
-
 
     @DeleteMapping(value = "/{idActive}")
     public ResponseEntity<Void> deleteWorkstation(@PathVariable Long idActive) {

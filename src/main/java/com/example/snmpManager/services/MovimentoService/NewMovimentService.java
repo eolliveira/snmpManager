@@ -1,7 +1,7 @@
 package com.example.snmpManager.services.MovimentoService;
 
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoInsertDTO;
+import com.example.snmpManager.dto.MovimentoDTO.MovimentoDTO;
+import com.example.snmpManager.dto.MovimentoDTO.MovimentoInsertDTO;
 import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.MovimentoEntity;
 import com.example.snmpManager.entities.UsuarioEntity;

@@ -1,6 +1,6 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
+import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;

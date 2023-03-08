@@ -1,6 +1,6 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoInsertDTO;
+import com.example.snmpManager.dto.MovimentoDTO.MovimentoInsertDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
 

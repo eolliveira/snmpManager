@@ -1,4 +1,4 @@
-package com.example.snmpManager.dto.MotivoAtivoDTO;
+package com.example.snmpManager.dto.MovimentoDTO;
 
 import com.example.snmpManager.entities.MovimentoEntity;
 import com.example.snmpManager.entities.enums.StatusAtivo;

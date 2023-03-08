@@ -1,17 +1,18 @@
 package com.example.snmpManager.controllers;
 
-import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoDTO;
-import com.example.snmpManager.dto.MotivoAtivoDTO.MovimentoInsertDTO;
+import com.example.snmpManager.dto.MovimentoDTO.MovimentoDTO;
+import com.example.snmpManager.dto.MovimentoDTO.MovimentoInsertDTO;
 import com.example.snmpManager.services.MovimentoService.NewMovimentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,11 +20,6 @@ import java.util.List;
 public class MovimentoController {
 
     private final NewMovimentService newMovimentService;
-
-    @GetMapping(value = "/{idAtivo}")
-    public ResponseEntity<List<LicencaInsertDTO>> findByActive(@PathVariable Long idAtivo) {
-        return null;
-    }
 
     @PostMapping()
     public ResponseEntity<MovimentoDTO> newMovement(@Valid @RequestBody MovimentoInsertDTO dto) {
