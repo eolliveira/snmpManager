@@ -1,6 +1,6 @@
 package com.example.snmpManager.controllers;
 
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
+import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraDTO;
 import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraInsertDTO;
 import com.example.snmpManager.objects.PrinterObject;
 import com.example.snmpManager.services.ImpressoraService.*;
@@ -18,30 +18,24 @@ import java.util.List;
 public class ImpressoraController {
 
     private final GetDataFromPrinterService PrinterObject;
-
     private final NewPrinterService newPrinterService;
-
     private final SyncPrinterByAssetIdService synchronizeWorstation;
-
     private final FindPrinterService findPrinterService;
-
     private final RemovePrinterService removePrinterService;
+    private final UpdatePrinterService updatePrinterService;
 
-    //lista basica ,todas as estações
-    @GetMapping
-    public ResponseEntity<List<ImpressoraInsertDTO>> findAll() {
-        List<ImpressoraInsertDTO> impressoras = findPrinterService.findAll();
-        return ResponseEntity.ok(impressoras);
-    }
-
-    //obtem dados da impressora
     @GetMapping(value = "/{ipAddress}")
     public ResponseEntity<PrinterObject> getDataByAddress(@PathVariable String ipAddress) {
         PrinterObject printer = PrinterObject.getPrinterData(ipAddress);
         return ResponseEntity.ok(printer);
     }
 
-    //add nova Impressora
+    @GetMapping
+    public ResponseEntity<List<ImpressoraInsertDTO>> findAll() {
+        List<ImpressoraInsertDTO> impressoras = findPrinterService.findAll();
+        return ResponseEntity.ok(impressoras);
+    }
+
     @PostMapping()
     public ResponseEntity<ImpressoraInsertDTO> insertNewPrinter(@RequestBody ImpressoraInsertDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
@@ -49,10 +43,15 @@ public class ImpressoraController {
         return ResponseEntity.created(uri).body(impressora);
     }
 
-    //sincroniza dados pelo id da estação de trabalho
     @PutMapping(value = "/{idActive}/synchronize")
     public void synchronize(@PathVariable Long idActive) {
         synchronizeWorstation.synchronizePrinter(idActive);
+    }
+
+    @PutMapping(value = "/{idActive}/update")
+    public ResponseEntity<ImpressoraDTO> updatePrinter(@PathVariable Long idActive, @RequestBody ImpressoraDTO dto) {
+        dto = updatePrinterService.updatePrinter(idActive, dto);
+        return ResponseEntity.ok(dto);
     }
 
     @DeleteMapping(value = "/{idActive}")

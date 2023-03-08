@@ -16,10 +16,7 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private String processador;
     private String arquiteturaSo;
     private String memoriaRam;
-    private String tempoLigado;
-    private String nomeHost;
     private String ultimoUsuarioLogado;
-    private String dominio;
     private String dnsList;
     private String gateway;
 
@@ -45,14 +42,14 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
         this.setValorCompra(entity.getValorCompra());
         this.setFornecedor(entity.getFornecedor());
         this.setObservacao(entity.getObservacao());
+        this.setTempoLigado(entity.getTempoLigado());
+        this.setNomeHost(entity.getNomeHost());
+        this.setDominio(entity.getDominio());
         this.sistemaOperacional = entity.getSistemaOperacional();
         this.processador = entity.getProcessador();
         this.arquiteturaSo = entity.getArquiteturaSo();
         this.memoriaRam = entity.getMemoriaRam();
-        this.tempoLigado = entity.getTempoLigado();
-        this.nomeHost = entity.getNomeHost();
         this.ultimoUsuarioLogado = entity.getUltimoUsuarioLogado();
-        this.dominio = entity.getDominio();
         this.dnsList = entity.getDnsList();
         this.gateway = entity.getGateway();
 

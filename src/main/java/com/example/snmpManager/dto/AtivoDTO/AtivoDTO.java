@@ -24,7 +24,10 @@ public class AtivoDTO implements Serializable {
     private String modelo;
     private String descricao;
     private String numeroSerie;
+    private String nomeHost;
     private Boolean inativo;
+    private String dominio;
+    private String tempoLigado;
     private StatusAtivo status;
     private Date dtAquisicao;
     private Date dtVencimentoGarantia;
@@ -46,7 +49,9 @@ public class AtivoDTO implements Serializable {
         this.nome = entity.getNome();
         this.fabricante = entity.getFabricante();
         this.modelo = entity.getModelo();
+        this.dominio = entity.getDominio();
         this.descricao = entity.getDescricao();
+        this.tempoLigado = entity.getTempoLigado();
         this.numeroSerie = entity.getNumeroSerie();
         this.inativo = entity.getInativo();
         this.status = entity.getStatus();
