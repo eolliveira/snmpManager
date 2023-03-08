@@ -1,8 +1,6 @@
 package com.example.snmpManager.dto.ImpressoraDTO;
 
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
-import com.example.snmpManager.entities.ImpressoraEntity;
-import com.example.snmpManager.entities.InterfaceEntity;
 
 import java.io.Serializable;
 

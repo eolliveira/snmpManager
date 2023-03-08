@@ -1,7 +1,6 @@
 package com.example.snmpManager.util;
 
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.DataBaseException;
