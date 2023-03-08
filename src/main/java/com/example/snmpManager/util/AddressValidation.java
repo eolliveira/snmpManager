@@ -1,5 +1,6 @@
 package com.example.snmpManager.util;
 
+import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
 import com.example.snmpManager.entities.InterfaceEntity;
@@ -25,7 +26,7 @@ public class AddressValidation {
         return false;
     }
 
-    public void addressAlreadyExists(EstacaoTrabalhoDTO dto) {
+    public void addressAlreadyExists(AtivoDTO dto) {
         for (InterfaceDTO i : dto.getInterfaces()) {
             if (!Objects.equals(i.getEnderecoIp(), "") && i.getEnderecoIp() != null) {
                 InterfaceEntity interfaceEntity = interfaceRepository.findByEnderecoIp(i.getEnderecoIp());

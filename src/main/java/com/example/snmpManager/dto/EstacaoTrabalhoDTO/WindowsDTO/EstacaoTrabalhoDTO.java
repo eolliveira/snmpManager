@@ -2,9 +2,9 @@ package com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO;
 
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
-import com.example.snmpManager.dto.InterfaceAtivoDTO.InterfaceDTO;
 import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import lombok.*;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,7 +23,6 @@ public class EstacaoTrabalhoDTO extends AtivoDTO {
     private String dnsList;
     private String gateway;
 
-    private List<InterfaceDTO> interfaces = new ArrayList<>();
     private List<DiscoDTO> discos = new ArrayList<>();
 
     public EstacaoTrabalhoDTO(){
