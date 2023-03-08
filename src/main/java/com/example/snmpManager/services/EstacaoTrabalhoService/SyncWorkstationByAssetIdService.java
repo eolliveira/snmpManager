@@ -67,6 +67,7 @@ public class SyncWorkstationByAssetIdService {
         estacaoTrabalho.setProcessador(dto.getProcessador());
         estacaoTrabalho.setMemoriaRam(dto.getMemoriaRam());
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
+        estacaoTrabalho.setTempoLigado(dto.getTempoLigado());
         estacaoTrabalho.setDominio(dto.getDominio());
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
         estacaoTrabalho.setUltimoSincronismo(Instant.now());

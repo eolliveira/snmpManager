@@ -29,7 +29,10 @@ public abstract class AtivoEntity {
     private String modelo;
     private String descricao;
     private String numeroSerie;
+    private String tempoLigado;
     private Boolean inativo;
+    private String dominio;
+    private String gateway;
     @Enumerated(EnumType.STRING)
     private StatusAtivo status;
     private Date dtAquisicao;

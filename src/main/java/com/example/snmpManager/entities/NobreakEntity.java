@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 @Data
 @DiscriminatorValue(value = "NOBREAK")
 public class NobreakEntity extends AtivoEntity {
-    private String potencialNominaal;
+    private String potencialNominal;
     private String tensaoEntrada;
     private String tensaoSaida;
 

@@ -11,11 +11,7 @@ import javax.persistence.Entity;
 @Data
 @DiscriminatorValue(value = "IMPRESSORA")
 public class ImpressoraEntity extends AtivoEntity {
-    private String tempoLigado;
     private String totalImpressoes;
-    private String gateway;
-
-    private String dominio;
 
     public ImpressoraEntity() {}
 
@@ -35,9 +31,9 @@ public class ImpressoraEntity extends AtivoEntity {
         this.setFornecedor(dto.getFornecedor());
         this.setObservacao(dto.getObservacao());
         this.setDominio(dto.getDominio());
-        this.gateway = dto.getGateway();
+        this.setGateway(dto.getGateway());
+        this.setTempoLigado(dto.getTempoLigado());
         this.totalImpressoes = dto.getTotalImpressoes();
-        this.tempoLigado = dto.getTempoLigado();
     }
 
 }
