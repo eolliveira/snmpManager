@@ -5,7 +5,7 @@ import lombok.Data;
 @Data
 public class PrinterObject {
 
-    private String nome;
+    private String nomeHost;
     private String modelo;
     private String numeroSerie;
     private String enderecoIp;

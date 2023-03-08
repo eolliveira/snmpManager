@@ -7,6 +7,7 @@ import java.io.Serializable;
 
 @Data
 public class ImpressoraSyncronizedDTO implements Serializable {
+    private String nome;
     private String nomeHost;
     private String modelo;
     private String numeroSerie;
@@ -15,12 +16,11 @@ public class ImpressoraSyncronizedDTO implements Serializable {
     private String enderecoMac;
     private String gateway;
     private String tempoLigado;
-
     private String dominio;
     private String totalImpressoes;
 
     public ImpressoraSyncronizedDTO(PrinterObject objAgent) {
-        this.nomeHost = objAgent.getNome();
+        this.nomeHost = objAgent.getNomeHost();
         this.modelo = objAgent.getModelo();
         this.numeroSerie = objAgent.getNumeroSerie();
         this.enderecoIp = objAgent.getEnderecoIp();

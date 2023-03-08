@@ -31,6 +31,7 @@ public abstract class AtivoEntity {
     private String numeroSerie;
     private String tempoLigado;
     private Boolean inativo;
+    private String nomeHost;
     private String dominio;
     private String gateway;
     @Enumerated(EnumType.STRING)

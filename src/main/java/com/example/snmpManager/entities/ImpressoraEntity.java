@@ -16,6 +16,7 @@ public class ImpressoraEntity extends AtivoEntity {
     public ImpressoraEntity() {}
 
     public ImpressoraEntity(ImpressoraInsertDTO dto) {
+        this.setNomeHost(dto.getNomeHost());
         this.setNome(dto.getNome());
         this.setDescricao(dto.getDescricao());
         this.setInativo(false);

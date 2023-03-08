@@ -40,7 +40,7 @@ public class GetDataFromPrinterService {
             String dominio = snmpRequestClient.getAsString(new OID(mib.getDOMINIO_OID()));
             String status = snmpRequestClient.getAsString(new OID(mib.getSTATUS_OID()));
 
-            printerObj.setNome(nome);
+            printerObj.setNomeHost(nome);
             printerObj.setModelo(modelo);
             printerObj.setNumeroSerie(numeroSerie);
             printerObj.setEnderecoIp(enderecoIp);
