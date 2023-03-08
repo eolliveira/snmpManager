@@ -3,10 +3,12 @@ package com.example.snmpManager.entities;
 import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraInsertDTO;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
+@EqualsAndHashCode(callSuper = true)
 @Entity
 @Data
 @DiscriminatorValue(value = "IMPRESSORA")
