@@ -3,10 +3,7 @@ package com.example.snmpManager.controllers;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.WindowsDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraInsertDTO;
 import com.example.snmpManager.objects.PrinterObject;
-import com.example.snmpManager.services.ImpressoraService.FindPrinterService;
-import com.example.snmpManager.services.ImpressoraService.GetDataFromPrinterService;
-import com.example.snmpManager.services.ImpressoraService.NewPrinterService;
-import com.example.snmpManager.services.ImpressoraService.SyncPrinterByAssetIdService;
+import com.example.snmpManager.services.ImpressoraService.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -27,6 +24,8 @@ public class ImpressoraController {
     private final SyncPrinterByAssetIdService synchronizeWorstation;
 
     private final FindPrinterService findPrinterService;
+
+    private final RemovePrinterService removePrinterService;
 
     //lista basica ,todas as estações
     @GetMapping
@@ -54,5 +53,11 @@ public class ImpressoraController {
     @PutMapping(value = "/{idActive}/synchronize")
     public void synchronize(@PathVariable Long idActive) {
         synchronizeWorstation.synchronizePrinter(idActive);
+    }
+
+    @DeleteMapping(value = "/{idActive}")
+    public ResponseEntity<Void> deleteWorkstation (@PathVariable Long idActive) {
+        removePrinterService.deletePrinter(idActive);
+        return ResponseEntity.noContent().build();
     }
 }
