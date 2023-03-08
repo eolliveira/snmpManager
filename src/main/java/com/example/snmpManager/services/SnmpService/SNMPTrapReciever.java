@@ -1,4 +1,4 @@
-package com.example.snmpManager.services;
+package com.example.snmpManager.services.SnmpService;
 
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.EstacaoTrabalhoService.SyncWorkstationByIpAddressService;

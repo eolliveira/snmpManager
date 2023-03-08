@@ -5,7 +5,7 @@ import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
 import com.example.snmpManager.mibs.EstacaoTrabalhoMIB;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
-import com.example.snmpManager.services.SNMPRequestClient;
+import com.example.snmpManager.services.SnmpService.SNMPRequestClient;
 import com.example.snmpManager.util.AddressValidation;
 import org.snmp4j.smi.OID;
 import org.springframework.beans.factory.annotation.Autowired;

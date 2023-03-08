@@ -5,24 +5,21 @@ import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
 import com.example.snmpManager.entities.InterfaceEntity;
 import com.example.snmpManager.exceptions.DataBaseException;
 import com.example.snmpManager.repositories.InterfaceRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Objects;
 import java.util.regex.Pattern;
+
 @Component
+@RequiredArgsConstructor
 public class AddressValidation {
 
-    @Autowired
-    InterfaceRepository interfaceRepository;
-    public static Boolean isValidIpv4(String address) {
-        // Regex expression for validating IPv4
-        String regex = "(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])";
-        Pattern p = Pattern.compile(regex);
+    private final InterfaceRepository interfaceRepository;
 
-        if (p.matcher(address).matches())
-            return true;
-        return false;
+    public static Boolean isValidIpv4(String address) {
+        Pattern p = Pattern.compile("(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])\\.){3}([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])");
+        return p.matcher(address).matches();
     }
 
     public void addressAlreadyExists(AtivoDTO dto) {

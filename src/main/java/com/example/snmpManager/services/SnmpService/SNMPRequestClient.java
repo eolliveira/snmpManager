@@ -1,4 +1,4 @@
-package com.example.snmpManager.services;
+package com.example.snmpManager.services.SnmpService;
 
 import com.example.snmpManager.exceptions.ClientConnectionFailedExecption;
 import com.example.snmpManager.exceptions.FailureInitializeUdpTransport;

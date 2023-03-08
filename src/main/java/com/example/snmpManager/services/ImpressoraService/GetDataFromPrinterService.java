@@ -5,7 +5,7 @@ import com.example.snmpManager.exceptions.InvalidAddressExecption;
 import com.example.snmpManager.exceptions.UnableToGetDeviceDataException;
 import com.example.snmpManager.mibs.ImpressoraMIB;
 import com.example.snmpManager.objects.PrinterObject;
-import com.example.snmpManager.services.SNMPRequestClient;
+import com.example.snmpManager.services.SnmpService.SNMPRequestClient;
 import com.example.snmpManager.util.AddressValidation;
 import lombok.RequiredArgsConstructor;
 import org.snmp4j.smi.OID;
