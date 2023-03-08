@@ -77,8 +77,7 @@ public class SNMPRequestClient {
     }
 
 
-    // Este método retorna um Target, que contém informações sobre
-    // onde os dados devem ser buscados e como
+    // Este método retorna um Target, que contém informações sobre onde/como os dados devem ser buscados
     private Target getTarget(String address, String community) {
         Address targetAddress = GenericAddress.parse(address);
         CommunityTarget target = new CommunityTarget();
