@@ -12,6 +12,8 @@ import com.example.snmpManager.services.EstacaoTrabalhoService.*;
 import com.example.snmpManager.services.FinanceiroService.FindFinancesWorkstationService;
 import com.example.snmpManager.services.InterfaceService.FindInterfacesWorkstationService;
 import com.example.snmpManager.services.MovimentoService.FindMovesWorkstationService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +24,8 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+@Api(value = "API REST Estação de trabaalho")
+@CrossOrigin(origins = "*")
 @RequestMapping("/workstation")
 public class EstacaoTrabalhoController {
 
@@ -38,6 +42,7 @@ public class EstacaoTrabalhoController {
 
 
     @GetMapping(value = "/{ipAddress}")
+    @ApiOperation(value="Retorna informações do agente pelo endereço Ip")
     public ResponseEntity<WorkstationObject> getDataByAddress(@PathVariable String ipAddress) {
         WorkstationObject win = getDataFromWorkstationService.getWorkstationData(ipAddress);
         return ResponseEntity.ok(win);
