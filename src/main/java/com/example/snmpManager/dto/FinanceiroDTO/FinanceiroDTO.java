@@ -1,11 +1,14 @@
 package com.example.snmpManager.dto.FinanceiroDTO;
 
+import com.example.snmpManager.dto.AnexoDTO.AnexoDTO;
 import com.example.snmpManager.entities.FinanceiroEntity;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -16,7 +19,7 @@ public class FinanceiroDTO implements Serializable {
     private Double valor;
     private Instant dtFinanceiro;
 
-    //TODO(Implementar add anexo)
+    private List<AnexoDTO> anexos = new ArrayList<>();
 
     public FinanceiroDTO(FinanceiroEntity entity) {
         this.id = entity.getId();

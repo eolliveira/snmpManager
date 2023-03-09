@@ -1,5 +1,6 @@
 package com.example.snmpManager.dto.FinanceiroDTO;
 
+import com.example.snmpManager.dto.AnexoDTO.AnexoDTO;
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
 import com.example.snmpManager.entities.FinanceiroEntity;
@@ -12,6 +13,8 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -23,14 +26,11 @@ public class FinanceiroInsertDTO implements Serializable {
     @Positive(message = "Valor deve ser positivo")
     private Double valor;
     private Instant dtFinanceiro;
-
     @NonNull
     private AtivoDTO ativo;
-
     @NotNull
     private UsuarioDTO usuario;
-
-    //TODO(ANEXO)
+    private List<AnexoDTO> anexos = new ArrayList<>();
 
     public FinanceiroInsertDTO(FinanceiroEntity entity) {
         this.id = entity.getId();

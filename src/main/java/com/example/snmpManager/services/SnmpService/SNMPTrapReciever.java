@@ -59,31 +59,31 @@ public class SNMPTrapReciever implements CommandResponder {
             }
 
             //RECEBE AS INFORMAÇÕES DO AGENTE QUE SOLICITA O SISNCRONISMO
-            String descricao = pdu.get(0).getVariable().toString(); // descrição solictação
-            String tipoAtivo = pdu.get(1).getVariable().toString(); //tipo dispositivo
-            String ipAddress = pdu.get(2).getVariable().toString(); // ip
-            String instante = pdu.get(3).getVariable().toString(); // instante requisição
+            String descricao = pdu.get(0).getVariable().toString();
+            String tipoAtivo = pdu.get(1).getVariable().toString();
+            String ipAddress = pdu.get(2).getVariable().toString();
+            String instante = pdu.get(3).getVariable().toString();
 
             if (Objects.equals(tipoAtivo, "WORKSTATION")) {
 
-                String so = pdu.get(4).getVariable().toString(); // instante requisição
-                String arquiteturaSo = pdu.get(5).getVariable().toString(); // instante requisição
-                String fabricante = pdu.get(6).getVariable().toString(); // instante requisição
-                String modelo = pdu.get(7).getVariable().toString(); // instante requisição
-                String numeroSerie = pdu.get(8).getVariable().toString(); // instante requisição
-                String processador = pdu.get(9).getVariable().toString(); // instante requisição
-                String memoriaRam = pdu.get(10).getVariable().toString(); // instante requisição
-                String hostName = pdu.get(11).getVariable().toString(); // instante requisição
-                String dominio = pdu.get(12).getVariable().toString(); // instante requisição
-                String ultmUsuario = pdu.get(13).getVariable().toString(); // instante requisição
-                String tempoLigado = pdu.get(14).getVariable().toString(); // instante requisição
-                String gatway = pdu.get(15).getVariable().toString(); // instante requisição
-                String dns = pdu.get(16).getVariable().toString(); // instante requisição
-                String interfaces = pdu.get(17).getVariable().toString(); // instante requisição
-                String discos = pdu.get(18).getVariable().toString(); // instante requisição
-                String impressoras = pdu.get(19).getVariable().toString(); // instante requisição
-                String placasVideo = pdu.get(20).getVariable().toString(); // instante requisição
-                String programas = pdu.get(21).getVariable().toString(); // instante requisição
+                String so = pdu.get(4).getVariable().toString();
+                String arquiteturaSo = pdu.get(5).getVariable().toString();
+                String fabricante = pdu.get(6).getVariable().toString();
+                String modelo = pdu.get(7).getVariable().toString();
+                String numeroSerie = pdu.get(8).getVariable().toString();
+                String processador = pdu.get(9).getVariable().toString();
+                String memoriaRam = pdu.get(10).getVariable().toString();
+                String hostName = pdu.get(11).getVariable().toString();
+                String dominio = pdu.get(12).getVariable().toString();
+                String ultmUsuario = pdu.get(13).getVariable().toString();
+                String tempoLigado = pdu.get(14).getVariable().toString();
+                String gatway = pdu.get(15).getVariable().toString();
+                String dns = pdu.get(16).getVariable().toString();
+                String interfaces = pdu.get(17).getVariable().toString();
+                String discos = pdu.get(18).getVariable().toString();
+                String impressoras = pdu.get(19).getVariable().toString();
+                String placasVideo = pdu.get(20).getVariable().toString();
+                String programas = pdu.get(21).getVariable().toString();
 
                 WorkstationObject workstationObject = new WorkstationObject();
                 workstationObject.setSistemaOperacional(so);
