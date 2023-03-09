@@ -43,6 +43,8 @@ public class WorkstationObject extends DeviceObjectAbstract implements Serializa
 
     public void addInterfaces(String arrayInterfaces) {
         Gson gson = new Gson();
+
+        //TODO()Pode lançar exceção ao buscar enquanto agente esta inicializando
         List<InterfaceObject> listInterfaces = gson.fromJson(arrayInterfaces, new TypeToken<List<InterfaceObject>>(){}.getType());
         listInterfaces.stream().map(i -> super.getInterfaces().add(i)).collect(Collectors.toList());
     }

@@ -26,7 +26,7 @@ public class GetDataFromPrinterService {
         PrinterObject printerObj = new PrinterObject();
 
         try {
-            snmpRequestClient.start(address, "public");
+            snmpRequestClient.start(address, "public", "/161");
 
             String nome = snmpRequestClient.getAsString(new OID(mib.getNOME_OID()));
             String modelo = snmpRequestClient.getAsString(new OID(mib.getMODELO_OID()));

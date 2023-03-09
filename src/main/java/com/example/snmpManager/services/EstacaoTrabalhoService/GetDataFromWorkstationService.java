@@ -25,7 +25,7 @@ public class GetDataFromWorkstationService {
         WorkstationObject windowsObject = new WorkstationObject();
 
         try {
-            snmpRequestClient.start(address, "public");
+            snmpRequestClient.start(address, "public", "/1061");
 
             String sistemaOperacional = snmpRequestClient.getAsString(new OID(mib.getSO_OID()));
             String arquitetura = snmpRequestClient.getAsString(new OID(mib.getARQUITETURA_SO_OID()));

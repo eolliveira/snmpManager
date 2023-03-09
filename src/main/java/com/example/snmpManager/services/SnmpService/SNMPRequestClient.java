@@ -19,11 +19,11 @@ public class SNMPRequestClient {
     private String community;
     private TransportMapping transport;
 
-    public void start(String address, String commmunity)  {
+    public void start(String address, String commmunity, String port)  {
         try {
             transport = new DefaultUdpTransportMapping();
             snmp = new Snmp(transport);
-            this.address = "udp:" + address + "/161";
+            this.address = "udp:" + address + port;
             this.community = commmunity;
 
             transport.listen();
