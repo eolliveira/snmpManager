@@ -4,6 +4,7 @@ import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
 import com.example.snmpManager.dto.LicencaDTO.LicencaInsertDTO;
 import com.example.snmpManager.dto.MovimentoDTO.MovimentoDTO;
 import com.example.snmpManager.dto.UsuarioDTO.UsuarioDTO;
+import com.example.snmpManager.entities.AnexoEntity;
 import com.example.snmpManager.entities.AtivoEntity;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
@@ -29,6 +30,7 @@ public class AtivoDTO implements Serializable {
     private String dominio;
     private String tempoLigado;
     private StatusAtivo status;
+    private String gateway;
     private Date dtAquisicao;
     private Date dtVencimentoGarantia;
     private Date dtExpiracao;
@@ -40,9 +42,9 @@ public class AtivoDTO implements Serializable {
     private List<MovimentoDTO> movimentos = new ArrayList<>();
     private List<LicencaInsertDTO> licencas = new ArrayList<>();
     private List<InterfaceDTO> interfaces = new ArrayList<>();
+    private List<AnexoEntity> anexos = new ArrayList<>();
 
-    public AtivoDTO() {
-    }
+    public AtivoDTO() {}
 
     public AtivoDTO(AtivoEntity entity) {
         this.id = entity.getId();
@@ -55,6 +57,7 @@ public class AtivoDTO implements Serializable {
         this.numeroSerie = entity.getNumeroSerie();
         this.inativo = entity.getInativo();
         this.status = entity.getStatus();
+        this.gateway = entity.getGateway();
         this.dtAquisicao = entity.getDtAquisicao();
         this.dtVencimentoGarantia = entity.getDtAquisicao();
         this.dtExpiracao = entity.getDtExpiracao();

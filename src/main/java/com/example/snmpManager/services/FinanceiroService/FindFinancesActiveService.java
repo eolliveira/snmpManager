@@ -10,7 +10,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class FindFinancesWorkstationService {
+public class FindFinancesActiveService {
 
     @Autowired
     FinanceiroRepository financeiroRepository;
