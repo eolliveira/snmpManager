@@ -6,8 +6,6 @@ import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.DiscoService.FindDiscsWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
-import com.example.snmpManager.services.FinanceiroService.FindFinancesActiveService;
-import com.example.snmpManager.services.MovimentoService.FindMovesActiveService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -27,14 +25,10 @@ public class EstacaoTrabalhoController {
 
     private final GetDataFromWorkstationService getDataFromWorkstationService;
     private final FindWorkstationService findWorkstationService;
-    private final RemoveWorkstationService removeWorkstationService;
     private final UpdateWorkstationService updateWorkstationService;
     private final NewWorkstationService newWorkstationService;
     private final SyncWorkstationByAssetIdService syncWorkstationByAssetIdService;
     private final FindDiscsWorkstationService findDiscsWorkstationService;
-    private final FindMovesActiveService findMovesActiveService;
-    private final FindFinancesActiveService findFinancesActiveService;
-
 
     @GetMapping(value = "/{ipAddress}")
     @ApiOperation(value = "Retorna informações do agente pelo endereço Ip")

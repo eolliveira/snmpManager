@@ -13,6 +13,7 @@ import com.example.snmpManager.repositories.DiscoParticaoRepository;
 import com.example.snmpManager.repositories.DiscoRepository;
 import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import com.example.snmpManager.repositories.InterfaceRepository;
+import com.example.snmpManager.util.AddressValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -27,12 +28,14 @@ public class UpdateWorkstationService {
     private final InterfaceRepository interfaceRepository;
     private final DiscoRepository discoRepository;
     private final DiscoParticaoRepository discoParticaoRepository;
-
+    private final AddressValidation addressValidation;
 
     @Transactional
     public EstacaoTrabalhoDTO updateWorkStation(Long idAtivo, EstacaoTrabalhoDTO dto) {
         Optional<EstacaoTrabalhoEntity> opt = estacaoTrabalhoRepository.findById(idAtivo);
         EstacaoTrabalhoEntity estacaoTrabalho = opt.orElseThrow(() -> new ResourceNotFoundException("Estação id: " + idAtivo + " não encontrada."));
+
+        addressValidation.addressAlreadyExists(dto);
 
         estacaoTrabalho.setNome(dto.getNome());
         estacaoTrabalho.setDescricao(dto.getDescricao());
