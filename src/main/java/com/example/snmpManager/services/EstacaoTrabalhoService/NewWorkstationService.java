@@ -32,7 +32,7 @@ public class NewWorkstationService {
 
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
 
-        if(dto.getUsuario().getId() != null ) {
+        if(dto.getUsuario() != null ) {
             Optional<UsuarioEntity> userOpt = usuarioRepository.findById(dto.getUsuario().getId());
             UsuarioEntity usuario = userOpt.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + " não encontrado"));
             estacao.setUsuario(usuario);

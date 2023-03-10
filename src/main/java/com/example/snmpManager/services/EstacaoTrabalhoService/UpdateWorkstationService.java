@@ -54,10 +54,9 @@ public class UpdateWorkstationService {
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
         estacaoTrabalho.setDominio(dto.getDominio());
 
-        //TODO(VERIFICAR NULLPOINTER)
-        if(dto.getUsuario().getId() != null ) {
+        if(dto.getUsuario() != null ) {
             Optional<UsuarioEntity> userOpt = usuarioRepository.findById(dto.getUsuario().getId());
-            UsuarioEntity usuario = userOpt.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + "não encontrado"));
+            UsuarioEntity usuario = userOpt.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + " não encontrado"));
             estacaoTrabalho.setUsuario(usuario);
         }
 
