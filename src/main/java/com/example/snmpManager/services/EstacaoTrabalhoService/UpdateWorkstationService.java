@@ -4,15 +4,9 @@ import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
-import com.example.snmpManager.entities.DiscoEntity;
-import com.example.snmpManager.entities.DiscoParticaoEntity;
-import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import com.example.snmpManager.entities.InterfaceEntity;
+import com.example.snmpManager.entities.*;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
-import com.example.snmpManager.repositories.DiscoParticaoRepository;
-import com.example.snmpManager.repositories.DiscoRepository;
-import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
-import com.example.snmpManager.repositories.InterfaceRepository;
+import com.example.snmpManager.repositories.*;
 import com.example.snmpManager.util.AddressValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -28,6 +22,7 @@ public class UpdateWorkstationService {
     private final InterfaceRepository interfaceRepository;
     private final DiscoRepository discoRepository;
     private final DiscoParticaoRepository discoParticaoRepository;
+    private final UsuarioRepository usuarioRepository;
     private final AddressValidation addressValidation;
 
     @Transactional
@@ -58,13 +53,20 @@ public class UpdateWorkstationService {
         estacaoTrabalho.setMemoriaRam(dto.getMemoriaRam());
         estacaoTrabalho.setNomeHost(dto.getNomeHost());
         estacaoTrabalho.setDominio(dto.getDominio());
+
+        //TODO(VERIFICAR NULLPOINTER)
+        if(dto.getUsuario().getId() != null ) {
+            Optional<UsuarioEntity> userOpt = usuarioRepository.findById(dto.getUsuario().getId());
+            UsuarioEntity usuario = userOpt.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + "não encontrado"));
+            estacaoTrabalho.setUsuario(usuario);
+        }
+
         estacaoTrabalho.setUltimoUsuarioLogado(dto.getUltimoUsuarioLogado());
         estacaoTrabalhoRepository.save(estacaoTrabalho);
 
         interfaceRepository.deleteAllByAtivoId(estacaoTrabalho.getId());
         discoRepository.deleteAllByEstacaoTrabalho_Id(estacaoTrabalho.getId());
 
-        //adiciona interfaces atualizadas
         for (InterfaceDTO i : dto.getInterfaces()) {
             InterfaceEntity inter = new InterfaceEntity();
             inter.setNomeLocal(i.getNomeLocal());
@@ -76,7 +78,6 @@ public class UpdateWorkstationService {
             interfaceRepository.save(inter);
         }
 
-        //adiciona discos atualizados
         for (DiscoDTO d : dto.getDiscos()) {
             DiscoEntity disco = new DiscoEntity();
             disco.setNome(d.getNome());

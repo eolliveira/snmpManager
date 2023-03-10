@@ -4,19 +4,15 @@ import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.DiscoParticaoDTO.DiscoParticaoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
 import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
-import com.example.snmpManager.entities.DiscoEntity;
-import com.example.snmpManager.entities.DiscoParticaoEntity;
-import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
-import com.example.snmpManager.entities.InterfaceEntity;
-import com.example.snmpManager.repositories.DiscoParticaoRepository;
-import com.example.snmpManager.repositories.DiscoRepository;
-import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
-import com.example.snmpManager.repositories.InterfaceRepository;
+import com.example.snmpManager.entities.*;
+import com.example.snmpManager.exceptions.ResourceNotFoundException;
+import com.example.snmpManager.repositories.*;
 import com.example.snmpManager.util.AddressValidation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.transaction.Transactional;
+import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
@@ -27,6 +23,7 @@ public class NewWorkstationService {
     private final InterfaceRepository interfaceRepository;
     private final DiscoRepository discoRepository;
     private final DiscoParticaoRepository discoParticaoRepository;
+    private final UsuarioRepository usuarioRepository;
 
     @Transactional
     public EstacaoTrabalhoDTO insertNewWorkStation(EstacaoTrabalhoDTO dto) {
@@ -34,6 +31,12 @@ public class NewWorkstationService {
         addressValidation.addressAlreadyExists(dto);
 
         EstacaoTrabalhoEntity estacao = new EstacaoTrabalhoEntity(dto);
+
+        if(dto.getUsuario().getId() != null ) {
+            Optional<UsuarioEntity> userOpt = usuarioRepository.findById(dto.getUsuario().getId());
+            UsuarioEntity usuario = userOpt.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + " não encontrado"));
+            estacao.setUsuario(usuario);
+        }
 
         estacao = estacaoTrabalhoRepository.save(estacao);
 
