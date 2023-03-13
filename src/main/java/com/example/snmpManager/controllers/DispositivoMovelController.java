@@ -18,7 +18,7 @@ import java.util.List;
 @Api(value = "API REST Dispositivos Móveis")
 @CrossOrigin(origins = "*")
 @RequestMapping("/mobileDevice")
-public class MobileDeviceController {
+public class DispositivoMovelController {
 
     private final FindMobileDeviceService findMobileDeviceService;
     private final NewMobileDeviceService newMobileDeviceService;

@@ -1,4 +1,4 @@
-package com.example.snmpManager.dto.FinanceiroDTO;
+package com.example.snmpManager.dto.CustoDTO;
 
 import com.example.snmpManager.dto.AnexoDTO.AnexoDTO;
 import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
@@ -16,14 +16,14 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
-public class FinanceiroInsertDTO implements Serializable {
+public class CustoInsertDTO implements Serializable {
 
     private Long id;
     @NotBlank(message = "Campo Requerido")
     private String descricao;
     @Positive(message = "Valor deve ser positivo")
     private Double valor;
-    private Instant dtFinanceiro;
+    private Instant dtCusto;
     @NotNull
     private AtivoDTO ativo;
     @NotNull

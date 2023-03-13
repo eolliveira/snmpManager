@@ -1,8 +1,8 @@
 package com.example.snmpManager.controllers;
 
-import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
-import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroInsertDTO;
-import com.example.snmpManager.services.FinanceiroService.NewFinancialService;
+import com.example.snmpManager.dto.CustoDTO.CustoDTO;
+import com.example.snmpManager.dto.CustoDTO.CustoInsertDTO;
+import com.example.snmpManager.services.CustoService.NewCostService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,14 +16,14 @@ import java.net.URI;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/financial")
-public class FinanceiroController {
-    private final NewFinancialService newFinancialService;
+@RequestMapping("/cost")
+public class CustoController {
+    private final NewCostService newCostService;
     @PostMapping()
-    public ResponseEntity<FinanceiroDTO> insertNewFinancial(@Valid @RequestBody FinanceiroInsertDTO dto) {
+    public ResponseEntity<CustoDTO> insertNewCost(@Valid @RequestBody CustoInsertDTO dto) {
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(dto.getId()).toUri();
-        FinanceiroDTO financeiroAtivo = newFinancialService.insertNewFinancial(dto);
-        return ResponseEntity.created(uri).body(financeiroAtivo);
+        CustoDTO custoDTO = newCostService.insertNewCost(dto);
+        return ResponseEntity.created(uri).body(custoDTO);
     }
 
 }

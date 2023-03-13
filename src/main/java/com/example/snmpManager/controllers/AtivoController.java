@@ -1,10 +1,10 @@
 package com.example.snmpManager.controllers;
 
-import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
+import com.example.snmpManager.dto.CustoDTO.CustoDTO;
 import com.example.snmpManager.dto.InterfaceDTO.InterfaceDTO;
 import com.example.snmpManager.dto.MovimentoDTO.MovimentoDTO;
 import com.example.snmpManager.services.AtivoService.RemoveActiveService;
-import com.example.snmpManager.services.FinanceiroService.FindFinancesActiveService;
+import com.example.snmpManager.services.CustoService.FindTheAssetCostsService;
 import com.example.snmpManager.services.InterfaceService.FindInterfacesActiveService;
 import com.example.snmpManager.services.MovimentoService.FindMovesActiveService;
 import io.swagger.annotations.Api;
@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("/active")
 public class AtivoController {
     private final FindMovesActiveService findMovesActiveService;
-    private final FindFinancesActiveService findFinancesActiveService;
+    private final FindTheAssetCostsService findTheAssetCostsService;
     private final RemoveActiveService removeActiveService;
     private final FindInterfacesActiveService findInterfacesActiveService;
 
@@ -37,10 +37,10 @@ public class AtivoController {
         return ResponseEntity.ok(movimentos);
     }
 
-    @GetMapping(value = "/{idActive}/finances")
-    public ResponseEntity<List<FinanceiroDTO>> findAllAssetCosts(@PathVariable Long idActive) {
-        List<FinanceiroDTO> financas = findFinancesActiveService.findAllFinaces(idActive);
-        return ResponseEntity.ok(financas);
+    @GetMapping(value = "/{idActive}/costs")
+    public ResponseEntity<List<CustoDTO>> findAllAssetCosts(@PathVariable Long idActive) {
+        List<CustoDTO> custos = findTheAssetCostsService.findAllCosts(idActive);
+        return ResponseEntity.ok(custos);
     }
 
     @DeleteMapping(value = "/{idActive}")

@@ -1,15 +1,13 @@
-package com.example.snmpManager.services.FinanceiroService;
+package com.example.snmpManager.services.CustoService;
 
-import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroDTO;
-import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroInsertDTO;
+import com.example.snmpManager.dto.CustoDTO.CustoDTO;
+import com.example.snmpManager.dto.CustoDTO.CustoInsertDTO;
 import com.example.snmpManager.entities.AtivoEntity;
-import com.example.snmpManager.entities.FinanceiroEntity;
-import com.example.snmpManager.entities.MovimentoEntity;
+import com.example.snmpManager.entities.CustoEntity;
 import com.example.snmpManager.entities.UsuarioEntity;
 import com.example.snmpManager.exceptions.ResourceNotFoundException;
-import com.example.snmpManager.exceptions.UnprocesableEntityExecption;
 import com.example.snmpManager.repositories.AtivoRepository;
-import com.example.snmpManager.repositories.FinanceiroRepository;
+import com.example.snmpManager.repositories.CustoRepository;
 import com.example.snmpManager.repositories.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -19,14 +17,14 @@ import java.util.Optional;
 
 @Component
 @RequiredArgsConstructor
-public class NewFinancialService {
+public class NewCostService {
 
-    private final FinanceiroRepository financeiroRepository;
+    private final CustoRepository custoRepository;
     private final AtivoRepository ativoRepository;
     private final UsuarioRepository usuarioRepository;
 
     @Transactional
-    public FinanceiroDTO insertNewFinancial(FinanceiroInsertDTO dto) {
+    public CustoDTO insertNewCost(CustoInsertDTO dto) {
 
         Optional<AtivoEntity> optAtivo = ativoRepository.findById(dto.getAtivo().getId());
         AtivoEntity ativo = optAtivo.orElseThrow(() -> new ResourceNotFoundException("Ativo id: " + dto.getAtivo().getId() + " não encontrado."));
@@ -36,8 +34,8 @@ public class NewFinancialService {
         UsuarioEntity usuario = optUser.orElseThrow(() -> new ResourceNotFoundException("Usuário id: " + dto.getUsuario().getId() + " não encontrado."));
 
 
-        FinanceiroEntity financeiro = new FinanceiroEntity(ativo, usuario, dto);
-        financeiroRepository.save(financeiro);
-        return new FinanceiroDTO(financeiro);
+        CustoEntity custo = new CustoEntity(ativo, usuario, dto);
+        custoRepository.save(custo);
+        return new CustoDTO(custo);
     }
 }

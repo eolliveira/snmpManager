@@ -1,24 +1,24 @@
 package com.example.snmpManager.entities;
 
-import com.example.snmpManager.dto.FinanceiroDTO.FinanceiroInsertDTO;
+import com.example.snmpManager.dto.CustoDTO.CustoInsertDTO;
 import lombok.Data;
 
 import javax.persistence.*;
 import java.time.Instant;
 import java.util.List;
 
-@Table(name = "ATIVOFINANCEIRO")
+@Table(name = "ATIVOCUSTO")
 @Entity
 @Data
-public class FinanceiroEntity {
+public class CustoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_FINANCEIRO")
+    @Column(name = "ID_CUSTO")
     private Long id;
     private String descricao;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant dtFinanceiro;
+    private Instant dtCusto;
     private Double valor;
 
     @ManyToOne()
@@ -29,17 +29,17 @@ public class FinanceiroEntity {
     //TODO(Usuario deve ser o mesmo que estiver logado)
     private UsuarioEntity usuario;
 
-    @OneToMany(mappedBy = "financeiro")
+    @OneToMany(mappedBy = "custo")
     private List<AnexoEntity> anexos;
 
-    public FinanceiroEntity() {
+    public CustoEntity() {
     }
 
-    public FinanceiroEntity(AtivoEntity ativo, UsuarioEntity usuario, FinanceiroInsertDTO dto) {
+    public CustoEntity(AtivoEntity ativo, UsuarioEntity usuario, CustoInsertDTO dto) {
         this.id = dto.getId();
         this.descricao = dto.getDescricao();
         this.valor = dto.getValor();
-        this.dtFinanceiro = Instant.now();
+        this.dtCusto = Instant.now();
         this.ativo = ativo;
         this.usuario = usuario;
     }

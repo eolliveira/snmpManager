@@ -59,7 +59,7 @@ public abstract class AtivoEntity {
     private List<AnexoEntity> anexos = new ArrayList<>();
 
     @OneToMany(mappedBy = "ativo")
-    private List<FinanceiroEntity> financas = new ArrayList<>();
+    private List<CustoEntity> custos = new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "ATIVOLICENCA",

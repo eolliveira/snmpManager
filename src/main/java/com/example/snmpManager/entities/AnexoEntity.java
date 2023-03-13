@@ -18,6 +18,6 @@ public class AnexoEntity {
     private AtivoEntity ativo;
 
     @ManyToOne
-    @JoinColumn(name = "ID_FINANCEIRO")
-    private FinanceiroEntity financeiro;
+    @JoinColumn(name = "ID_CUSTO")
+    private CustoEntity custo;
 }
