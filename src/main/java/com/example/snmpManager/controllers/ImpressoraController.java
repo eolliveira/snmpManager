@@ -21,7 +21,6 @@ public class ImpressoraController {
     private final NewPrinterService newPrinterService;
     private final SyncPrinterByAssetIdService synchronizeWorstation;
     private final FindPrinterService findPrinterService;
-    private final RemovePrinterService removePrinterService;
     private final UpdatePrinterService updatePrinterService;
 
     @GetMapping(value = "/{ipAddress}")
