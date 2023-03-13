@@ -44,7 +44,7 @@ public class EstacaoTrabalhoController {
     }
 
     @GetMapping(value = "/{idActive}/hardDrives")
-    public ResponseEntity<List<DiscoDTO>> findAllDiscs(@PathVariable Long idActive) {
+    public ResponseEntity<List<DiscoDTO>> findAllDisksInTheAsset(@PathVariable Long idActive) {
         List<DiscoDTO> discos = findDiscsWorkstationService.findAllDiscs(idActive);
         return ResponseEntity.ok(discos);
     }
@@ -57,7 +57,7 @@ public class EstacaoTrabalhoController {
     }
 
     @PutMapping(value = "/{idActive}/synchronize")
-    public void synchronize(@PathVariable Long idActive) {
+    public void synchronizeWorkstation(@PathVariable Long idActive) {
         syncWorkstationByAssetIdService.synchronizeWorstation(idActive);
     }
 

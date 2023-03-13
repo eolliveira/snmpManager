@@ -26,19 +26,19 @@ public class AtivoController {
     private final FindInterfacesActiveService findInterfacesActiveService;
 
     @GetMapping(value = "/{idActive}/interfaces")
-    public ResponseEntity<List<InterfaceDTO>> findAllInterfaces(@PathVariable Long idActive) {
+    public ResponseEntity<List<InterfaceDTO>> findAllAssetInterfaces(@PathVariable Long idActive) {
         List<InterfaceDTO> interfaces = findInterfacesActiveService.findAllInterfaces(idActive);
         return ResponseEntity.ok(interfaces);
     }
 
     @GetMapping(value = "/{idActive}/moves")
-    public ResponseEntity<List<MovimentoDTO>> findAllMoves(@PathVariable Long idActive) {
+    public ResponseEntity<List<MovimentoDTO>> findAllMovementsOfTheAsset(@PathVariable Long idActive) {
         List<MovimentoDTO> movimentos = findMovesActiveService.findAllMoves(idActive);
         return ResponseEntity.ok(movimentos);
     }
 
     @GetMapping(value = "/{idActive}/finances")
-    public ResponseEntity<List<FinanceiroDTO>> findAllFinances(@PathVariable Long idActive) {
+    public ResponseEntity<List<FinanceiroDTO>> findAllAssetCosts(@PathVariable Long idActive) {
         List<FinanceiroDTO> financas = findFinancesActiveService.findAllFinaces(idActive);
         return ResponseEntity.ok(financas);
     }
