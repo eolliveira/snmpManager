@@ -24,4 +24,6 @@ public class EstacaoTrabalhoMIB {
     private final String IMPRESSORAS_OID = BASE_OID + ".2.2.8.0";
     private final String PLACAS_VIDEO_OID = BASE_OID + ".2.3.0.0";
     private final String PROGRAMAS_OID = BASE_OID + ".2.3.1.0";
+
+    //TODO(ALTERAR OIDS)
 }

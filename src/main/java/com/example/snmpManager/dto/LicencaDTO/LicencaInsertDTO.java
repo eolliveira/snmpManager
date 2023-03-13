@@ -10,6 +10,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class LicencaInsertDTO implements Serializable {
     private Long id;
     private String nome;
@@ -28,9 +29,6 @@ public class LicencaInsertDTO implements Serializable {
     private String chaveLicenca;
 
     private TipoLicenca tipo;
-
-    public LicencaInsertDTO() {
-    }
 
     public LicencaInsertDTO(LicencaEntity entity) {
         this.id = entity.getId();
