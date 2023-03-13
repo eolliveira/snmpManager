@@ -54,9 +54,4 @@ public class ImpressoraController {
         return ResponseEntity.ok(dto);
     }
 
-    @DeleteMapping(value = "/{idActive}")
-    public ResponseEntity<Void> deleteWorkstation(@PathVariable Long idActive) {
-        removePrinterService.deletePrinter(idActive);
-        return ResponseEntity.noContent().build();
-    }
 }
