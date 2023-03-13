@@ -42,7 +42,5 @@ public class NewPrinterService {
                 impressora));
 
         return new ImpressoraInsertDTO(impressora);
-
-        //TODO("mascaraSubRede": "255" , VERIFICAR)
     }
 }

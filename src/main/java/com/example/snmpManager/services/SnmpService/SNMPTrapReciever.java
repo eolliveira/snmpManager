@@ -49,7 +49,6 @@ public class SNMPTrapReciever implements CommandResponder {
 
             // Get the community string used by the trap sender
             String community = new String(event.getSecurityName());
-            //TODO(configurar nome da communidade)
 
             // Get the variable bindings from the trap
             VariableBinding[] varBinds = pdu.toArray();

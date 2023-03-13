@@ -18,7 +18,6 @@ public class SnmpManagerApplication implements CommandLineRunner {
     public static void main(String[] args) {
         SpringApplication.run(SnmpManagerApplication.class, args);
         //TODO(CRUD NOBREAK)
-        //TODO(CRUD MOBILE)
         //TODO(EXTRAIR VARIAVEIS DE AMBIENTE)
     }
 
