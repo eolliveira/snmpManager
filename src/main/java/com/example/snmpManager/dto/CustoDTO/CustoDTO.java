@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ public class CustoDTO implements Serializable {
 
     private Long id;
     private String descricao;
-    private Double valor;
+    private BigDecimal valor;
     private Instant dtCusto;
 
     private List<AnexoDTO> anexos = new ArrayList<>();

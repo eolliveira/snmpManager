@@ -10,6 +10,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Positive;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
@@ -22,7 +23,7 @@ public class CustoInsertDTO implements Serializable {
     @NotBlank(message = "Campo Requerido")
     private String descricao;
     @Positive(message = "Valor deve ser positivo")
-    private Double valor;
+    private BigDecimal valor;
     private Instant dtCusto;
     @NotNull
     private AtivoDTO ativo;

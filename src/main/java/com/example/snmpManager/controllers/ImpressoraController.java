@@ -30,7 +30,7 @@ public class ImpressoraController {
     }
 
     @GetMapping
-    public ResponseEntity<List<ImpressoraInsertDTO>> findAll() {
+    public ResponseEntity<List<ImpressoraInsertDTO>> findAllPrinters() {
         List<ImpressoraInsertDTO> impressoras = findPrinterService.findAll();
         return ResponseEntity.ok(impressoras);
     }
@@ -43,7 +43,7 @@ public class ImpressoraController {
     }
 
     @PutMapping(value = "/{idActive}/synchronize")
-    public void synchronize(@PathVariable Long idActive) {
+    public void synchronizePrinter(@PathVariable Long idActive) {
         synchronizeWorstation.synchronizePrinter(idActive);
     }
 

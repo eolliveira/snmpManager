@@ -7,7 +7,7 @@ import lombok.Data;
 import javax.persistence.*;
 import java.time.Instant;
 
-@Table(name = "ATIVOMOVIMENTO")
+@Table(name = "MOVIMENTO")
 @Entity
 @Data
 public class MovimentoEntity {

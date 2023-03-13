@@ -9,7 +9,7 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
-@Table(name = "ATIVODISCO")
+@Table(name = "DISCO")
 @Entity
 @Getter
 @Setter

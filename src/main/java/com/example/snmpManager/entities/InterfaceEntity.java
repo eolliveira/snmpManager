@@ -10,7 +10,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
 
-@Table(name = "ATIVOINTERFACE")
+@Table(name = "INTERFACE")
 @Entity
 @Getter
 @Setter

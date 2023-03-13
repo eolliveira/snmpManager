@@ -4,10 +4,11 @@ import com.example.snmpManager.dto.CustoDTO.CustoInsertDTO;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.List;
 
-@Table(name = "ATIVOCUSTO")
+@Table(name = "CUSTO")
 @Entity
 @Data
 public class CustoEntity {
@@ -19,7 +20,7 @@ public class CustoEntity {
     private String descricao;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant dtCusto;
-    private Double valor;
+    private BigDecimal valor;
 
     @ManyToOne()
     @JoinColumn(name = "ID_ATIVO")
