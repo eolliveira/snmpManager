@@ -3,6 +3,7 @@ package com.example.snmpManager.dto.LicencaDTO;
 import com.example.snmpManager.entities.LicencaEntity;
 import com.example.snmpManager.entities.enums.TipoLicenca;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.io.Serializable;
@@ -11,6 +12,7 @@ import java.util.Date;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class LicencaUpdateDTO implements Serializable {
     private Long id;
     private String nome;
@@ -29,9 +31,6 @@ public class LicencaUpdateDTO implements Serializable {
     private Integer qtdLicencas;
     private String chaveLicenca;
     private TipoLicenca tipo;
-
-    public LicencaUpdateDTO() {
-    }
 
     public LicencaUpdateDTO(LicencaEntity entity) {
         this.id = entity.getId();

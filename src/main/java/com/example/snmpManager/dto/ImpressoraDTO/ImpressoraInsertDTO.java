@@ -4,10 +4,12 @@ import com.example.snmpManager.dto.AtivoDTO.AtivoDTO;
 import com.example.snmpManager.entities.ImpressoraEntity;
 import com.example.snmpManager.entities.enums.StatusAtivo;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
+@EqualsAndHashCode(callSuper = true)
 @Data
 @NoArgsConstructor
 public class ImpressoraInsertDTO extends AtivoDTO implements Serializable {

@@ -1,6 +1,5 @@
 package com.example.snmpManager.dto.DiscoParticaoDTO;
 
-import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.entities.DiscoParticaoEntity;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.PartitionObject;
 import lombok.Data;
@@ -13,8 +12,6 @@ public class DiscoParticaoDTO implements Serializable {
     private String pontoMontagem;
     private String capacidade;
     private String usado;
-    //private DiscoDTO disco;
-
     public DiscoParticaoDTO() {
     }
 
@@ -23,7 +20,6 @@ public class DiscoParticaoDTO implements Serializable {
         this.pontoMontagem = entity.getPontoMontagem();
         this.capacidade = entity.getCapacidade();
         this.usado = entity.getUsado();
-        //this.disco = new DiscoDTO(entity.getDisco());
     }
 
     public DiscoParticaoDTO(PartitionObject obj) {

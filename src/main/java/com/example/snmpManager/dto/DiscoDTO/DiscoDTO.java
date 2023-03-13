@@ -19,8 +19,6 @@ public class DiscoDTO implements Serializable {
     private String numeroSerie;
     private String capacidade;
 
-    //private EstacaoTrabalhoDTO estacaoTrabalho;
-
     private List<DiscoParticaoDTO> particoes = new ArrayList<>();
 
     public DiscoDTO() {}
