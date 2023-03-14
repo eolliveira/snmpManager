@@ -1,7 +1,7 @@
 package com.example.snmpManager.controllers;
 
-import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraDTO;
 import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraInsertDTO;
+import com.example.snmpManager.dto.ImpressoraDTO.ImpressoraUpdateDTO;
 import com.example.snmpManager.objects.PrinterObject;
 import com.example.snmpManager.services.ImpressoraService.*;
 import lombok.RequiredArgsConstructor;
@@ -48,7 +48,7 @@ public class ImpressoraController {
     }
 
     @PutMapping(value = "/{idActive}/update")
-    public ResponseEntity<ImpressoraDTO> updatePrinter(@PathVariable Long idActive, @RequestBody ImpressoraDTO dto) {
+    public ResponseEntity<ImpressoraUpdateDTO> updatePrinter(@PathVariable Long idActive, @RequestBody ImpressoraUpdateDTO dto) {
         dto = updatePrinterService.updatePrinter(idActive, dto);
         return ResponseEntity.ok(dto);
     }
