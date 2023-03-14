@@ -1,11 +1,8 @@
 package com.example.snmpManager.services.DispositivoMovelService;
 
 import com.example.snmpManager.dto.DispositivoMovelDTO.DispositivoMovelDTO;
-import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.entities.DispositivoMovelEntity;
-import com.example.snmpManager.entities.EstacaoTrabalhoEntity;
 import com.example.snmpManager.repositories.DispositivoMovelRepository;
-import com.example.snmpManager.repositories.EstacaoTrabalhoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

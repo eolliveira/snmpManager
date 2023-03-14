@@ -14,7 +14,7 @@ public class MovimentoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ATIVOMOVIMENTO")
+    @Column(name = "ID_MOVIMENTO")
     private Long id;
     private String descricao;
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")

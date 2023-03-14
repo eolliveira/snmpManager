@@ -20,7 +20,7 @@ public class InterfaceEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID_ATIVOINTERFACE")
+    @Column(name = "ID_INTERFACE")
     private Long id;
     private String nomeLocal;
     private String fabricante;

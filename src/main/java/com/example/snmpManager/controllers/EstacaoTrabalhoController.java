@@ -3,6 +3,7 @@ package com.example.snmpManager.controllers;
 import com.example.snmpManager.dto.DiscoDTO.DiscoDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoBasicDTO;
 import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoDTO;
+import com.example.snmpManager.dto.EstacaoTrabalhoDTO.EstacaoTrabalhoUpdateDTO;
 import com.example.snmpManager.objects.EstacaoTrabalhoObjects.WorkstationObject;
 import com.example.snmpManager.services.DiscoService.FindDiscsWorkstationService;
 import com.example.snmpManager.services.EstacaoTrabalhoService.*;
@@ -62,7 +63,7 @@ public class EstacaoTrabalhoController {
     }
 
     @PutMapping(value = "/{idActive}/update")
-    public ResponseEntity<EstacaoTrabalhoDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoDTO dto) {
+    public ResponseEntity<EstacaoTrabalhoUpdateDTO> updateWorkStation(@PathVariable Long idActive, @RequestBody EstacaoTrabalhoUpdateDTO dto) {
         dto = updateWorkstationService.updateWorkStation(idActive, dto);
         return ResponseEntity.ok(dto);
     }
