@@ -52,13 +52,13 @@ public abstract class AtivoEntity {
     @JoinColumn(name = "ID_USUARIO")
     private UsuarioEntity usuario;
 
-    @OneToMany(mappedBy = "ativo")
+    @OneToMany(mappedBy = "ativo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MovimentoEntity> movimentos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "ativo")
+    @OneToMany(mappedBy = "ativo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<AnexoEntity> anexos = new ArrayList<>();
 
-    @OneToMany(mappedBy = "ativo")
+    @OneToMany(mappedBy = "ativo", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CustoEntity> custos = new ArrayList<>();
 
     @ManyToMany
