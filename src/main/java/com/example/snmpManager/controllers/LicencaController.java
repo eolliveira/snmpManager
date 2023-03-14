@@ -50,5 +50,4 @@ public class LicencaController {
         unlinkLicenseService.unlinkLicense(dto);
     }
 
-
 }
