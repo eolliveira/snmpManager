@@ -34,7 +34,7 @@ public class LicencaController {
         return ResponseEntity.ok(licenca);
     }
 
-    @PutMapping(value = "/{licenseId}")
+    @PutMapping(value = "/{licenseId}/update")
     public ResponseEntity<LicencaUpdateDTO> updateLicense(@PathVariable Long licenseId, @RequestBody LicencaUpdateDTO dto) {
         dto = updateLicenseService.updateLicense(licenseId, dto);
         return ResponseEntity.ok(dto);

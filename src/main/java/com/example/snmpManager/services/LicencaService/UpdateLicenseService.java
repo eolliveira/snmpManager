@@ -27,6 +27,7 @@ public class UpdateLicenseService {
         licenca.setModelo(dto.getModelo());
         licenca.setDescricao(dto.getDescricao());
         licenca.setNumeroSerie(dto.getNumeroSerie());
+        licenca.setTipo(dto.getTipo());
         licenca.setInativo(dto.getInativo());
         licenca.setDtAquisicao(dto.getDtAquisicao());
         licenca.setDtVencimentoGarantia(dto.getDtVencimentoGarantia());
